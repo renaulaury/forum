@@ -23,10 +23,15 @@ USE `forumlily`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id_category` int NOT NULL AUTO_INCREMENT,
   `typeCategory` varchar(50) NOT NULL,
+  `sortCategory` int NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table forumlily.category : ~0 rows (environ)
+REPLACE INTO `category` (`id_category`, `typeCategory`, `sortCategory`) VALUES
+	(1, 'Expositions', 1),
+	(2, 'Le coin des passionnés', 2),
+	(3, 'Questions et conseils', 3);
 
 -- Listage de la structure de table forumlily. post
 CREATE TABLE IF NOT EXISTS `post` (
@@ -40,15 +45,20 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK1_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
   CONSTRAINT `FK2_topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.post : ~0 rows (environ)
+-- Listage des données de la table forumlily.post : ~3 rows (environ)
+REPLACE INTO `post` (`id_post`, `postMsg`, `postCreation`, `user_id`, `topic_id`) VALUES
+	(1, 'Cool', '2024-12-17 20:36:35', 3, 6),
+	(2, 'Trop géniale !', '2024-12-17 20:37:11', 3, 1),
+	(3, 'C\'était une expérience enivrante', '2024-12-17 20:37:40', 3, 3);
 
 -- Listage de la structure de table forumlily. topic
 CREATE TABLE IF NOT EXISTS `topic` (
   `id_topic` int NOT NULL AUTO_INCREMENT,
   `topicTitle` varchar(50) NOT NULL,
   `topicCreation` datetime NOT NULL,
+  `textTopic` text NOT NULL,
   `lock` tinyint(1) NOT NULL,
   `categorie_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -57,9 +67,16 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK1_categorie_id` FOREIGN KEY (`categorie_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK2_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.topic : ~0 rows (environ)
+-- Listage des données de la table forumlily.topic : ~6 rows (environ)
+REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `lock`, `categorie_id`, `user_id`) VALUES
+	(1, 'L\'incident de Kyujo', '2024-12-17 20:30:34', 'Bla', 0, 1, 1),
+	(2, 'La guerre fédérale', '2024-12-17 20:32:45', 'Bla', 0, 1, 2),
+	(3, 'La guerre d\'hiver', '2024-12-17 20:33:31', 'Bla', 0, 1, 1),
+	(4, 'Pointillisme', '2024-12-17 20:34:03', 'Bloup', 0, 2, 3),
+	(5, 'Broderie', '2024-12-17 20:34:56', 'Blurp', 0, 2, 3),
+	(6, 'Jsuis perdu', '2024-12-17 20:35:31', 'sos', 0, 3, 3);
 
 -- Listage de la structure de table forumlily. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -71,9 +88,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `nickname` (`nickname`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.user : ~0 rows (environ)
+-- Listage des données de la table forumlily.user : ~4 rows (environ)
+REPLACE INTO `user` (`id_user`, `nickname`, `mail`, `password`, `role`) VALUES
+	(1, 'lily', 'lily@elan.fr', '1234', 'admin'),
+	(2, 'mickael', 'micka@elan.fr', '1234', 'admin'),
+	(3, 'bilou', 'biloup@gmail.com', '1234', 'user'),
+	(4, 'blondeDu98', 'blondy@wanadoo.fr', '1234', 'user');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
