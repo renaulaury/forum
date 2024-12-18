@@ -7,6 +7,12 @@
 <h1>Liste des posts</h1>
 
 <?php
-foreach($posts as $post ){ ?>
-    <p><?= $post ?> par <?= $post->getUser() ?> <?= $post->getPostCreationFr() ?></p>
-<?php }
+
+if (!empty($posts)) { 
+    foreach($posts as $post) { ?>        
+        <p><?= $post ?> par <?= $post->getUser() ?> le <?= $post->getPostCreationFr() ?></p>
+    <?php }
+} else { ?>
+    <p>Il n'y a aucun post.</p>
+<?php } ?>
+
