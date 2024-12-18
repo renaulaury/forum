@@ -8,11 +8,16 @@
 
 <?php
 
-if (!empty($posts)) { 
+if (!empty($posts)) { ?>
+    <h2><?= $topic ?></h2>
+
+<?php 
     foreach($posts as $post) { ?>        
         <p><?= $post ?> par <?= $post->getUser() ?> le <?= $post->getPostCreationFr() ?></p>
     <?php }
 } else { ?>
     <p>Il n'y a aucun post.</p>
 <?php } ?>
+
+
 

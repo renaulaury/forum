@@ -5,10 +5,13 @@
 
 <h1>Liste des topics</h1>
 
-<h2>Catégorie : <?= $category->$category->getTypeCategory() ?></h2>
+
 
 <?php
-if (!empty($topics)) { 
+if (!empty($topics)) { ?>
+    <h2>Catégorie : <?= $category->getTypeCategory() ?></h2>
+
+    <?php
     foreach($topics as $topic ){ ?>
     <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a>  par <?= $topic->getUser() ?><?= $topic->getTopicCreationFr() ?></p>
     <?php }
