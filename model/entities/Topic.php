@@ -83,7 +83,7 @@ final class Topic extends Entity
     public function getTopicCreationFr()
     {
         $date = new \DateTime($this->topicCreation);
-        return $date->format("d-m-y H:i");
+        return $date->format("d-m-y à H:i");
     }
 
     /**

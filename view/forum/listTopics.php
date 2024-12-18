@@ -7,5 +7,5 @@
 
 <?php
 foreach($topics as $topic ){ ?>
-    <p><a href="index.php?ctrl=forum&action="><?= $topic ?></a> par <?= $topic->getUser() ?> <?= $topic->getTopicCreationFr() ?></p>
+    <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a>  par <?= $topic->getUser() ?><?= $topic->getTopicCreationFr() ?></p>
 <?php }

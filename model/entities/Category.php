@@ -13,6 +13,7 @@ final class Category extends Entity
 
     private $id;
     private $typeCategory;
+    private $sortCategory;
 
     // chaque entité aura le même constructeur grâce à la méthode hydrate (issue de App\Entity)
     public function __construct($data)
@@ -56,6 +57,26 @@ final class Category extends Entity
     public function setTypeCategory($typeCategory)
     {
         $this->typeCategory = $typeCategory;
+        return $this;
+    }
+
+    /**
+     * Get the value of sortCategory
+     */ 
+    public function getSortCategory()
+    {
+        return $this->sortCategory;
+    }
+
+    /**
+     * Set the value of sortCategory
+     *
+     * @return  self
+     */ 
+    public function setSortCategory($sortCategory)
+    {
+        $this->sortCategory = $sortCategory;
+
         return $this;
     }
 
