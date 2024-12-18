@@ -1,11 +1,12 @@
 <?php
-    $category = $result["data"]['category']; 
-    $topics = $result["data"]['topics']; 
+    $topic = $result["data"]['topic']; 
+    $posts = $result["data"]['posts']; 
+
 ?>
 
 <h1>Liste des posts</h1>
 
 <?php
 foreach($posts as $post ){ ?>
-    <p><a href="index.php?ctrl=forum&action=lis"><?= $post->getId() ?></a> par <?= $post->getUser() ?></p>
+    <p><?= $post ?> par <?= $post->getUser() ?> <?= $post->getPostCreationFr() ?></p>
 <?php }

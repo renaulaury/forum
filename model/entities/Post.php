@@ -18,6 +18,11 @@ final class Post extends Entity
     private $topic;
 
 
+    public function __construct($data)
+    {
+        $this->hydrate($data);
+    }
+
     /**
      * Get the value of id
      */ 
@@ -76,6 +81,12 @@ final class Post extends Entity
         $this->postCreation = $postCreation;
 
         return $this;
+    }
+
+    public function getPostCreationFr()
+    {
+        $date = new \DateTime($this->postCreation);
+        return $date->format("d-m-y à H:i");
     }
 
     /**
