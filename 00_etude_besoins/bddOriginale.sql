@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `topicTitle` varchar(50) NOT NULL,
   `topicCreation` datetime NOT NULL,
   `textTopic` text NOT NULL,
-  `lock` tinyint(1) NOT NULL,
+  `locked` tinyint(1) NOT NULL,
   `category_id` int NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id_topic`),
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table forumlily.topic : ~6 rows (environ)
-REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `lock`, `category_id`, `user_id`) VALUES
+REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `locked`, `category_id`, `user_id`) VALUES
 	(1, 'L\'incident de Kyujo', '2024-12-17 20:30:34', 'Bla', 0, 1, 1),
 	(2, 'La guerre fédérale', '2024-12-17 20:32:45', 'Bla', 0, 1, 2),
 	(3, 'La guerre d\'hiver', '2024-12-17 20:33:31', 'Bla', 0, 1, 1),

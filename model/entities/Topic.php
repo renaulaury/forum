@@ -14,7 +14,7 @@ final class Topic extends Entity
     private $id;
     private $topicTitle;
     private $user;
-    private $typeCategory;
+    private $category;
     private $topicCreation;
     private $locked;
 
@@ -61,6 +61,31 @@ final class Topic extends Entity
         return $this;
     }
 
+     /**
+     * Get the value of title
+     */
+    public function getTopicCreation()
+    {
+        return $this->topicCreation;
+    }
+
+    /**
+     * Set the value of title
+     *
+     * @return  self
+     */
+    public function setTopicCreation($topicCreation)
+    {
+        $this->topicCreation = $topicCreation;
+        return $this;
+    }
+
+    public function getTopicCreationFr()
+    {
+        $date = new \DateTime($this->topicCreation);
+        return $date->format("d-m-y H:i");
+    }
+
     /**
      * Get the value of user
      */
@@ -77,6 +102,47 @@ final class Topic extends Entity
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
+    }
+
+
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of locked
+     */ 
+    public function getLocked()
+    {
+        return $this->locked;
+    }
+
+    /**
+     * Set the value of locked
+     *
+     * @return  self
+     */ 
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+
         return $this;
     }
 

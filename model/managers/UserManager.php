@@ -14,3 +14,5 @@ class UserManager extends Manager{
         parent::connect();
     }
 }
+
+?>
