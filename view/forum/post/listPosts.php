@@ -20,4 +20,9 @@ if (!empty($posts)) { ?>
 <?php } ?>
 
 
+<form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
+    <p><label for="postMsg">Message</label></p>
+    <p><textarea type="text" id="postMsg" name="postMsg"></textarea></p>
 
+    <p><input class="validInput" type="submit" name="submit" value="Valider"></p>
+</form>

@@ -37,7 +37,7 @@ REPLACE INTO `category` (`id_category`, `typeCategory`, `sortCategory`) VALUES
 CREATE TABLE IF NOT EXISTS `post` (
   `id_post` int NOT NULL AUTO_INCREMENT,
   `postMsg` text NOT NULL,
-  `postCreation` datetime NOT NULL,
+  `postCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int DEFAULT NULL,
   `topic_id` int DEFAULT NULL,
   PRIMARY KEY (`id_post`),
@@ -45,21 +45,24 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK1_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
   CONSTRAINT `FK2_topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.post : ~3 rows (environ)
+-- Listage des données de la table forumlily.post : ~6 rows (environ)
 REPLACE INTO `post` (`id_post`, `postMsg`, `postCreation`, `user_id`, `topic_id`) VALUES
 	(1, 'Cool', '2024-12-17 20:36:35', 3, 6),
-	(2, 'Trop géniale !', '2024-12-17 20:37:11', 3, 1),
-	(3, 'C\'était une expérience enivrante', '2024-12-17 20:37:40', 3, 3);
+	(2, 'Trop génial !', '2024-12-17 20:37:11', 3, 1),
+	(3, 'C\'était une expérience enivrante', '2024-12-17 20:37:40', 3, 3),
+	(4, 'azzz', '2024-12-18 16:31:03', 1, 6),
+	(5, 'vvv', '2024-12-18 16:31:05', 1, 6),
+	(6, 'vvv', '2024-12-18 16:31:07', 1, 6);
 
 -- Listage de la structure de table forumlily. topic
 CREATE TABLE IF NOT EXISTS `topic` (
   `id_topic` int NOT NULL AUTO_INCREMENT,
   `topicTitle` varchar(50) NOT NULL,
-  `topicCreation` datetime NOT NULL,
+  `topicCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `textTopic` text NOT NULL,
-  `locked` tinyint(1) NOT NULL,
+  `locked` tinyint(1) NOT NULL DEFAULT '0',
   `category_id` int NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id_topic`),

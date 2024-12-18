@@ -9,7 +9,7 @@ Le lien doit emmener a la liste des topics  -->
 
 <?php
 foreach($categories as $category ){ ?>
-    <p><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>"><?= $category->getTypeCategory() ?></a> </p>
+    <p><a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>"><?= $category->getTypeCategory() ?></a> </p>
 <?php }
 
 
