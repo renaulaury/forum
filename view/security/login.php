@@ -1,6 +1,6 @@
 
 
-<form action="index.php?ctrl=security&action=login&id=<?= $users->getId() ?>" method="POST">
+<form action="index.php?ctrl=security&action=login&id=" method="POST">
         <label for="email">Email</label>
         <input type="email" name="email" id="email"><br>
 

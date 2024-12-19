@@ -4,6 +4,7 @@ namespace Controller;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\UserManager;
+use App\Session;
 
 class SecurityController extends AbstractController{
     // contiendra les méthodes liées à l'authentification : register, login et logout
@@ -40,47 +41,56 @@ class SecurityController extends AbstractController{
                 } else {
                     // Msg erreur
                 }
-            }
-            
+            }            
 
         return [
             "view" => VIEW_DIR."security/register.php",
             "meta_description" => "Enregistrement",
         ];    
     }
-}
-   
 
 
-    // public function login () {
-        // session_start();
+    public function login () {
+        // session
+
+        $session = new Session();
+        $userManager = new UserManager();
 
         //on filtre
-        // $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        // $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if (isset($_POST['submit'])) {
 
-        // if($email && $password) {
-        //     findAll($id); //mep requete
+            $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        //     if($user) { //verif si user existe
-        //         $hash = $user["password"]; //je vérifie le hash du mdp avec le mdp
-            
-        //     if(password_verify($password, $hash)) { //si ok j affiche la session du user
-        //         setUser();
-        // }else {
-        //     getFlash();
-        // }
+            //on les verifie
+            if ($email && $password) {
+                $user = $userManager->findOneByEmail($email);
 
-//    }
+                //on vérifie empreinte numérique et on ouvre la session
+                if ($user) {
+                    $hash = $user->getPassword();
+                    if (password_verify($password, $hash)) {
+                        $session->setUser($user);
+                    }
+                }
+            }
+        }
 
-//          return [
-//             "view" => VIEW_DIR."security/login.php",
-//             "meta_description" => "Enregistrement",
-//         ];
-//     }
+        return [
+            "view" => VIEW_DIR . "security/login.php",
+            "meta_description" => "Login to the forum"
+        ];
+    }
+
+
+
+//  public function logout () {
+//     unset($_SESSION["user"]);
+//     return [
+//         "view" => VIEW_DIR . "security/login.php",
+//         "meta_description" => "Login to the forum"
+//     ];
 // }
 
-//     public function logout () {}
-// }
 
-
+}
