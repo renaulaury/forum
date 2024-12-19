@@ -13,6 +13,10 @@ class UserManager extends Manager{
     public function __construct(){
         parent::connect();
     }
+
+    public function userExist() {
+        
+    }
 }
 
 ?>
