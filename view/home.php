@@ -1,6 +1,3 @@
- <?php 
-session_start();
-?> 
 
 <h1>BIENVENUE SUR LE FORUM</h1>
 

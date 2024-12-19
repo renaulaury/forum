@@ -9,44 +9,47 @@ class SecurityController extends AbstractController{
     // contiendra les méthodes liées à l'authentification : register, login et logout
 
     public function register () {
-        // session_start();
         $user = new UserManager();
 
         if(isset($_POST["submit"])) {
             //on filtre
-            $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $nickname = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
             $password1 = filter_input(INPUT_POST, "password1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password2 = filter_input(INPUT_POST, "password2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
             //on les vérifie
-            if($pseudo && $email && $password1 && $password2) {
-                //méthode dans usermanager qui verifie si user existe ou non
+            if($nickname && $email && $password1 && $password2) {                
+                $verifyNickname = $user->findOneByNickname($nickname);
+                $verifyEmail = $user->findOneByEmail($email);
     
-                if($user) { //verif si user existe
-                    //add in bdd
-                    if($password1 == $password2 && strlen($password1) >= 4) {
-                        $user->add([
-                            "pseudo" => $pseudo,
-                            "email" => $email,
-                            "password" => password_hash($password1, PASSWORD_DEFAULT)
-                        ]);
+                    if (!$verifyNickname && !$verifyEmail) { //Vérification si l'un ou l'autre n'existe pas  en bdd
+                        // add in bdd
+                        if($password1 == $password2 && strlen($password1) >= 4) {
+                            $user->add([
+                                "nickname" => $nickname,
+                                "email" => $email,
+                                "password" => password_hash($password1, PASSWORD_DEFAULT)
+                            ]);
+                        } else {
+                            // Msg erreur
+                        }
                     } else {
-                        // $user->getFlash();
-                    }               
+                       // Msg erreur
+                    }
+                } else {
+                    // Msg erreur
                 }
-    
-    
             }
-        }
+            
 
         return [
             "view" => VIEW_DIR."security/register.php",
             "meta_description" => "Enregistrement",
-        ];
+        ];    
     }
 }
-
+   
 
 
     // public function login () {

@@ -14,8 +14,28 @@ class UserManager extends Manager{
         parent::connect();
     }
 
-    public function userExist() {
-        
+    public function findOneByEmail($email) {
+
+        $sql = "SELECT *
+                FROM ".$this->tableName." t
+                WHERE t.email = :email";
+
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['email' => $email], false),
+            $this->className
+        );
+    }
+
+    public function findOneByNickname($nickname) {
+
+        $sql = "SELECT *
+                FROM ".$this->tableName." t
+                WHERE t.nickname = :nickname";
+
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['nickname' => $nickname], false),
+            $this->className
+        );
     }
 }
 

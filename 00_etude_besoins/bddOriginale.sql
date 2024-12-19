@@ -45,16 +45,14 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK1_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
   CONSTRAINT `FK2_topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.post : ~6 rows (environ)
+-- Listage des données de la table forumlily.post : ~4 rows (environ)
 REPLACE INTO `post` (`id_post`, `postMsg`, `postCreation`, `user_id`, `topic_id`) VALUES
 	(1, 'Cool', '2024-12-17 20:36:35', 3, 6),
 	(2, 'Trop génial !', '2024-12-17 20:37:11', 3, 1),
 	(3, 'C\'était une expérience enivrante', '2024-12-17 20:37:40', 3, 3),
-	(4, 'azzz', '2024-12-18 16:31:03', 1, 6),
-	(5, 'vvv', '2024-12-18 16:31:05', 1, 6),
-	(6, 'vvv', '2024-12-18 16:31:07', 1, 6);
+	(7, 'Tout a fait Bilou', '2024-12-19 09:34:16', 1, 3);
 
 -- Listage de la structure de table forumlily. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -70,31 +68,33 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `categorie_id` (`category_id`) USING BTREE,
   CONSTRAINT `FK1_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK2_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.topic : ~6 rows (environ)
+-- Listage des données de la table forumlily.topic : ~8 rows (environ)
 REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `locked`, `category_id`, `user_id`) VALUES
 	(1, 'L\'incident de Kyujo', '2024-12-17 20:30:34', 'Bla', 0, 1, 1),
 	(2, 'La guerre fédérale', '2024-12-17 20:32:45', 'Bla', 0, 1, 2),
 	(3, 'La guerre d\'hiver', '2024-12-17 20:33:31', 'Bla', 0, 1, 1),
 	(4, 'Pointillisme', '2024-12-17 20:34:03', 'Bloup', 0, 2, 3),
 	(5, 'Broderie', '2024-12-17 20:34:56', 'Blurp', 0, 2, 3),
-	(6, 'Jsuis perdu', '2024-12-17 20:35:31', 'sos', 0, 3, 3);
+	(6, 'Jsuis perdu', '2024-12-17 20:35:31', 'sos', 0, 3, 3),
+	(7, 'azqse', '2024-12-19 09:05:58', 'qsd', 0, 2, 1),
+	(8, 'azqse', '2024-12-19 09:14:06', 'tr', 0, 3, 1);
 
 -- Listage de la structure de table forumlily. user
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int NOT NULL AUTO_INCREMENT,
   `nickname` varchar(50) NOT NULL,
-  `mail` varchar(50) NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `nickname` (`nickname`),
-  UNIQUE KEY `mail` (`mail`)
+  UNIQUE KEY `mail` (`email`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table forumlily.user : ~4 rows (environ)
-REPLACE INTO `user` (`id_user`, `nickname`, `mail`, `password`, `role`) VALUES
+REPLACE INTO `user` (`id_user`, `nickname`, `email`, `password`, `role`) VALUES
 	(1, 'lily', 'lily@elan.fr', '1234', 'admin'),
 	(2, 'mickael', 'micka@elan.fr', '1234', 'admin'),
 	(3, 'bilou', 'biloup@gmail.com', '1234', 'user'),
