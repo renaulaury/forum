@@ -13,13 +13,13 @@ if (!empty($topics)) { ?>
 
     <?php
     foreach($topics as $topic ){ ?>
-    <p><a href="index.php?ctrl=topic&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a>  par <?= $topic->getUser() ?><?= $topic->getTopicCreationFr() ?></p>
+    <p><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a>  par <?= $topic->getUser() ?><?= $topic->getTopicCreationFr() ?></p>
     <?php }
 } else { ?>
     <p>Il n'y a aucun topic.</p>
 <?php } ?>
 
-<form action="index.php?topic&action=addTopic" method="post">
+<form action="index.php?ctrl=topic&action=addTopic&id=<?= $category->getId() ?>" method="post">
     <p><label for="topicTitle">Titre</label></p>
     <p><input type="text" id="topicTitle" name="topicTitle"></input> </p>
 

@@ -19,7 +19,7 @@ class PostController extends AbstractController implements ControllerInterface{
 
         return [
             "view" => VIEW_DIR."post/listPosts.php",
-            "meta_description" => "Liste des posts par topic : ".$topic,
+            "meta_description" => "Liste des posts par topic : " .$topic,
             "data" => [
                 "topic" => $topic,
                 "posts" => $posts
