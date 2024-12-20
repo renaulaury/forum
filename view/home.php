@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="<?= $meta_description ?>">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
@@ -19,16 +20,15 @@
 
                 <header>
                     <nav>
-                        <div id="nav-left">
+                        <div id="navbar">
                             <a href="index.php?ctrl=home&action=home">Accueil</a>
                             <?php
                             if(App\Session::isAdmin()){
                                 ?>
                                 <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
                             <?php } ?>
-                        </div>
+                        
 
-                        <div id="nav-right">
                         <?php
                             // si l'utilisateur est connecté 
                             if(App\Session::getUser()){
@@ -45,18 +45,24 @@
                             <?php
                             }
                         ?>
-                        <div class="bande"></div>
                         </div>
+
+                        <div class="bande"></div>
+                                                
                     </nav>
                 </header>
                 
                 <main id="forum">
-                    <h1>BIENVENUE SUR LE FORUM</h1>
-                    <?= $page ?>
+                    <p class="containColisee"><img class="colisee" src="./public/images/colisee.jpg" alt="Image du colysee sous un couché de soleil bleu rose"></p>
+                    <h1>FORUM</h1>
+
+                    <section>
+                        <?= $page ?>
+                    </section>
                 </main>
             </div>
             <footer>
-                <p>&copy; <?= date_create("now")->format("Y") ?> - <a href="#">Règlement du forum</a> - <a href="#">Mentions légales</a></p>
+                &copy; <?= date_create("now")->format("Y") ?> Lily <a href="index.php?ctrl=forum&action=reglement">Règlement du forum</a> <a href="#">Mentions légales</a>
             </footer>
         </div>
         <script

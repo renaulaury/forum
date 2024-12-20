@@ -1,16 +1,27 @@
-<h1>Inscription</h1>
 
 <form action="index.php?ctrl=security&action=register" method="POST">
-    <label for="pseudo">Pseudo</label>
-    <input type="text" name="pseudo" id="pseudo"><br>
+    <legend>Créer un compte</legend>
 
-    <label for="email">Mail</label>
-    <input type="email" name="email" id="email"><br>
+    <div class="blockForm title">
+        <p class="mailLogin"><label for="nickname">Pseudo</label></p>
+        <input type="text" name="nickname" id="nickname"></input>
+    </div>
 
-    <label for="pass1">Mot de passe</label>
-    <input type="password" name="password1" id="pass1"><br>
+    <div class="blockForm title">
+        <p class="mailLogin"><label for="email">Mail</label></p>
+        <input type="email" name="email" id="email"></input>
+    </div>
 
-    <label for="pass2">Répéter le mot de passe</label>
-    <input type="password" name="password2" id="pass2"><br>
-    <input type="submit" name="submit" value="S'enregistrer">
+    <div class="blockForm title">
+        <p class="mailLogin"><label for="pass1">Mot de passe</label></p>
+        <input type="password" name="password1" id="pass1"></input>
+    </div>
+
+    <div class="blockForm title">
+        <p class="mailLogin"><label for="pass2">Répéter le mot de passe</label></p>
+        <input type="password" name="password2" id="pass2"></input>
+    </div>
+    <p class="button">
+        <input type="submit" name="submit" value="Créer">
+    </p>
 </form>
