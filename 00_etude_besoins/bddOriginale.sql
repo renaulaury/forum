@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.category : ~3 rows (environ)
+-- Listage des données de la table forumlily.category : ~2 rows (environ)
 REPLACE INTO `category` (`id_category`, `typeCategory`, `sortCategory`) VALUES
 	(1, 'Expositions', 1),
 	(2, 'Le coin des passionnés', 2),
@@ -45,14 +45,15 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK1_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
   CONSTRAINT `FK2_topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.post : ~4 rows (environ)
+-- Listage des données de la table forumlily.post : ~5 rows (environ)
 REPLACE INTO `post` (`id_post`, `postMsg`, `postCreation`, `user_id`, `topic_id`) VALUES
-	(1, 'Cool', '2024-12-17 20:36:35', 3, 6),
-	(2, 'Trop génial !', '2024-12-17 20:37:11', 3, 1),
-	(3, 'C\'était une expérience enivrante', '2024-12-17 20:37:40', 3, 3),
-	(7, 'Tout a fait Bilou', '2024-12-19 09:34:16', 1, 3);
+	(1, 'Cool', '2024-12-17 20:36:35', 9, 6),
+	(2, 'Trop géniale !', '2024-12-17 20:37:11', 8, 1),
+	(3, 'C\'était une expérience enivrante', '2024-12-17 20:37:40', 10, 3),
+	(4, 'tictic', '2024-12-19 20:46:21', 8, 7),
+	(5, 'Oh peu chere !', '2024-12-20 23:36:24', 8, 6);
 
 -- Listage de la structure de table forumlily. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `topicTitle` varchar(50) NOT NULL,
   `topicCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `textTopic` text NOT NULL,
-  `locked` tinyint(1) NOT NULL DEFAULT '0',
+  `lock` tinyint(1) NOT NULL DEFAULT '0',
   `category_id` int NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id_topic`),
@@ -71,15 +72,15 @@ CREATE TABLE IF NOT EXISTS `topic` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table forumlily.topic : ~8 rows (environ)
-REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `locked`, `category_id`, `user_id`) VALUES
-	(1, 'L\'incident de Kyujo', '2024-12-17 20:30:34', 'Bla', 0, 1, 1),
-	(2, 'La guerre fédérale', '2024-12-17 20:32:45', 'Bla', 0, 1, 2),
-	(3, 'La guerre d\'hiver', '2024-12-17 20:33:31', 'Bla', 0, 1, 1),
-	(4, 'Pointillisme', '2024-12-17 20:34:03', 'Bloup', 0, 2, 3),
-	(5, 'Broderie', '2024-12-17 20:34:56', 'Blurp', 0, 2, 3),
-	(6, 'Jsuis perdu', '2024-12-17 20:35:31', 'sos', 0, 3, 3),
-	(7, 'azqse', '2024-12-19 09:05:58', 'qsd', 0, 2, 1),
-	(8, 'azqse', '2024-12-19 09:14:06', 'tr', 0, 3, 1);
+REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `lock`, `category_id`, `user_id`) VALUES
+	(1, 'L\'incident de Kyujo', '2024-12-17 20:30:34', 'Bla', 0, 1, 9),
+	(2, 'La guerre fédérale', '2024-12-17 20:32:45', 'Bla', 0, 1, 10),
+	(3, 'La guerre d\'hiver', '2024-12-17 20:33:31', 'Bla', 0, 1, 9),
+	(4, 'Pointillisme', '2024-12-17 20:34:03', 'Bloup', 0, 2, 7),
+	(5, 'Broderie', '2024-12-17 20:34:56', 'Blurp', 0, 2, 9),
+	(6, 'Jsuis perdu', '2024-12-17 20:35:31', 'sos', 0, 3, 10),
+	(7, 'tactac', '2024-12-19 20:45:54', 'dfdf', 0, 2, 9),
+	(8, 'bfdbf', '2024-12-19 20:46:33', 'fbbf', 0, 1, 9);
 
 -- Listage de la structure de table forumlily. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -87,18 +88,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `nickname` varchar(50) NOT NULL,
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL,
+  `role` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `nickname` (`nickname`),
   UNIQUE KEY `mail` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.user : ~4 rows (environ)
+-- Listage des données de la table forumlily.user : ~6 rows (environ)
 REPLACE INTO `user` (`id_user`, `nickname`, `email`, `password`, `role`) VALUES
-	(1, 'lily', 'lily@elan.fr', '1234', 'admin'),
-	(2, 'mickael', 'micka@elan.fr', '1234', 'admin'),
-	(3, 'bilou', 'biloup@gmail.com', '1234', 'user'),
-	(4, 'blondeDu98', 'blondy@wanadoo.fr', '1234', 'user');
+	(5, 'juju', 'juju@juju.fr', '$2y$10$sNYe988MMEdJfWUON6sRtOZgqavsEKVFJxEEyNArLTvrB69obZwTu', 'user'),
+	(6, 'lily2', 'lily2@lily.fr', '$2y$10$w/LL.QBxTKmK8S9GIg3fMeN8jkcsSK4gt8dY9UXYypliFBYUWUNkO', 'user'),
+	(7, 'jujul', 'mia@jdks.fr', '$2y$10$XT4EvD4xjQE4XlPf6EMex./q0ZJljQJnazewsgI3tXcQfCbr5sazO', 'user'),
+	(8, 'mimil', 'mililian@gmail.com', '$2y$10$5CIBCPDfKalI4inM/Avag.y5VmC.x2iV0xuUX3JFDg246ymdpivOa', 'user'),
+	(9, 'Lisou', 'lisou@lisou.fr', '$2y$10$0vRR9xuIKjuSt0Gvyj14xeq3aiSh5aA5QPBwaU92/4EGJVxinien2', 'user'),
+	(10, 'sapinou', 'noel@christmas.fr', '$2y$10$BlJj6vHhkunSmrVdJhya4O.Cmt2hvYcErpMcPrZcjpdUoemUEe.Ny', 'user');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

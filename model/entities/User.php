@@ -16,6 +16,8 @@ final class User extends Entity
     private $mail;
     private $password;
     private $role;
+    // private $nbTopics;
+    // private $nbPosts;
 
     public function __construct($data)
     {

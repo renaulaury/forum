@@ -163,8 +163,6 @@ a {
     font-weight: bold;
 }
 
-
-
 .nameTime {
     background-color: rgba(255, 160, 122, 0);
     /* font-size: 0.8em; */
@@ -220,8 +218,12 @@ input, textarea {
 .button input{
     padding: 30% 100%;
     border-radius: 50px;
-    background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
+    background-color: rgb(187, 182, 182);
     border: none;
+}
+
+.button input:hover {
+    background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
 }
 
 

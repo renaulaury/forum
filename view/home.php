@@ -21,7 +21,7 @@
                 <header>
                     <nav>
                         <div id="navbar">
-                            <a href="index.php?ctrl=home&action=home">Accueil</a>
+                            <!-- <a href="index.php?ctrl=home&action=home">Accueil</a> -->
                             <?php
                             if(App\Session::isAdmin()){
                                 ?>
