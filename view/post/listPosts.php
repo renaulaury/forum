@@ -3,12 +3,14 @@
     $posts = $result["data"]['posts']; 
 
 ?>
+<h2>Catégorie : <?= $topic->getCategoryType() ?></h2>
+
 
 
 <?php
 
 if (!empty($posts)) { ?>
-    <h2><?= $topic ?></h2>
+    <h3><?= $topic ?></h3>
 
 <?php 
     foreach($posts as $post) { ?> 

@@ -13,15 +13,19 @@ class PostController extends AbstractController implements ControllerInterface{
     public function listPostsByTopic($id) {
 
         $postManager = new PostManager();
-        $topicManager = new TopicManager();
+        $topicManager = new TopicManager();        
+        $categoryManager = new CategoryManager();
+
         $topic = $topicManager->findOneById($id);
+        $category = $categoryManager->findOneById($topic->getCategoryType());
         $posts = $postManager->findPostsByTopic($id);
 
         return [
             "view" => VIEW_DIR."post/listPosts.php",
-            "meta_description" => "Liste des posts par topic : " .$topic,
+            "meta_description" => "Liste des posts par topic : " .$topic->getTopicTitle(),
             "data" => [
                 "topic" => $topic,
+                "category_id" => $id,
                 "posts" => $posts
             ]
         ];
@@ -30,15 +34,22 @@ class PostController extends AbstractController implements ControllerInterface{
     public function addPost($id) {
 
         $postManager = new PostManager();
+        $session = new \App\Session();
 
         $postMsg = filter_input(INPUT_POST, 'postMsg', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+        
+        if($postMsg && $session->getUser()) {
+            $user = $session->getUser(); //Récup l id du user connecté
+            $userId = $user->getId();
 
-        if($postMsg) {
             $postManager->add([
                 "postMsg" => $postMsg, 
-                "user_id" => 1,
+                "user_id" => $userId,
                 "topic_id" => $id
             ]);
+
+            
         } 
 
         $this->redirectTo("post", "listPostsByTopic", $id);

@@ -30,17 +30,20 @@ class TopicController extends AbstractController implements ControllerInterface{
     public function addTopic(int $id) {
 
         $topicManager = new TopicManager();
+        $session = new \App\Session();
 
         $topicTitle = filter_input(INPUT_POST, 'topicTitle', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $textTopic = filter_input(INPUT_POST, 'textTopic', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        if($topicTitle && $textTopic) {
-          
+        if($topicTitle && $textTopic && $session->getUser()) {
+            $user = $session->getUser(); //Récup l id du user connecté
+            $userId = $user->getId();
+
             $topicManager->add([
                 "topicTitle" => $topicTitle,
                 "textTopic" => $textTopic, 
                 "category_id" => $id,
-                "user_id" => 1                
+                "user_id" => $userId                
             ]);
         } 
 

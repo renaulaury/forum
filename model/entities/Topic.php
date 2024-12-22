@@ -123,8 +123,15 @@ final class Topic extends Entity
     {
         $this->category = $category;
 
-        return $this;
+         $this;
     }
+
+    public function getCategoryType()
+    {
+        return $this->category->getTypeCategory();            
+          
+    }
+
 
     /**
      * Get the value of locked

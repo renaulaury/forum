@@ -3,13 +3,14 @@
     $topics = $result["data"]['topics']; 
 ?>
 
-<h2>Topics</h2>
+<h2>Catégorie : <?= $category->getTypeCategory() ?></h2>
+<h3>Topics</h3>
 
 
 
 <?php
 if (!empty($topics)) { ?>
-    <h2>Catégorie : <?= $category->getTypeCategory() ?></h2>
+    
 
     <?php
     foreach($topics as $topic ){ ?>

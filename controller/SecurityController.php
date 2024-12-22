@@ -11,6 +11,7 @@ class SecurityController extends AbstractController{
 
     public function register () {
         $user = new UserManager();
+        $errorMessage = null;
 
         if(isset($_POST["submit"])) {
             //on filtre
@@ -33,13 +34,13 @@ class SecurityController extends AbstractController{
                                 "password" => password_hash($password1, PASSWORD_DEFAULT)
                             ]);
                         } else {
-                            // Msg erreur
+                            $errorMessage = "Mot de passe incorrect.";
                         }
                     } else {
-                       // Msg erreur
+                        $errorMessage = "Utilisateur non trouvé.";
                     }
                 } else {
-                    // Msg erreur
+                    $errorMessage = "Veuillez remplir correctement les champs.";
                 }
             }            
 
@@ -55,6 +56,7 @@ class SecurityController extends AbstractController{
 
         $session = new Session();
         $userManager = new UserManager();
+        $errorMessage = null;
 
         //on filtre
         if (isset($_POST['submit'])) {
@@ -70,27 +72,41 @@ class SecurityController extends AbstractController{
                 if ($user) {
                     $hash = $user->getPassword();
                     if (password_verify($password, $hash)) {
-                        $session->setUser($user);
+                        $session->setUser([
+                            "id" => $user->getId(),
+                            "email" => $user->getEmail(),
+                            "nickname" => $user->getNickname()
+                        ]);
+
+                        $this->redirectTo("forum", "listCategories");
+                        exit(); 
+                    } else {
+                        $errorMessage = "Mot de passe incorrect.";
                     }
+                } else {
+                    $errorMessage = "Utilisateur non trouvé.";
                 }
+            } else {
+                $errorMessage = "Veuillez remplir correctement les champs.";
             }
         }
 
+
         return [
-            "view" => VIEW_DIR . "security/login.php",
+            "view" => VIEW_DIR . "login.php",
             "meta_description" => "Login to the forum"
         ];
     }
 
 
 
-//  public function logout () {
-//     unset($_SESSION["user"]);
-//     return [
-//         "view" => VIEW_DIR . "security/login.php",
-//         "meta_description" => "Login to the forum"
-//     ];
-// }
+ public function logout () {
+    unset($_SESSION["user"]);
+    return [
+        "view" => VIEW_DIR . "security/login.php",
+        "meta_description" => "Login to the forum"
+    ];
+}
 
 
 }
