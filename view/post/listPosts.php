@@ -5,12 +5,14 @@
 ?>
 <h2>Catégorie : <?= $topic->getCategoryType() ?></h2>
 
+<h3><?= $topic ?></h3>
+<p><?= $topic->getTextTopic() ?></p>
 
 
 <?php
 
-if (!empty($posts)) { ?>
-    <h3><?= $topic ?></h3>
+if (!empty($posts)) { ?>  
+    
 
 <?php 
     foreach($posts as $post) { ?> 

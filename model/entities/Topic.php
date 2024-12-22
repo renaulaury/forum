@@ -15,6 +15,7 @@ final class Topic extends Entity
     private $topicTitle;
     private $user;
     private $category;
+    private $textTopic;
     private $topicCreation;
     private $locked;
 
@@ -60,6 +61,17 @@ final class Topic extends Entity
         $this->topicTitle = $topicTitle;
         return $this;
     }
+
+    public function getTextTopic()
+    {
+        return $this->textTopic;
+    }
+
+    public function setTextTopic($textTopic)
+{
+    $this->textTopic = $textTopic;
+    return $this;
+}
 
      /**
      * Get the value of title
