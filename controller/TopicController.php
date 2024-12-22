@@ -13,9 +13,11 @@ class TopicController extends AbstractController implements ControllerInterface{
     public function listTopicsByCategory(int $id) {
         $topicManager = new TopicManager();
         $categoryManager = new CategoryManager();
-        // $category = $categoryManager->findOneById($id);
+        $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
         
+        var_dump($topics); 
+        die();
         // Récup session et user pour locked
         $session = new \App\Session();
         $user = $session->getUser();
