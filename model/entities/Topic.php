@@ -18,6 +18,7 @@ final class Topic extends Entity
     private $textTopic;
     private $topicCreation;
     private $locked;
+    private $userId;
 
     public function __construct($data)
     {
@@ -162,6 +163,17 @@ final class Topic extends Entity
     {
         $this->locked = $locked;
 
+        return $this;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
         return $this;
     }
 

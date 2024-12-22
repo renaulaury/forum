@@ -127,6 +127,17 @@ final class User extends Entity
 
         return $this;
     }
+
+    // La méthode explode(',',$this->role) découpe la chaîne de caractères contenue dans la propriété $this->role
+    // Ensuite, la fonction in_array vérifie si le rôle spécifié est présent dans ce tableau de rôles.
+    public function hasRole($role)
+    {
+        return in_array($role, explode(',', $this->role));
+    }
+
+    public function isAdmin() {
+        return $this->hasRole('ROLE_ADMIN');
+    }
 }
 
 ?>
