@@ -206,39 +206,73 @@ input, textarea {
 }
 
 .blockForm {
-    width: 30%;
+    width: 100%;  /* 100% pour qu'il prenne toute la largeur disponible */
+    max-width: 600px; /* Limite la largeur maximale */
     padding: 2% 0;
     display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de se replier sur plusieurs lignes */
+    justify-content: space-between;
 }
 
-.topicTitle {
-    width: 20%;
+.topicTitle,
+.textTopic {
+    width: 100%;  /* Par défaut, occupe toute la largeur */
+    padding: 10px;
+}
+
+.title input,
+.blockForm textarea {
+    width: 100%;
 }
 
 .title input {
-    width: 80%;
-}
-
-.textTopic {
-    width: 25%;
+    width: calc(100% - 20px); /* Ajuste pour ne pas dépasser du parent */
 }
 
 .blockForm textarea {
-    width: 100%;
     height: 200px;
     overflow: auto;
     resize: none;
 }
 
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .button input{
-    padding: 30% 100%;
+    padding: 10px 20px;
     border-radius: 50px;
     background-color: rgb(187, 182, 182);
     border: none;
+    font-size: 1.2em; /* Ajuste la taille de texte sur mobile */
 }
 
 .button input:hover {
     background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
+}
+
+/* Responsive */
+
+
+@media (max-width: 600px) {
+    form {
+        font-size: 1em;  
+    }
+
+    .blockForm {
+        width: 90%; 
+    }
+
+    .topicTitle,
+    .textTopic, .mailLogin {
+        width: 100%; 
+    }
+
+    .button input {
+        padding: 10px 40px; 
+    }
 }
 
 
@@ -257,4 +291,12 @@ footer  {
 
 footer a {
     background-color: salmon;
+}
+
+
+/* Pour les tablettes et écrans moyens */
+@media (max-width: 1024px) {
+    .blockForm {
+        width: 50%; /* Prend 50% de la largeur sur tablettes */
+    }
 }
