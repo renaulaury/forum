@@ -28,8 +28,26 @@ if (!empty($posts)) { ?>
     <p>Il n'y a aucun post.</p>
 <?php } ?>
 
+<?php if (!$topic->getLocked()) { // Vérifie si le topic n'est pas verrouillé ?>
+    <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
+        <legend>Création d'un post</legend>
 
-<form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
+        <div class="blockForm">
+            <p class="textTopic"><label for="postMsg">Message</label></p>
+            <textarea type="text" id="postMsg" name="postMsg"></textarea>
+        </div>
+
+        <p class="button">
+            <input class="validInput" type="submit" name="submit" value="Valider">
+        </p>
+    </form>
+<?php } else { ?>
+    <p>Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
+<?php } ?>
+
+
+
+<!-- <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
     <legend>Création d'un post</legend>
 
     <div class="blockForm">
@@ -40,4 +58,4 @@ if (!empty($posts)) { ?>
         <p class="button">
             <input class="validInput" type="submit" name="submit" value="Valider">
         </p>
-</form>
+</form> -->

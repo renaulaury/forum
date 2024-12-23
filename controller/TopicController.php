@@ -17,20 +17,7 @@ class TopicController extends AbstractController implements ControllerInterface{
         $topics = $topicManager->findTopicsByCategory($id);
         
         
-        // Récup session et user pour locked
-        $session = new \App\Session();
-        $user = $session->getUser();
-        
-        // // Récup datas pour locked
-        // $topicsLock = [];
-        // foreach ($topics as $topic) {
-        //     $canLock = $this->canLockTopic($user, $topic);
-        //     $topicsLock[] = [
-        //         'topic' => $topic,
-        //         'canLock' => $canLock
-        //     ];
-        
-    
+          
         return [
             "view" => VIEW_DIR."topic/listTopics.php",
             "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),
@@ -69,37 +56,22 @@ class TopicController extends AbstractController implements ControllerInterface{
 
     public function lockTopic(int $id) {
         $topicManager = new TopicManager();
-        $topic = $topicManager->findOneById($id);  // Trouver le topic avec ID
     
-        $session = new \App\Session();
-        $user = $session->getUser();
+        $topic = $topicManager->findOneById($id);
     
-        // si admin ou auteur
-        if ($this->canLockTopic($user, $topic)) {
-            if ($topic->getLocked()) {
-                $newLockStatus = 0; // Déverrouiller si le topic est actuellement verrouillé
-            } else {
-                $newLockStatus = 1; // Verrouiller si le topic n'est pas encore verrouillé
-            }
-            $topicManager->updateLockStatus($topic, $newLockStatus);  // Maj dans BDD
+        if ($topic) {
+            // Bascule entre 0 et 1
+            $newStatus = $topic->getLocked() ? 0 : 1;
+    
+            // Maj du statut
+            $topicManager->updateLockStatus($id, $newStatus);
+    
+            $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategoryId());
+        } else {
+            $this->redirectTo("home", "index");
         }
-    
-        
-        $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategoryId());
     }
     
-    // User droit locked ?
-    // public function canLockTopic($user, $topic) {
-    // // user admin ou auteur
-    // if ($user->isAdmin()) {
-    //     return true;
-    // } else {
-    //     if ($user->getId() === $topic->getUserId()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
 }
 
 

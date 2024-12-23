@@ -1,35 +1,31 @@
 <?php
     $category = $result["data"]['category'];  
+    $topics = $result["data"]['topics'];
 ?>
 
 <h2>Catégorie : <?= $category->getTypeCategory() ?></h2>
 <h3>Topics</h3>
 
 
-<?php if (!empty($topicsLock)) { ?>
+<?php if (!empty($topics)) { ?>
     
-    <?php foreach ($topicsLock as $topic) { 
-        $topic = $topic['topic'];
-        $canLock = $topic['canLock'];
+     <?php foreach ($topics as $topic) { 
+
     ?>
         <div class="topic">
             <div class="blockTopic">
                 <p class="up">
-                    <span class="nameTime">par <?= $topic->getUser()->getUsername() ?> le <?= $topic->getTopicCreationFr() ?></span> 
+                    <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> 
                 </p>
                 <p class="down"><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a></p>
 
-                <?php if ($canLock) { ?>
-                    <form action="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>" method="post">
-                        <?php if ($topic->getLocked()) { ?>
-                            <input type="hidden" name="locked" value="0">
-                            <button type="submit">Déverrouiller</button>
-                        <?php } else { ?>
-                            <input type="hidden" name="locked" value="1">
-                            <button type="submit">Verrouiller</button>
-                        <?php } ?>
-                    </form>
-                <?php } ?>
+                <p>
+                    <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                        <i class="fa-solid fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
+                    </a>
+                </p>
+
+                
             </div>
             <p class="fleche">
                 <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>">

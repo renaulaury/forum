@@ -29,28 +29,19 @@ class TopicManager extends Manager{
         );
     }
 
-    public function lockTopic($id, $lockStatus) {
+    public function updateLockStatus(int $id, int $status) {
         $sql = "UPDATE " . $this->tableName . " 
-                SET locked = :locked 
-                WHERE id = :id";
-        
-        
-        DAO::update($sql, ['id' => $id, 'locked' => $lockStatus]);
+                SET locked = :status 
+                WHERE id_topic = :id";
+    
+        $params = [
+            'status' => $status,
+            'id' => $id
+        ];
+    
+        return DAO::update($sql, $params);
     }
-
-    public function canLock($user, $topic) {
-        // if user admin ou auteur
-        if ($user->getRole() === 'admin') {
-            // user = admin -> lock
-            return true;
-        } elseif ($user->getId() === $topic->getUserId()) {
-            // user = auteur -> lock
-            return true;
-        } else {
-            // user != admin/auteur -> no lock
-            return false;
-        }
-    }
+    
     
     
 }

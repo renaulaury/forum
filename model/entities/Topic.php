@@ -139,6 +139,12 @@ final class Topic extends Entity
          $this;
     }
 
+    public function getCategoryId()
+{
+    // Vérifie si la catégorie est un objet ou déjà un ID
+    return is_object($this->category) ? $this->category->getId() : $this->category;
+}
+
     public function getCategoryType()
     {
         return $this->category->getTypeCategory();            
