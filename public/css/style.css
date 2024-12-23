@@ -17,9 +17,13 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    text-decoration: none;
+    justify-content: space-evenly;    
     color: rgb(34, 34, 34);
+}
+
+#navbar li {
+    text-decoration: none;
+    list-style: none;
 }
 
 .mailLogin {
@@ -28,6 +32,10 @@ body {
 
 .mdpLogin {
     width: 25%;
+}
+
+.burger_button {
+    display: none;
 }
 
 /*Espace principal*/
@@ -206,17 +214,17 @@ input, textarea {
 }
 
 .blockForm {
-    width: 100%;  /* 100% pour qu'il prenne toute la largeur disponible */
-    max-width: 600px; /* Limite la largeur maximale */
+    width: 100%;  
+    max-width: 600px; 
     padding: 2% 0;
     display: flex;
-    flex-wrap: wrap; /* Permet aux éléments de se replier sur plusieurs lignes */
+    flex-wrap: wrap; 
     justify-content: space-between;
 }
 
 .topicTitle,
 .textTopic {
-    width: 100%;  /* Par défaut, occupe toute la largeur */
+    width: 100%;  
     padding: 10px;
 }
 
@@ -246,35 +254,12 @@ input, textarea {
     border-radius: 50px;
     background-color: rgb(187, 182, 182);
     border: none;
-    font-size: 1.2em; /* Ajuste la taille de texte sur mobile */
+    font-size: 1.2em; 
 }
 
 .button input:hover {
     background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
 }
-
-/* Responsive */
-
-
-@media (max-width: 600px) {
-    form {
-        font-size: 1em;  
-    }
-
-    .blockForm {
-        width: 90%; 
-    }
-
-    .topicTitle,
-    .textTopic, .mailLogin {
-        width: 100%; 
-    }
-
-    .button input {
-        padding: 10px 40px; 
-    }
-}
-
 
 
 /*Footer*/
@@ -294,9 +279,97 @@ footer a {
 }
 
 
-/* Pour les tablettes et écrans moyens */
-@media (max-width: 1024px) {
+
+
+/* Responsive */
+@media (max-width: 600px) {
+    form {
+        font-size: 1em;  
+    }
+
     .blockForm {
-        width: 50%; /* Prend 50% de la largeur sur tablettes */
+        width: 90%; 
+    }
+
+    .topicTitle,
+    .textTopic, .mailLogin {
+        width: 100%; 
+    }
+
+    .button input {
+        padding: 10px 40px; 
+        background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
+    }
+
+    #navbar {
+        display: none;
+    }
+
+    /*Burger*/
+    .burger_button {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        cursor: pointer;
+        width: 90%;
+        padding-bottom: 3%;
+    }
+
+    .burger_button .line {
+        width: 30px;
+        height: 4px;
+        margin: 2px 0;
+        background-color: rgb(63, 63, 63);
+        transition: all 0.3s ease;
+    }
+
+    .burger_button.open .line:nth-child(1) {
+        transform: rotate(-40deg) translate(-0px, 10px);
+    }
+    .burger_button.open .line:nth-child(2) {
+        opacity: 0;
+    }
+    .burger_button.open .line:nth-child(3) {
+        transform: rotate(40deg) translate(-0px, -10px);
+    }
+
+    /* Menu déroulant */
+    #navbar.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 65%;
+        top: 6%;
+        border: 1px solid salmon;
+        border-radius: 10px;
+        background-color: white;
+        padding: 3% 1%;
+        width: 30%;
+        height: 100px;
+        color: rgb(63, 63, 63);
+    }
+
+        
+    ol li {
+        width: 100%;
+        padding-bottom: 5%;
+    } 
+}
+
+@media (max-width: 1024px) {
+    .topicTitle,
+    .textTopic, .mailLogin {
+        width: 100%; 
+    }
+
+    .blockForm {
+        width: 50%; 
     }
 }
+
+
+
+
+
+

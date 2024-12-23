@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK1_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
   CONSTRAINT `FK2_topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.post : ~5 rows (environ)
+-- Listage des données de la table forumlily.post : ~9 rows (environ)
 REPLACE INTO `post` (`id_post`, `postMsg`, `postCreation`, `user_id`, `topic_id`) VALUES
 	(1, 'Cool', '2024-12-17 20:36:35', 9, 6),
 	(2, 'Trop géniale !', '2024-12-17 20:37:11', 8, 1),
@@ -55,7 +55,9 @@ REPLACE INTO `post` (`id_post`, `postMsg`, `postCreation`, `user_id`, `topic_id`
 	(4, 'tictic', '2024-12-19 20:46:21', 8, 7),
 	(5, 'Oh peu chere !', '2024-12-20 23:36:24', 8, 6),
 	(11, 'gegrhtr', '2024-12-22 20:25:39', 9, 6),
-	(12, 'ktukt', '2024-12-22 20:42:56', 9, 6);
+	(12, 'ktukt', '2024-12-22 20:42:56', 9, 6),
+	(13, 'yop cest Lisou', '2024-12-23 12:52:46', 9, 1),
+	(14, 'j,gygjk', '2024-12-23 14:34:33', 9, 11);
 
 -- Listage de la structure de table forumlily. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -71,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `categorie_id` (`category_id`) USING BTREE,
   CONSTRAINT `FK1_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK2_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.topic : ~8 rows (environ)
+-- Listage des données de la table forumlily.topic : ~10 rows (environ)
 REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `locked`, `category_id`, `user_id`) VALUES
 	(1, 'L\'incident de Kyujo', '2024-12-17 20:30:34', 'Bla', 0, 1, 9),
 	(2, 'La guerre fédérale', '2024-12-17 20:32:45', 'Bla', 0, 1, 10),
@@ -83,8 +85,10 @@ REPLACE INTO `topic` (`id_topic`, `topicTitle`, `topicCreation`, `textTopic`, `l
 	(6, 'Jsuis perdu', '2024-12-17 20:35:31', 'sos', 0, 3, 10),
 	(7, 'tactac', '2024-12-19 20:45:54', 'dfdf', 0, 2, 9),
 	(8, 'bfdbf', '2024-12-19 20:46:33', 'fbbf', 0, 1, 9),
-	(11, 'new', '2024-12-22 20:27:59', 'jsuis connect&eacute;e', 0, 2, 9),
-	(12, 'j-j&egrave;', '2024-12-22 21:58:01', 'juyjyu', 0, 3, 9);
+	(11, 'new', '2024-12-22 20:27:59', 'jsuis connect&eacute;e', 1, 2, 9),
+	(12, 'j-j&egrave;', '2024-12-22 21:58:01', 'juyjyu', 0, 3, 9),
+	(13, 'new', '2024-12-23 11:53:21', 'gergr', 0, 2, 9),
+	(14, 'Lisou create a topic', '2024-12-23 12:53:04', 'hey', 1, 3, 9);
 
 -- Listage de la structure de table forumlily. user
 CREATE TABLE IF NOT EXISTS `user` (
