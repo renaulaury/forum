@@ -2,6 +2,6 @@
   <h1>FORUM</h1> 
   
   <?php
-    require VIEW_DIR . "forum/listCategories.php";
+    
 ?>
            

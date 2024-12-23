@@ -31,32 +31,7 @@ class PostController extends AbstractController implements ControllerInterface{
         ];
     }
 
-    // public function addPost($id) {
-
-    //     $postManager = new PostManager();
-    //     $session = new \App\Session();
-
-    //     $postMsg = filter_input(INPUT_POST, 'postMsg', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        
-        
-    //     if($postMsg && $session->getUser()) {
-    //         $user = $session->getUser(); //Récup l id du user connecté
-    //         $userId = $user->getId();
-
-    //         $postManager->add([
-    //             "postMsg" => $postMsg, 
-    //             "user_id" => $userId,
-    //             "topic_id" => $id
-    //         ]);
-
-            
-    //     } 
-
-    //     $this->redirectTo("post", "listPostsByTopic", $id);
-    //     // header("Location: index.php?forum&action=listPostsByTopic");
-    //     exit();
-
-    // }
+    
 
     public function addPost($id)
 {
@@ -82,7 +57,7 @@ class PostController extends AbstractController implements ControllerInterface{
         ]);
         $this->redirectTo("topic", "viewTopic", $id);
     } else {
-        \App\Session::addFlash('error', 'Le contenu du message est vide.');
+       
         $this->redirectTo("topic", "viewTopic", $id);
     }
 }

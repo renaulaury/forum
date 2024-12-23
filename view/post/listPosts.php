@@ -5,14 +5,20 @@
 ?>
 <h2>Catégorie : <?= $topic->getCategoryType() ?></h2>
 
-<h3><?= $topic ?></h3>
-<p><?= $topic->getTextTopic() ?></p>
+<div class="topic">
+    <div class="up">
+        <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span>
+        <h4><?= $topic ?></h4>
+        <p><?= $topic->getTextTopic() ?></p>
+    </div>
+</div>
+
+
 
 
 <?php
 
-if (!empty($posts)) { ?>  
-    
+if (!empty($posts)) { ?>      
 
 <?php 
     foreach($posts as $post) { ?> 
@@ -24,11 +30,12 @@ if (!empty($posts)) { ?>
         </div>
      </div>
     <?php } ?>
+
 <?php } else { ?>
-    <p>Il n'y a aucun post.</p>
+    <p class="noPost">Il n'y a aucun post.</p>
 <?php } ?>
 
-<?php if (!$topic->getLocked()) { // Vérifie si le topic n'est pas verrouillé ?>
+<?php if (!$topic->getLocked()) { // Vérif si topic n'est pas ver ?>
     <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
         <legend>Création d'un post</legend>
 
@@ -41,21 +48,7 @@ if (!empty($posts)) { ?>
             <input class="validInput" type="submit" name="submit" value="Valider">
         </p>
     </form>
+
 <?php } else { ?>
-    <p>Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
+    <p class="msgVer">Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
 <?php } ?>
-
-
-
-<!-- <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
-    <legend>Création d'un post</legend>
-
-    <div class="blockForm">
-        <p class="textTopic"><label for="postMsg">Message</label></p>
-        <textarea type="text" id="postMsg" name="postMsg"></textarea>
-    </div>
-
-        <p class="button">
-            <input class="validInput" type="submit" name="submit" value="Valider">
-        </p>
-</form> -->

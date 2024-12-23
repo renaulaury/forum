@@ -16,13 +16,14 @@
             <div class="blockTopic">
                 <p class="up">
                     <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> 
+                    <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                        <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
+                    </a>
                 </p>
                 <p class="down"><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a></p>
 
                 <p>
-                    <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
-                        <i class="fa-solid fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
-                    </a>
+                    
                 </p>
 
                 
@@ -34,6 +35,7 @@
             </p>
         </div>
     <?php } ?>
+
 <?php } else { ?>
     <p>Il n'y a aucun topic.</p>
 <?php } ?>

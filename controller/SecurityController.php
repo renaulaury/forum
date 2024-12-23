@@ -89,7 +89,7 @@ class SecurityController extends AbstractController{
 
 
         return [
-            "view" => VIEW_DIR . "login.php",
+            "view" => VIEW_DIR . "security/login.php",
             "meta_description" => "Login to the forum"
         ];
     }
