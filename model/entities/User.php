@@ -69,21 +69,21 @@ final class User extends Entity
     }
 
     /**
-     * Get the value of mail
+     * Get the value of email
      */ 
-    public function getMail()
+    public function getEmail()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**
-     * Set the value of mail
+     * Set the value of email
      *
      * @return  self
      */ 
-    public function setMail($mail)
+    public function setEmail($email)
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }

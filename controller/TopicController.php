@@ -16,29 +16,27 @@ class TopicController extends AbstractController implements ControllerInterface{
         $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
         
-        var_dump($topics); 
-        die();
+        
         // Récup session et user pour locked
         $session = new \App\Session();
         $user = $session->getUser();
         
-        // Récup datas pour locked
-        $topicsLock = [];
-        foreach ($topics as $topic) {
-            $canLock = $this->canLockTopic($user, $topic);
-            $topicsLock[] = [
-                'topic' => $topic,
-                'canLock' => $canLock
-            ];
-        }
+        // // Récup datas pour locked
+        // $topicsLock = [];
+        // foreach ($topics as $topic) {
+        //     $canLock = $this->canLockTopic($user, $topic);
+        //     $topicsLock[] = [
+        //         'topic' => $topic,
+        //         'canLock' => $canLock
+        //     ];
+        
     
-
         return [
             "view" => VIEW_DIR."topic/listTopics.php",
             "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),
             "data" => [
                 "category" => $category,
-                "topicsLock" => $topicsLock
+                "topics" => $topics
             ]
         ];
     }
@@ -91,17 +89,17 @@ class TopicController extends AbstractController implements ControllerInterface{
     }
     
     // User droit locked ?
-    public function canLockTopic($user, $topic) {
-    // user admin ou auteur
-    if ($user->isAdmin()) {
-        return true;
-    } else {
-        if ($user->getId() === $topic->getUserId()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function canLockTopic($user, $topic) {
+    // // user admin ou auteur
+    // if ($user->isAdmin()) {
+    //     return true;
+    // } else {
+    //     if ($user->getId() === $topic->getUserId()) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }
 
-}
+

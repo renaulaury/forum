@@ -72,11 +72,7 @@ class SecurityController extends AbstractController{
                 if ($user) {
                     $hash = $user->getPassword();
                     if (password_verify($password, $hash)) {
-                        $session->setUser([
-                            "id" => $user->getId(),
-                            "email" => $user->getEmail(),
-                            "nickname" => $user->getNickname()
-                        ]);
+                        $session->setUser($user);
 
                         $this->redirectTo("forum", "listCategories");
                         exit(); 
