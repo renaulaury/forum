@@ -17,8 +17,9 @@ class SecurityController extends AbstractController{
             //on filtre
             $nickname = filter_input(INPUT_POST, "nickname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-            $password1 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, "^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12}$");
-            $password2 = filter_input(INPUT_POST, "password2", FILTER_VALIDATE_REGEXP, "^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12}$");
+            $password1 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
+            // ^: debut de chaine, $ : fin de chaine, (?=.*[A-Z]) : lettres, (?=.*\d) : digit, (?=.*[\W_]) : caracteres speciaux, {12,} : 12 caracteres
+            $password2 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
         
             //on les vérifie
             if($nickname && $email && $password1 && $password2) {    
