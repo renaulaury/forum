@@ -32,13 +32,13 @@ class TopicController extends AbstractController implements ControllerInterface{
     public function addTopic(int $id) {
 
         $topicManager = new TopicManager();
-        $session = new \App\Session();
+        $session = new Session();
 
         $topicTitle = filter_input(INPUT_POST, 'topicTitle', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $textTopic = filter_input(INPUT_POST, 'textTopic', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        if($topicTitle && $textTopic && $session->getUser()) {
-            $user = $session->getUser(); //Récup l id du user connecté
+        if($topicTitle && $textTopic && $session::getUser()) {
+            $user = $session::getUser(); //Récup l id du user connecté
             $userId = $user->getId();
 
             $topicManager->add([
@@ -60,7 +60,7 @@ class TopicController extends AbstractController implements ControllerInterface{
     $user = \App\Session::getUser();
     if (!$user) {        
         // Si l'utilisateur n'est pas connecté, redirige vers la liste des topics de la catégorie
-        $topicManager = new \Model\Managers\TopicManager();
+        $topicManager = new TopicManager();
         $topic = $topicManager->findOneById($id);
         
         if ($topic) {
@@ -70,7 +70,7 @@ class TopicController extends AbstractController implements ControllerInterface{
     }
 
     // Récup du topic
-    $topicManager = new \Model\Managers\TopicManager();
+    $topicManager = new TopicManager();
     $topic = $topicManager->findOneById($id);
 
     if ($topic) {

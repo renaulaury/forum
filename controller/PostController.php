@@ -35,7 +35,7 @@ class PostController extends AbstractController implements ControllerInterface{
 
     public function addPost($id)
 {
-    $topicManager = new \Model\Managers\TopicManager();
+    $topicManager = new TopicManager();
     $topic = $topicManager->findOneById($id);
 
     if ($topic->getLocked()) {
@@ -46,7 +46,7 @@ class PostController extends AbstractController implements ControllerInterface{
     }
 
     // Sinon, add post
-    $postManager = new \Model\Managers\PostManager();
+    $postManager = new PostManager();
     $text = $_POST['content'] ?? null;
 
     if ($text) {

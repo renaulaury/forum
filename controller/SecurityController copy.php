@@ -17,33 +17,33 @@ class SecurityController extends AbstractController{
             //on filtre
             $nickname = filter_input(INPUT_POST, "nickname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-            $password1 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
-            // ^: debut de chaine, $ : fin de chaine, (?=.*[A-Z]) : lettres, (?=.*\d) : digit, (?=.*[\W_]) : caracteres speciaux, {12,} : 12 caracteres
-            $password2 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
+            $password1 = filter_input(INPUT_POST, "password1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $password2 = filter_input(INPUT_POST, "password2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
             //on les vérifie
-            if($nickname && $email && $password1 && $password2) {    
-                
+            if($nickname && $email && $password1 && $password2) {                
                 $verifyNickname = $user->findOneByNickname($nickname);
                 $verifyEmail = $user->findOneByEmail($email);
-
-                if (!$verifyNickname && !$verifyEmail) { //Vérification si l'un ou l'autre n'existe pas  en bdd
-                    // add in bdd
-                    if($password1 == $password2 && strlen($password1) >= 4) {
-                        $user->add([
-                            "nickname" => $nickname,
-                            "email" => $email,
-                            "password" => password_hash($password1, PASSWORD_DEFAULT)
-                        ]);
+    
+                    if (!$verifyNickname && !$verifyEmail) { //Vérification si l'un ou l'autre n'existe pas  en bdd
+                        // add in bdd
+                        if($password1 == $password2 && strlen($password1) >= 4) {
+                            $user->add([
+                                "nickname" => $nickname,
+                                "email" => $email,
+                                "password" => password_hash($password1, PASSWORD_DEFAULT)
+                            ]);
+                        } else {
+                            $errorMessage = "Mot de passe incorrect.";
+                        }
                     } else {
-                        $errorMessage = "Mot de passe incorrect.";
+                        $errorMessage = "Utilisateur non trouvé.";
                     }
                 } else {
-                    $errorMessage = "Utilisateur non trouvé.";                    
+                    $errorMessage = "Veuillez remplir correctement les champs.";
                 }
-            }    
-        }
-                     
+            }            
+
         return [
             "view" => VIEW_DIR."security/register.php",
             "meta_description" => "Enregistrement",

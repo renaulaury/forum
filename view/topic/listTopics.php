@@ -6,38 +6,39 @@
 <h2>Catégorie : <?= $category->getTypeCategory() ?></h2>
 <h3>Topics</h3>
 
+<?php if(App\Session::getUser()) { ?>
+    <?php if (!empty($topics)) { ?>
+        
+        <?php foreach ($topics as $topic) { 
 
-<?php if (!empty($topics)) { ?>
-    
-     <?php foreach ($topics as $topic) { 
+        ?>
+            <div class="topic">
+                <div class="blockTopic">
+                    <p class="up">
 
-    ?>
-        <div class="topic">
-            <div class="blockTopic">
-                <p class="up">
-                    <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> 
-                    <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
-                        <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
-                    </a>
+                        <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> 
+                        
+                        <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                            <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
+                        </a>
+                    </p>
+
+                    <p class="down"><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a></p>
+                  
+                </div>
+                <p class="fleche">
+                    <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a> 
                 </p>
-                <p class="down"><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a></p>
-
-                <p>
-                    
-                </p>
-
-                
             </div>
-            <p class="fleche">
-                <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a> 
-            </p>
-        </div>
-    <?php } ?>
+        <?php } ?>
 
+    <?php } else { ?>
+        <p>Il n'y a aucun topic.</p>
+    <?php } ?>
 <?php } else { ?>
-    <p>Il n'y a aucun topic.</p>
+    <p class="msgVer">Vous devez être connecté pour poster un message.</p>
 <?php } ?>
 
 
