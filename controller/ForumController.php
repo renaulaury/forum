@@ -1,17 +1,21 @@
 <?php
+
 namespace Controller;
 
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
+use Model\Managers\UserManager;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
 
-class ForumController extends AbstractController implements ControllerInterface{
+class ForumController extends AbstractController implements ControllerInterface
+{
 
-    public function index() {
-        
+    public function index()
+    {
+
         // créer une nouvelle instance de CategoryManager
         $categoryManager = new CategoryManager();
         // récupérer la liste de toutes les catégories grâce à la méthode findAll de Manager.php (triés par nom)
@@ -19,7 +23,7 @@ class ForumController extends AbstractController implements ControllerInterface{
 
         // le controller communique avec la vue "listCategories" (view) pour lui envoyer la liste des catégories (data)
         return [
-            "view" => VIEW_DIR."forum/listCategories.php",
+            "view" => VIEW_DIR . "forum/listCategories.php",
             "meta_description" => "Liste des catégories du forum",
             "data" => [
                 "categories" => $categories
@@ -27,4 +31,19 @@ class ForumController extends AbstractController implements ControllerInterface{
         ];
     }
 
+    public function profile()
+    {
+        $id = $_SESSION['user']->getId();
+        $userManager = new UserManager();
+        $profile = $userManager->findOneById($id);
+
+
+        return [
+            "view" => VIEW_DIR . "forum/profile.php",
+            "meta_description" => "Profil de l'utilisateur",
+            "data" => [
+                "profile" => $profile
+            ]
+        ];
+    }
 }

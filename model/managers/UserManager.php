@@ -1,23 +1,27 @@
 <?php
+
 namespace Model\Managers;
 
 use App\Manager;
 use App\DAO;
 
-class UserManager extends Manager{
+class UserManager extends Manager
+{
 
     // on indique la classe POO et la table correspondante en BDD pour le manager concerné
     protected $className = "Model\Entities\User";
     protected $tableName = "user";
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::connect();
     }
 
-    public function findOneByEmail($email) {
+    public function findOneByEmail($email)
+    {
 
         $sql = "SELECT *
-                FROM ".$this->tableName." t
+                FROM " . $this->tableName . " t
                 WHERE t.email = :email";
 
         return $this->getOneOrNullResult(
@@ -26,10 +30,11 @@ class UserManager extends Manager{
         );
     }
 
-    public function findOneByNickname($nickname) {
+    public function findOneByNickname($nickname)
+    {
 
         $sql = "SELECT *
-                FROM ".$this->tableName." t
+                FROM " . $this->tableName . " t
                 WHERE t.nickname = :nickname";
 
         return $this->getOneOrNullResult(
@@ -38,7 +43,15 @@ class UserManager extends Manager{
         );
     }
 
-    
-}
+    public function findOneById($id)
+    {
+        $sql = "SELECT * 
+                FROM " . $this->tableName . "
+                WHERE id_user = :id";
 
-?>
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['id' => $id], false),
+            $this->className
+        );
+    }
+}
