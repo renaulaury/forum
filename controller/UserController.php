@@ -42,14 +42,29 @@ class UserController
         ];
     }
 
+    public function verifDeleteProfile()
+    {
+        $id = $_SESSION['user']->getId();
+        $userManager = new UserManager;
+        $profile = $userManager->findOneById($id);
+
+        return [
+            "view" => VIEW_DIR . "user/deleteProfile.php",
+            "meta_description" => "Confirmation de suppression du profil",
+            "data" => [
+                "profile" => $profile,
+            ]
+        ];
+    }
+
     public function deleteProfile()
     {
-        return [
-            "view" => VIEW_DIR . "user/profile.php",
-            "meta_description" => "Suppression du profil",
-            // "data" => [
-            //     'listUsers' => $listUsers
-            // ]
-        ];
+        $userManager = new UserManager;
+        $id = $_SESSION['user']->getId();
+        $userManager->delete($id);
+        $_SESSION['id']->logout();
+
+        $this->redirectTo("forum", "listCategories", $id);
+        exit();
     }
 }

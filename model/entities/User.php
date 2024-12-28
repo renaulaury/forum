@@ -137,6 +137,6 @@ final class User extends Entity
 
     public function isAdmin()
     {
-        return $this->hasRole('ROLE_ADMIN');
+        return $this->hasRole('admin');
     }
 }

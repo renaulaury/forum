@@ -8,11 +8,4 @@ $profile = $result['data']['profile'];
 <p>Rôle : <span><?= $profile->getRole() ?></span></p>
 
 
-<a href="index.php?ctrl=security
-
-//Faire un lien qui mene vers un bouton de validation ?
-
-
-<form action=" index.php?ctrl=user&action=deleteProfile&id=<?= $profile->getId() ?>" method="post">
-    <input type="submit" name="submit" value="Supprimer mon profil" />
-    </form>
+<a href="index.php?ctrl=user&action=verifDeleteProfile&id= <?= $profile->getId() ?>">Supprimer mon profil</a>

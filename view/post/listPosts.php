@@ -1,6 +1,6 @@
 <?php
-    $topic = $result["data"]['topic']; 
-    $posts = $result["data"]['posts']; 
+$topic = $result["data"]['topic'];
+$posts = $result["data"]['posts'];
 ?>
 <h2>Catégorie : <?= $topic->getCategoryType() ?></h2>
 
@@ -13,21 +13,20 @@
 </div>
 
 
-
-
 <?php
 
-if (!empty($posts)) { ?>      
+if (!empty($posts)) { ?>
 
-<?php 
-    foreach($posts as $post) { ?> 
+    <?php
+    foreach ($posts as $post) { ?>
 
-     <div class="topic">
-        <div class="blockTopic">       
-            <p class="up"><span class="nameTime">par <?= $post->getUser() ?> le <?= $post->getPostCreationFr() ?></span></p>
-            <p class="down"><?= $post ?><p>
+        <div class="topic">
+            <div class="blockTopic">
+                <p class="up"><span class="nameTime">par <?= $post->getUser() ?> le <?= $post->getPostCreationFr() ?></span></p>
+                <p class="down"><?= $post ?>
+                <p>
+            </div>
         </div>
-     </div>
     <?php } ?>
 
 <?php } else { ?>
@@ -36,27 +35,27 @@ if (!empty($posts)) { ?>
 
 
 
-<?php if(App\Session::getUser()) { ?>
-        <?php if (!$topic->getLocked()) { // Vérif si topic n'est pas ver ?>
+<?php if (App\Session::getUser()) { ?>
+    <?php if (!$topic->getLocked()) { // Vérif si topic n'est pas ver 
+    ?>
 
-                <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
-                    <legend>Création d'un post</legend>
+        <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
+            <legend>Création d'un post</legend>
 
-                    <div class="blockForm">
-                        <p class="textTopic"><label for="postMsg">Message</label></p>
-                        <textarea type="text" id="postMsg" name="postMsg"></textarea>
-                    </div>
+            <div class="blockForm">
+                <p class="textTopic"><label for="postMsg">Message</label></p>
+                <textarea type="text" id="postMsg" name="postMsg"></textarea>
+            </div>
 
-                    <p class="button">
-                        <input class="validInput" type="submit" name="submit" value="Valider">
-                    </p>
-                </form>
+            <p class="button">
+                <input class="validInput" type="submit" name="submit" value="Valider">
+            </p>
+        </form>
 
-            <?php } else { ?>
-                <p class="msgVer">Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
-            <?php } ?>
+    <?php } else { ?>
+        <p class="msgVer">Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
+    <?php } ?>
 
-            <?php } else { ?>
+<?php } else { ?>
     <p class="msgVer">Vous devez être connecté pour poster un message.</p>
 <?php } ?>
-
