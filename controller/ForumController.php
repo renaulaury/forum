@@ -30,20 +30,4 @@ class ForumController extends AbstractController implements ControllerInterface
             ]
         ];
     }
-
-    public function profile()
-    {
-        $id = $_SESSION['user']->getId();
-        $userManager = new UserManager();
-        $profile = $userManager->findOneById($id);
-
-
-        return [
-            "view" => VIEW_DIR . "forum/profile.php",
-            "meta_description" => "Profil de l'utilisateur",
-            "data" => [
-                "profile" => $profile
-            ]
-        ];
-    }
 }

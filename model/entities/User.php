@@ -70,7 +70,7 @@ final class User extends Entity
 
     /**
      * Get the value of email
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -80,7 +80,7 @@ final class User extends Entity
      * Set the value of email
      *
      * @return  self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -90,7 +90,7 @@ final class User extends Entity
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -100,7 +100,7 @@ final class User extends Entity
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -110,7 +110,7 @@ final class User extends Entity
 
     /**
      * Get the value of role
-     */ 
+     */
     public function getRole()
     {
         return $this->role;
@@ -120,7 +120,7 @@ final class User extends Entity
      * Set the value of role
      *
      * @return  self
-     */ 
+     */
     public function setRole($role)
     {
         $this->role = $role;
@@ -135,9 +135,8 @@ final class User extends Entity
         return in_array($role, explode(',', $this->role));
     }
 
-    public function isAdmin() {
+    public function isAdmin()
+    {
         return $this->hasRole('ROLE_ADMIN');
     }
 }
-
-?>

@@ -34,7 +34,7 @@
                             <?php
                             if (App\Session::isAdmin()) {
                             ?>
-                                <li><a href="index.php?ctrl=home&action=users">Voir la liste des gens</a></li>
+                                <li><a href="index.php?ctrl=user&action=listUsers">Voir la liste des gens</a></li>
                             <?php } ?>
 
 
@@ -42,7 +42,7 @@
                             // si l'utilisateur est connecté 
                             if (App\Session::getUser()) {
                             ?>
-                                <li><a href="index.php?ctrl=forum&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser() ?></a></li>
+                                <li><a href="index.php?ctrl=user&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser() ?></a></li>
                                 <li><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
                                 <li><a href="index.php?ctrl=forum&action=index">Liste des catégories</a></li>
                             <?php
