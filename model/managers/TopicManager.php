@@ -47,7 +47,7 @@ class TopicManager extends Manager
         return DAO::update($sql, $params);
     }
 
-    public function updateTopicsForDeletedUser($userId, $newNickname)
+    public function updateTopicsForDeletedUser(int $userId)
     {
         // Maj des topics post user delete
         $sql = "UPDATE topic 
@@ -58,5 +58,23 @@ class TopicManager extends Manager
         return DAO::update($sql, [
             'userId' => $userId
         ]);
+    }
+
+    public function lastTopics()
+    {
+        $sql = "SELECT topic_id, topicTitle, topicCreation, COUNT(postMsg) AS nbPost
+                FROM topic
+                LEFT JOIN post ON topic.id_topic = post.topic_id
+                -- WHERE topic_id = :id
+                GROUP by topic_id, topicTitle, topicCreation
+                ORDER BY topicCreation DESC
+                LIMIT 3";
+
+
+        // la requête renvoie plusieurs enregistrements --> getMultipleResults
+        return  $this->getMultipleResults(
+            DAO::select($sql),
+            $this->className
+        );
     }
 }

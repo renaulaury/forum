@@ -85,7 +85,7 @@ h1 {
 
 /*Main*/
 section {
-    padding: 0 3% 3% 3%;
+     padding: 0 3% 3% 3%;
 }
 
 h2 {
@@ -127,16 +127,35 @@ h4 {
     padding-bottom: 1%;
 }
 
-.lastPosts {
+.lastTopics {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.lastPost {    
-    padding: 5%;
+.lastTopic {    
+    padding: 3%;
     border: 1px solid #944C43;
     border-radius: 30px;
+    
+}
+
+.lastTopic a {
+    text-decoration: none;
+    color: rgb(34, 34, 34);
+}
+
+.titleTopic{
+    font-weight: bold;}
+
+.linePost {
+    height:0.1em;
+    background-color: salmon;
+    margin: 10% 0;
+}
+
+.nbLastPost {
+    text-align: end;
 }
 
 .noPost {
@@ -188,8 +207,12 @@ h4 {
 
 .nameTime {
     background-color: rgba(255, 160, 122, 0);
-    /* font-size: 0.8em; */
+    font-size: 0.8em; 
     font-style: italic;
+}
+
+.space {
+    padding-bottom: 5%;
 }
 
 /*Topic form*/

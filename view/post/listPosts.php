@@ -2,37 +2,39 @@
 $topic = $result["data"]['topic'];
 $posts = $result["data"]['posts'];
 ?>
-<h2>Catégorie : <?= $topic->getCategoryType() ?></h2>
 
-<div class="topic">
-    <div class="up">
-        <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span>
-        <h4><?= $topic ?></h4>
-        <p><?= $topic->getTextTopic() ?></p>
+<section>
+    <h2>Catégorie : <?= $topic->getCategoryType() ?></h2>
+
+    <div class="topic">
+        <div class="up">
+            <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span>
+            <h4><?= $topic ?></h4>
+            <p><?= $topic->getTextTopic() ?></p>
+        </div>
     </div>
-</div>
 
-
-<?php
-
-if (!empty($posts)) { ?>
 
     <?php
-    foreach ($posts as $post) { ?>
 
-        <div class="topic">
-            <div class="blockTopic">
-                <p class="up"><span class="nameTime">par <?= $post->getUser() ?> le <?= $post->getPostCreationFr() ?></span></p>
-                <p class="down"><?= $post ?>
-                <p>
+    if (!empty($posts)) { ?>
+
+        <?php
+        foreach ($posts as $post) { ?>
+
+            <div class="topic">
+                <div class="blockTopic">
+                    <p class="up"><span class="nameTime">par <?= $post->getUser() ?> le <?= $post->getPostCreationFr() ?></span></p>
+                    <p class="down"><?= $post ?>
+                    <p>
+                </div>
             </div>
-        </div>
+        <?php } ?>
+
+    <?php } else { ?>
+        <p class="noPost">Il n'y a aucun post.</p>
     <?php } ?>
-
-<?php } else { ?>
-    <p class="noPost">Il n'y a aucun post.</p>
-<?php } ?>
-
+</section>
 
 
 <?php if (App\Session::getUser()) { ?>

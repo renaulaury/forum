@@ -20,8 +20,6 @@ class TopicController extends AbstractController implements ControllerInterface
         $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
 
-
-
         return [
             "view" => VIEW_DIR . "topic/listTopics.php",
             "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),

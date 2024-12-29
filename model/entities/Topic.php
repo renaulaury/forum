@@ -19,6 +19,7 @@ final class Topic extends Entity
     private $topicCreation;
     private $locked;
     private $userId;
+    private $nbPost;
 
     public function __construct($data)
     {
@@ -69,12 +70,12 @@ final class Topic extends Entity
     }
 
     public function setTextTopic($textTopic)
-{
-    $this->textTopic = $textTopic;
-    return $this;
-}
+    {
+        $this->textTopic = $textTopic;
+        return $this;
+    }
 
-     /**
+    /**
      * Get the value of title
      */
     public function getTopicCreation()
@@ -121,7 +122,7 @@ final class Topic extends Entity
 
     /**
      * Get the value of category
-     */ 
+     */
     public function getCategory()
     {
         return $this->category;
@@ -131,30 +132,29 @@ final class Topic extends Entity
      * Set the value of category
      *
      * @return  self
-     */ 
+     */
     public function setCategory($category)
     {
         $this->category = $category;
 
-         $this;
+        $this;
     }
 
     public function getCategoryId()
-{
-    // Vérifie si la catégorie est un objet ou déjà un ID
-    return is_object($this->category) ? $this->category->getId() : $this->category;
-}
+    {
+        // Vérifie si la catégorie est un objet ou déjà un ID
+        return is_object($this->category) ? $this->category->getId() : $this->category;
+    }
 
     public function getCategoryType()
     {
-        return $this->category->getTypeCategory();            
-          
+        return $this->category->getTypeCategory();
     }
 
 
     /**
      * Get the value of locked
-     */ 
+     */
     public function getLocked()
     {
         return $this->locked;
@@ -164,7 +164,7 @@ final class Topic extends Entity
      * Set the value of locked
      *
      * @return  self
-     */ 
+     */
     public function setLocked($locked)
     {
         $this->locked = $locked;
@@ -182,6 +182,30 @@ final class Topic extends Entity
         $this->userId = $userId;
         return $this;
     }
+
+
+
+
+    /**
+     * Set the value of nbPost
+     *
+     * @return  self
+     */
+    public function setNbPost($nbPost)
+    {
+        $this->nbPost = $nbPost;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nbPost
+     */
+    public function getNbPost()
+    {
+        return $this->nbPost;
+    }
+
 
     public function __toString()
     {

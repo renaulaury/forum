@@ -4,7 +4,7 @@ $categories = $result["data"]['categories'];
 <!-- Affiche la liste des catégories
 Le lien doit emmener a la liste des topics  -->
 
-<div>
+<section>
     <h2>Catégories</h2>
 
 
@@ -18,9 +18,4 @@ Le lien doit emmener a la liste des topics  -->
         </div>
 
     <?php } ?>
-</div>
-
-<h2>Derniers posts :</h2>
-<div>
-
-</div>
+</section>
