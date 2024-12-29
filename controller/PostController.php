@@ -34,8 +34,6 @@ class PostController extends AbstractController implements ControllerInterface
         ];
     }
 
-
-
     public function addPost($id)
     {
         $topicManager = new TopicManager();

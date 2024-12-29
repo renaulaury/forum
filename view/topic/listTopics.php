@@ -16,11 +16,25 @@ $topics = $result["data"]['topics'];
             <div class="blockTopic">
                 <p class="up">
 
-                    <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span>
+
+                    <span class="nameTime">par
+                        <?php if ($topic->getUser() == null) { ?>
+                            <?= "utilisateur supprimé"; ?>
+                        <?php } else { ?>
+                            <?= $topic->getUser()->getNickname() ?>
+                        <?php } ?>
+
+                        le <?= $topic->getTopicCreationFr() ?>
+                    </span>
+
+
 
                     <?php if (\App\Session::getUser()) { //si user co
 
-                        if ($topic->getUser()->getId() == \App\Session::getUser()->getId()) { // si user = auteur 
+                        $topicUser = $topic->getUser(); // on stocke le resultat de cette recuperation
+
+                        //$topicUser verif que cest true si true on appelle getId() si c'est faux on recup pas l'id (gestion user delete)
+                        if ($topicUser && $topicUser->getId() == \App\Session::getUser()->getId()) { // si user = auteur 
                     ?>
                             <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
                                 <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
@@ -29,11 +43,14 @@ $topics = $result["data"]['topics'];
                             ?>
                                 <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
                                     <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
+
                                 <?php } else { //si user !auteur
                                 ?>
                                     <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : '' ?>"></i>
                                 <?php } ?>
-                            <?php } else { ?>
+
+                            <?php } else { //si visiteur 
+                            ?>
                                 <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : '' ?>"></i>
                             <?php } ?>
                 </p>

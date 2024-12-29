@@ -1,4 +1,3 @@
-
 <form action="index.php?ctrl=security&action=register" method="POST">
     <legend>Créer un compte</legend>
 
@@ -21,10 +20,7 @@
         <p class="mailLogin"><label for="pass2">Répéter le mot de passe</label></p>
         <input type="password" name="password2" id="pass2"></input>
     </div>
- 
-        <div><?= $errorMessage ?></div>
 
-    
     <p class="button">
         <input type="submit" name="submit" value="Créer">
     </p>

@@ -103,6 +103,7 @@ class SecurityController extends AbstractController
     public function logout()
     {
         unset($_SESSION["user"]);
+
         return [
             "view" => VIEW_DIR . "security/login.php",
             "meta_description" => "Login to the forum"

@@ -62,14 +62,15 @@ class TopicController extends AbstractController implements ControllerInterface
     {
         $topicManager = new TopicManager();
         $topic = $topicManager->findOneById($id);
+        $session = new Session();
 
-        if (\App\Session::getUser()) { // si user co
-            if ($topic->getUser()->getId() == \App\Session::getUser()->getId() || \App\Session::getUser()->isAdmin()) {
+        if ($session->getUser()) { // si user co
+            if ($topic->getUser()->getId() == $session->getUser()->getId() || $session->getUser()->isAdmin()) {
                 $newLockStatus = $topic->getLocked() ? 0 : 1;
                 $topicManager->updateLockStatus($id, $newLockStatus);
             }
 
-            // $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
+            $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
         }
     }
 }

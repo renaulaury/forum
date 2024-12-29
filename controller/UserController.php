@@ -5,8 +5,9 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
+use Model\Managers\TopicManager;
+use Model\Managers\PostManager;
 use Model\Managers\UserManager;
-
 
 
 class UserController
@@ -59,12 +60,21 @@ class UserController
 
     public function deleteProfile()
     {
-        $userManager = new UserManager;
-        $id = $_SESSION['user']->getId();
-        $userManager->delete($id);
-        $_SESSION['id']->logout();
+        $userManager = new UserManager();
+        $topicManager = new TopicManager();
+        $postManager = new PostManager();
 
-        $this->redirectTo("forum", "listCategories", $id);
+        $id = $_SESSION['user']->getId();
+        $nickname = $_SESSION['user']->getNickname();
+
+        // Remplacer le nom du user et maj topics & posts
+        $topicManager->updateTopicsForDeletedUser($id, "Utilisateur supprimé");
+        $postManager->updatePostsForDeletedUser($id, "Utilisateur supprimé");
+
+        // Delete user
+        $userManager->delete($id);
+
+        $this->redirectTo("security", "register");
         exit();
     }
 }
