@@ -8,6 +8,7 @@ use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
+use Model\Managers\UserManager;
 
 class TopicController extends AbstractController implements ControllerInterface
 {
@@ -55,5 +56,20 @@ class TopicController extends AbstractController implements ControllerInterface
 
         $this->redirectTo("topic", "listTopicsByCategory", $id);
         exit();
+    }
+
+    public function lockTopic(int $id)
+    {
+        $topicManager = new TopicManager();
+        $topic = $topicManager->findOneById($id);
+
+        if (\App\Session::getUser()) { // si user co
+            if ($topic->getUser()->getId() == \App\Session::getUser()->getId() || \App\Session::getUser()->isAdmin()) {
+                $newLockStatus = $topic->getLocked() ? 0 : 1;
+                $topicManager->updateLockStatus($id, $newLockStatus);
+            }
+
+            // $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
+        }
     }
 }

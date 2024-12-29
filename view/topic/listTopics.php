@@ -18,16 +18,24 @@ $topics = $result["data"]['topics'];
 
                     <span class="nameTime">par <?= $topic->getUser()->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span>
 
+                    <?php if (\App\Session::getUser()) { //si user co
 
-                    <!-- Si auteur du topic alors tu peux modifier le cadenas-->
+                        if ($topic->getUser()->getId() == \App\Session::getUser()->getId()) { // si user = auteur 
+                    ?>
+                            <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                                <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
 
-                    <?php if ($topic->getUser()->getId() == \App\Session::getUser()->getId()) { ?>
-                        <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
-                            <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
-                        </a>
-                    <?php } else { ?>
-                        <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
-                    <?php } ?>
+                            <?php } else if (\App\Session::getUser()->isAdmin()) { //si user = admin 
+                            ?>
+                                <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                                    <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
+                                <?php } else { //si user !auteur
+                                ?>
+                                    <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : '' ?>"></i>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : '' ?>"></i>
+                            <?php } ?>
                 </p>
 
                 <p class="down"><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTopicTitle() ?></a></p>
