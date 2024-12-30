@@ -1,6 +1,7 @@
 <?php
 $categories = $result["data"]['categories'];
 $topics = $result['data']['topics'];
+
 ?>
 
 <p class="containColisee"><img class="colisee" src="./public/images/colisee.jpg" alt="Image du colysee sous un couché de soleil bleu rose"></p>
@@ -27,22 +28,24 @@ $topics = $result['data']['topics'];
 
   <div class="lastTopics">
 
-    <?php foreach ($topics as $topic) { ?>
+    <p class="down">
 
-      <div class="lastTopic">
-        <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>">
+      <?php foreach ($topics as $topic) { ?>
 
-          <p class="space"> <span class="nameTime">par <?= $topic->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> </p>
-          <p class="titleTopic"><?= $topic->getTopicTitle() ?></p>
+    <div class="lastTopic">
+      <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>">
 
-          <div class="linePost"></div>
-          <p class="nbLastPost"><?= $topic->getNbPost() ?>
-            <i class="fa-solid fa-message"></i>
-          </p>
+        <p class="space"> <span class="nameTime">par <?= $topic->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> </p>
+        <p class="titleTopic"><?= $topic->getTopicTitle() ?></p>
 
-        </a>
-      </div>
-    <?php } ?>
+        <div class="linePost"></div>
+        <p class="nbLastPost"><?= $topic->getNbPost() ?>
+          <i class="fa-solid fa-message"></i>
+        </p>
+
+      </a>
+    </div>
+  <?php } ?>
 
   </div>
 </section>
