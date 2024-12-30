@@ -62,11 +62,11 @@ class TopicManager extends Manager
 
     public function lastTopics()
     {
-        $sql = "SELECT topic_id, topicTitle, topicCreation, COUNT(postMsg) AS nbPost
+        $sql = "SELECT user.nickname, topicTitle, topicCreation, COUNT(postMsg) AS nbPost
                 FROM topic
-                LEFT JOIN post ON topic.id_topic = post.topic_id
-                -- WHERE topic_id = :id
-                GROUP by topic_id, topicTitle, topicCreation
+                LEFT JOIN post ON topic.id_topic = post.topic_id                
+                LEFT JOIN user ON topic.user_id = user.id_user
+                GROUP by user.nickname, topicTitle, topicCreation
                 ORDER BY topicCreation DESC
                 LIMIT 3";
 

@@ -10,7 +10,7 @@ use Model\Managers\PostManager;
 use Model\Managers\UserManager;
 
 
-class UserController
+class UserController extends AbstractController
 {
     public function profile()
     {
@@ -74,7 +74,9 @@ class UserController
         // Delete user
         $userManager->delete($id);
 
-        $this->redirectTo("security", "register");
+        Session::addFlash("success", "Votre compte a été supprimé avec succès.");
+
+        $this->redirectTo("security", "logout");
         exit();
     }
 }

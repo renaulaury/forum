@@ -3,6 +3,8 @@ $category = $result["data"]['category'];
 $topics = $result["data"]['topics'];
 ?>
 
+<p class="containColisee"><img class="colisee" src="./public/images/colisee.jpg" alt="Image du colysee sous un couché de soleil bleu rose"></p>
+<h1>FORUM</h1>
 
 <section>
     <h2>Catégorie : <?= $category->getTypeCategory() ?></h2>

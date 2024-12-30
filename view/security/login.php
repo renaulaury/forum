@@ -1,7 +1,15 @@
-
+<?php
+$errorMessage = $result["data"]['errorMessage'] ?? null;
+?>
 
 <form action="index.php?ctrl=security&action=login&id=" method="POST">
     <legend>Se connecter</legend>
+
+    <?php if (isset($errorMessage)) { ?>
+        <div class="error-message">
+            <p><?php echo htmlspecialchars($errorMessage); ?></p>
+        </div>
+    <?php } ?>
 
     <div class="blockForm title ">
         <p class="mailLogin"><label for="email">Email</label></p>
@@ -15,6 +23,6 @@
 
     <p class="button">
         <input class="validInput" type="submit" name="submit" value="Valider">
-    </p>      
+    </p>
 
-    </form>
+</form>

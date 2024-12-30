@@ -32,7 +32,7 @@ $topics = $result['data']['topics'];
       <div class="lastTopic">
         <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>">
 
-          <p class="space"> <span class="nameTime">par <?= $topic->getUser() ?> le <?= $topic->getTopicCreationFr() ?></span> </p>
+          <p class="space"> <span class="nameTime">par <?= $topic->getNickname() ?> le <?= $topic->getTopicCreationFr() ?></span> </p>
           <p class="titleTopic"><?= $topic->getTopicTitle() ?></p>
 
           <div class="linePost"></div>

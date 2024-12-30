@@ -20,6 +20,7 @@ final class Topic extends Entity
     private $locked;
     private $userId;
     private $nbPost;
+    private $nickname;
 
     public function __construct($data)
     {
@@ -184,8 +185,6 @@ final class Topic extends Entity
     }
 
 
-
-
     /**
      * Set the value of nbPost
      *
@@ -210,5 +209,25 @@ final class Topic extends Entity
     public function __toString()
     {
         return $this->topicTitle;
+    }
+
+    /**
+     * Get the value of nickname
+     */
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    /**
+     * Set the value of nickname
+     *
+     * @return  self
+     */
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+
+        return $this;
     }
 }

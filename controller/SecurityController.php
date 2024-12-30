@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
             $password1 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
             // ^: debut de chaine, $ : fin de chaine, (?=.*[A-Z]) : lettres, (?=.*\d) : digit, (?=.*[\W_]) : caracteres speciaux, {12,} : 12 caracteres
-            $password2 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
+            $password2 = filter_input(INPUT_POST, "password2", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
 
             //on les vérifie
             if ($nickname && $email && $password1 && $password2) {
@@ -30,7 +30,7 @@ class SecurityController extends AbstractController
                 $verifyNickname = $user->findOneByNickname($nickname);
                 $verifyEmail = $user->findOneByEmail($email);
 
-                if (!$verifyNickname && !$verifyEmail) { //Vérification si l'un ou l'autre n'existe pas  en bdd
+                if (!$verifyNickname && !$verifyEmail) { //Vérification si l'un ou l'autre n'existe pas en bdd
                     // add in bdd
                     if ($password1 == $password2 && strlen($password1) >= 4) {
                         $user->add([
@@ -38,20 +38,32 @@ class SecurityController extends AbstractController
                             "email" => $email,
                             "password" => password_hash($password1, PASSWORD_DEFAULT)
                         ]);
+
+                        Session::addFlash("success", "Compte créé avec succès. Veuillez vous connecter.");
+                        $this->redirectTo("security", "login");
+                        exit();
                     } else {
-                        $errorMessage = "Mot de passe incorrect.";
+                        $errorMessage = "Les mots de passe ne correspondent pas ou sont trop faibles.";
                     }
                 } else {
-                    $errorMessage = "Utilisateur non trouvé.";
+                    $errorMessage = $verifyNickname
+                        ? "Ce pseudo est déjà utilisé."
+                        : "Cette adresse email est déjà enregistrée.";
                 }
+            } else {
+                $errorMessage = "Tous les champs doivent être remplis correctement.";
             }
         }
 
         return [
             "view" => VIEW_DIR . "security/register.php",
             "meta_description" => "Enregistrement",
+            "data" => [
+                "errorMessage" => $errorMessage,  // Transmission de l'erreur à la vue
+            ]
         ];
     }
+
 
 
     public function login()
@@ -78,7 +90,7 @@ class SecurityController extends AbstractController
                     if (password_verify($password, $hash)) {
                         $session->setUser($user);
 
-                        $this->redirectTo("forum", "listCategories");
+                        $this->redirectTo("home", "home");
                         exit();
                     } else {
                         $errorMessage = "Mot de passe incorrect.";
@@ -94,7 +106,10 @@ class SecurityController extends AbstractController
 
         return [
             "view" => VIEW_DIR . "security/login.php",
-            "meta_description" => "Login to the forum"
+            "meta_description" => "Login to the forum",
+            "data" => [
+                "errorMessage" => $errorMessage
+            ]
         ];
     }
 
