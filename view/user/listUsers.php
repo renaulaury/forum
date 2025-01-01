@@ -20,7 +20,7 @@ $listUsers = $result["data"]["listUsers"];
 
                 <p class="infosUsers"><?= $user->getNickname() ?></p>
                 <p class="infosUsers"><?= $user->getRole() ?></p>
-                <p class="editUsers"><a href="index.php?ctrl=user&action=updateRole"><i class="fa-solid fa-pencil"></i></a></p>
+                <p class="editUsers"><a href="index.php?ctrl=user&action=editRole&id=<?= $user->getId() ?>"><i class="fa-solid fa-pencil"></i></a></p>
 
             <?php } ?>
         </div>

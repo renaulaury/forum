@@ -45,7 +45,6 @@ class UserController extends AbstractController
 
     public function verifDeleteProfile()
     {
-        $id = $_SESSION['user']->getId();
         $userManager = new UserManager;
         $profile = $userManager->findOneById($id);
 
@@ -80,12 +79,33 @@ class UserController extends AbstractController
         exit();
     }
 
-    public function updateRole()
+    public function editRole($id)
     {
+        $userManager = new UserManager;
+        $listUsers = $userManager->findOneById($id);
 
         return [
-            "view" => VIEW_DIR . "user/updateRole.php",
-            "meta_description" => "Modification du rôle d'un membre"
+            "view" => VIEW_DIR . "user/editRole.php",
+            "meta_description" => "Edition du rôle d'un membre",
+            "data" => [
+                'listUsers' => $listUsers,
+            ]
         ];
+    }
+
+    public function updateRole($id)
+    {
+
+        $newRole = $_POST['option'];
+
+
+        $updateUser = new UserManager;
+        $role = $updateUser->updateRoleForUser($id, $newRole);
+
+
+        Session::addFlash("success", "Le role a bien été modifié");
+
+        $this->redirectTo("user", "listUsers");
+        exit();
     }
 }

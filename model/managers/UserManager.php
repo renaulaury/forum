@@ -54,4 +54,30 @@ class UserManager extends Manager
             $this->className
         );
     }
+
+    public function updateRoleForUser($id, $newRole)
+    {
+        // Vérifie si les paramètres sont corrects
+        if (empty($id) || empty($newRole)) {
+            var_dump("Erreur : ID ou rôle manquant");
+            return false;
+        }
+
+        $sql = "UPDATE user SET role = :newRole WHERE id_user = :id";
+
+        // Debug : Affiche la requête et les paramètres
+        var_dump($sql);
+        var_dump(['newRole' => $newRole, 'id' => $id]);
+        die;
+
+        try {
+            return DAO::update($sql, [
+                "newRole" => $newRole,
+                "id" => $id
+            ]);
+        } catch (\Exception $e) {
+            var_dump('Erreur SQL: ' . $e->getMessage());
+            return false;
+        }
+    }
 }
