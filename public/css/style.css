@@ -284,6 +284,42 @@ input, textarea {
     background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
 }
 
+/*Liste users*/
+
+.titleUsers {
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.sectionUsers {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.listUsers {
+    width: 50%; 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto; 
+    box-sizing: border-box;
+    gap: 20px; 
+}
+
+
+.thUsers {
+    text-align: center;
+    background-color: #FFBFA6;
+}
+
+.infosUsers {
+    padding-left: 40%;
+}
+
+.editUsers {
+    text-align: center;
+}
+
 
 /*Footer*/
 

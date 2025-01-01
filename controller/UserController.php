@@ -79,4 +79,13 @@ class UserController extends AbstractController
         $this->redirectTo("security", "logout");
         exit();
     }
+
+    public function updateRole()
+    {
+
+        return [
+            "view" => VIEW_DIR . "user/updateRole.php",
+            "meta_description" => "Modification du rôle d'un membre"
+        ];
+    }
 }
