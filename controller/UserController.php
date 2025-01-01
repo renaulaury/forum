@@ -95,12 +95,14 @@ class UserController extends AbstractController
 
     public function updateRole($id)
     {
+        $id = $_POST['id'];
 
         $newRole = $_POST['option'];
 
 
         $updateUser = new UserManager;
         $role = $updateUser->updateRoleForUser($id, $newRole);
+
 
 
         Session::addFlash("success", "Le role a bien été modifié");

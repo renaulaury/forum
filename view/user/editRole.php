@@ -12,8 +12,8 @@ $listUsers = $result['data']['listUsers'];
         <input type="hidden" name="id" value="<?= $listUsers->getId() ?>"> <!-- Champs caché pour transmettre id  -->
 
         <select id="options" name="option">
-            <option value="user">Utilisateur</option>
-            <option value="admin">Admin</option>
+            <option value="Utilisateur">Utilisateur</option>
+            <option value="Administrateur">Administrateur</option>
             <option value="Banni Temporairement">Bannissement Temporaire</option>
             <option value="Banni Définitivement">Bannissement Définitif</option>
         </select>
