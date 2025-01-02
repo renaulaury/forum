@@ -10,6 +10,14 @@ body {
     height: auto;
 }
 
+h1 {
+    text-align: center;
+    padding: 3% 0;    
+    color: #944C43;
+    font-size: 2em; 
+    font-weight: bold;    
+}
+
 /*navbar*/
 #navbar {
     width: 100%;
@@ -39,7 +47,7 @@ body {
 }
 
 /*Espace principal*/
-h1 {
+.titleForum {
     position: absolute;
     top: 50%;
     left: 50%;    
@@ -329,6 +337,15 @@ input, textarea {
     text-align: center;
 }
 
+/*Réglement*/
+.concl {
+    padding: 5% 0;
+    text-align: center;
+}
+
+.back {
+
+}
 
 /*Footer*/
 

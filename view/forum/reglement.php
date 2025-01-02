@@ -1,10 +1,6 @@
-<h2>Règlement</h2>
-
-
-
 <section>
     <div class="intro">
-        <h2>Bienvenue sur notre forum ! Avant de participer, veuillez prendre connaissance des règles suivantes :</h2>
+        <h1>Règlement</h1>
 
         <ul>
             <li><strong>Respectez les autres membres</strong> : Soyez courtois et respectueux dans vos échanges. Les insultes et comportements agressifs ne seront pas tolérés.</li>
@@ -18,7 +14,7 @@
     </div>
 
     <div class="banTemporaire">
-        <h3>Infractions justifiant un bannissement temporaire (3 jours)</h3>
+        <h2>Infractions justifiant un bannissement temporaire (3 jours)</h2>
 
         <ul>
             <li><strong>Insultes ou propos offensants</strong> : Usage de langage injurieux envers un utilisateur ou un groupe. </li>
@@ -30,10 +26,11 @@
         </ul>
     </div>
 
-    <div class="banTemporaire">
-        <h3>Infractions justifiant un bannissement définitif</h3>
+    <div class="banDefinitif">
+        <h2>Infractions justifiant un bannissement définitif</h2>
 
-        <p>En cas de bannissement temporaire, vos données sont conservées de la même manière que si votre profil était actif, dans le respect du RGPD.
+        <p>
+            En cas de bannissement définitif, vos données seront supprimées à <strong>l'exception de votre emailqui sera conservé de manière anonyme </strong>(hashé), dans le respect du RGPD.
         </p>
 
         <ul>
@@ -47,10 +44,7 @@
     </div>
 
     <div class="protectionDatas">
-        <h3>Protection des données personnelles</h3>
-
-        <p>En cas de bannissement définitif, vos données seront supprimées à l'exception de votre email qui sera conservé de manière anonyme (hashé), dans le respect du RGPD.
-        </p>
+        <h2>Protection des données personnelles</h2>
 
         <div>
             <p>Nous prenons la protection de vos données personnelles très au sérieux. Conformément au Règlement Général sur la Protection des Données (RGPD),
@@ -68,5 +62,7 @@
         </div>
     </div>
 
-    <p>Merci de votre compréhension et de votre collaboration. Nous vous souhaitons une agréable expérience sur le forum !</p>
+    <p class="concl">Merci de votre compréhension et de votre collaboration. Nous vous souhaitons une agréable expérience sur le forum !</p>
+
+    <p class="back"><a href="index.php?ctrl=home&action=home">Retour à l'accueil</a></p>
 </section>

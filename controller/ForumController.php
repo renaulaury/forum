@@ -30,4 +30,12 @@ class ForumController extends AbstractController implements ControllerInterface
             ]
         ];
     }
+
+    public function reglement()
+    {
+        return [
+            "view" => VIEW_DIR . "forum/reglement.php",
+            "meta_description" => "Réglement du forum"
+        ];
+    }
 }
