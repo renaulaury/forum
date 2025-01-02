@@ -18,6 +18,10 @@ h1 {
     font-weight: bold;    
 }
 
+a {
+    color: whitesmoke;
+}
+
 /*navbar*/
 #navbar {
     width: 100%;
@@ -106,6 +110,11 @@ a {
 }
 
 /*Main - categories*/
+.titre {
+    font-size: 1.2em;
+    color: #944C43;
+}
+
 h3 {
     padding-bottom: 2%;
 }
@@ -281,11 +290,11 @@ input, textarea {
 }
 
 .button input{
+    margin-top: 5%;
     padding: 10px 20px;
     border-radius: 50px;
     background-color: rgb(187, 182, 182);
-    border: none;
-    font-size: 1.2em; 
+    border: none;     
 }
 
 .button input:hover {
@@ -323,7 +332,6 @@ input, textarea {
     gap: 20px; 
 }
 
-
 .thUsers {
     text-align: center;
     background-color: #FFBFA6;
@@ -337,14 +345,25 @@ input, textarea {
     text-align: center;
 }
 
-/*Réglement*/
-.concl {
-    padding: 5% 0;
-    text-align: center;
+.chooseRole {
+    padding-bottom: 5%;
 }
 
-.back {
+.containBan {
+width: 100%;
+}
 
+.chooseBan {
+    padding-bottom: 5%;
+}
+
+.fa-triangle-exclamation {
+    padding-right: 2%;
+}
+
+.raisonBan {
+    width : 100%;
+    padding-left: 3%;
 }
 
 /*Footer*/
@@ -361,6 +380,12 @@ footer  {
 
 footer a {
     background-color: salmon;
+}
+
+/*Réglement*/
+.concl {
+    padding: 5% 0;
+    text-align: center;
 }
 
 /* Responsive */

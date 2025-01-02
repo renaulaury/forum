@@ -96,7 +96,8 @@
             });
         })
     </script>
-    <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
+    <script src="<?= PUBLIC_DIR ?>/js/burger.js"></script>
+    <script src="<?= PUBLIC_DIR ?>/js/formBan.js"></script>
 </body>
 
 </html>
