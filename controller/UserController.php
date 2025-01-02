@@ -104,8 +104,6 @@ class UserController extends AbstractController
         $updateUser = new UserManager;
         $role = $updateUser->updateRoleForUser($id, $newRole);
 
-
-
         Session::addFlash("success", "Le role a bien été modifié");
 
         $this->redirectTo("user", "listUsers");
