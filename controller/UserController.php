@@ -34,7 +34,7 @@ class UserController extends AbstractController
 
         $userManager = new UserManager();
         $profile = $userManager->findOneById($id);
-        $listUsers = $userManager->findAll(['nickname', 'ASC']);
+        $listUsers = $userManager->findAll(['level', 'ASC']);
 
         return [
             "view" => VIEW_DIR . "user/listUsers.php",

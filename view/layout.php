@@ -31,17 +31,12 @@
                     <div>
                         <ol id="navbar">
                             <a href="index.php?ctrl=home&action=home">Accueil</a>
-                            <?php
-                            if (App\Session::isAdmin() || App\Session::isRoot()) {
-                            ?>
-                                <li><a href="index.php?ctrl=user&action=listUsers">Voir la liste des gens</a></li>
-                            <?php } ?>
-
 
                             <?php
                             // si l'utilisateur est connecté 
                             if (App\Session::getUser()) {
                             ?>
+                                <li><a href="index.php?ctrl=user&action=listUsers">Voir la liste des gens</a></li>
                                 <li><a href="index.php?ctrl=user&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser() ?></a></li>
                                 <li><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
                             <?php

@@ -297,10 +297,19 @@ input, textarea {
     align-items: center;    
 }
 
-.listUsers {
+.listUsers1 {
     width: 50%; 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto; 
+    box-sizing: border-box;
+    gap: 20px; 
+}
+
+.listUsers2 {
+    width: 50%; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto; 
     box-sizing: border-box;
     gap: 20px; 
