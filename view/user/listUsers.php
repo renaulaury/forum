@@ -16,8 +16,11 @@ $listUsers = $result["data"]["listUsers"];
 
 
             <?php
-            foreach ($listUsers as $user) { ?>
-
+            foreach ($listUsers as $user) {
+                if ($user->getRole() === 'root') {
+                    continue;
+                }
+            ?>
                 <p class="infosUsers"><?= $user->getNickname() ?></p>
                 <p class="infosUsers"><?= $user->getRole() ?></p>
                 <p class="editUsers"><a href="index.php?ctrl=user&action=editRole&id=<?= $user->getId() ?>"><i class="fa-solid fa-pencil"></i></a></p>

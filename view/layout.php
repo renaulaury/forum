@@ -32,7 +32,7 @@
                         <ol id="navbar">
                             <a href="index.php?ctrl=home&action=home">Accueil</a>
                             <?php
-                            if (App\Session::isAdmin()) {
+                            if (App\Session::isAdmin() || App\Session::isRoot()) {
                             ?>
                                 <li><a href="index.php?ctrl=user&action=listUsers">Voir la liste des gens</a></li>
                             <?php } ?>
@@ -44,13 +44,11 @@
                             ?>
                                 <li><a href="index.php?ctrl=user&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser() ?></a></li>
                                 <li><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
-                                <li><a href="index.php?ctrl=forum&action=index">Liste des catégories</a></li>
                             <?php
                             } else {
                             ?>
                                 <li><a href="index.php?ctrl=security&action=login">Connexion</a></li>
                                 <li><a href="index.php?ctrl=security&action=register">Inscription</a></li>
-                                <li><a href="index.php?ctrl=forum&action=index">Liste des catégories</a></li>
                             <?php
                             }
                             ?>

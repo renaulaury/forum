@@ -50,4 +50,12 @@ class Session
         }
         return false;
     }
+
+    public static function isRoot()
+    {
+        if (self::getUser() && self::getUser()->hasRole("root")) {
+            return true;
+        }
+        return false;
+    }
 }
