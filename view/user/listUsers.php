@@ -20,7 +20,7 @@ $profile = $result['data']['profile'];
 
                 <?php
                 foreach ($listUsers as $user) {
-                    // != appartition Root
+                    // != apparition Root
                     if ($user->getRole() === 'root') {
                         continue;
                     } ?>
