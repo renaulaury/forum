@@ -43,7 +43,7 @@ $topics = $result["data"]['topics'];
                                 <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
                                     <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
 
-                                <?php } else if (\App\Session::getUser()->isAdmin()) { //si user = admin 
+                                <?php } else if (\App\Session::getUser()->isAdmin() || \App\Session::isRoot()) { //si user = admin 
                                 ?>
                                     <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
                                         <i class="fa-solid cadenas fa-<?= $topic->getLocked() ? 'lock' : 'unlock' ?>"></i>
