@@ -1,5 +1,6 @@
 <?php
 $listUsers = $result["data"]["listUsers"];
+$profile = $result['data']['profile'];
 ?>
 
 
@@ -20,12 +21,26 @@ $listUsers = $result["data"]["listUsers"];
                 if ($user->getRole() === 'root') {
                     continue;
                 }
-            ?>
-                <p class="infosUsers"><?= $user->getNickname() ?></p>
-                <p class="infosUsers"><?= $user->getRole() ?></p>
-                <p class="editUsers"><a href="index.php?ctrl=user&action=editRole&id=<?= $user->getId() ?>"><i class="fa-solid fa-pencil"></i></a></p>
 
-            <?php } ?>
+                if (App\Session::isRoot()) {
+            ?>
+
+                    <p class="infosUsers"><?= $user->getNickname() ?></p>
+                    <p class="infosUsers"><?= $user->getRole() ?></p>
+                    <p class="editUsers"><a href="index.php?ctrl=user&action=editRole&id=<?= $user->getId() ?>"><i class="fa-solid fa-pencil"></i></a></p>
+
+                <?php } else if (App\Session::isAdmin() && $user->getRole() !== 'admin') {
+                ?>
+                    <p class="infosUsers"><?= $user->getNickname() ?></p>
+                    <p class="infosUsers"><?= $user->getRole() ?></p>
+                    <p class="editUsers"><a href="index.php?ctrl=user&action=editRole&id=<?= $user->getId() ?>"><i class="fa-solid fa-pencil"></i></a></p>
+
+                <?php  } else { ?>
+                    <p class="infosUsers"><?= $user->getNickname() ?></p>
+                    <p class="infosUsers"><?= $user->getRole() ?></p>
+            <?php
+                }
+            } ?>
         </div>
     </div>
 </section>

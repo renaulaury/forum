@@ -30,15 +30,18 @@ class UserController extends AbstractController
 
     public function listUsers()
     {
+        $id = $_SESSION['user']->getId();
 
         $userManager = new UserManager();
+        $profile = $userManager->findOneById($id);
         $listUsers = $userManager->findAll(['nickname', 'ASC']);
 
         return [
             "view" => VIEW_DIR . "user/listUsers.php",
             "meta_description" => "Liste des utilisateurs",
             "data" => [
-                'listUsers' => $listUsers
+                'listUsers' => $listUsers,
+                "profile" => $profile
             ]
         ];
     }
@@ -96,9 +99,7 @@ class UserController extends AbstractController
     public function updateRole($id)
     {
         $id = $_POST['id'];
-
         $newRole = $_POST['option'];
-
 
         $updateUser = new UserManager;
         $role = $updateUser->updateRoleForUser($id, $newRole);
