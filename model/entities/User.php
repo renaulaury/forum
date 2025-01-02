@@ -3,6 +3,7 @@
 namespace Model\Entities;
 
 use App\Entity;
+use DateTime;
 
 /*
     En programmation orientée objet, une classe finale (final class) est une classe que vous ne pouvez pas étendre, c'est-à-dire qu'aucune autre classe ne peut hériter de cette classe. En d'autres termes, une classe finale ne peut pas être utilisée comme classe parente.
@@ -16,6 +17,7 @@ final class User extends Entity
     private $mail;
     private $password;
     private $role;
+    private $dateInscription;
     // private $nbTopics;
     // private $nbPosts;
 
@@ -138,5 +140,20 @@ final class User extends Entity
     public function isAdmin()
     {
         return $this->hasRole('Administrateur');
+    }
+
+
+    public function getDateInscription()
+    {
+        $date = new \DateTime($this->dateInscription);
+        return $date->format("d-m-y à H:i");
+    }
+
+
+    public function setDateInscription($dateInscription)
+    {
+        $this->dateInscription = $dateInscription;
+
+        return $this;
     }
 }

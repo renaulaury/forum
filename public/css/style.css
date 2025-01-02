@@ -244,7 +244,6 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.2em;
 }
 
 input, textarea {
@@ -365,6 +364,44 @@ width: 100%;
     width : 100%;
     padding-left: 3%;
 }
+
+/*Profile*/
+#profile {
+    display: flex;
+
+}
+.editH2 {
+    font-size: 0.7em;
+    padding-left: 1%;
+}
+
+.containInfos {
+    padding: 3% 0;
+}
+
+.containDelProfile {
+    padding-top: 3%;
+    text-decoration: underline; 
+}
+
+.delProfile:hover {
+    color: salmon;
+}
+
+.containInfosProfile {
+    width: 30%;
+}
+
+.containEditProfile {
+    width: 70%;
+}
+
+/*Formulaire edit profile*/
+#formProfile {
+    display: flex;    
+}
+
+
 
 /*Footer*/
 

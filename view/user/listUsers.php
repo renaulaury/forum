@@ -8,8 +8,6 @@ $profile = $result['data']['profile'];
 <section>
     <h3 class="titleUsers">Liste des membres</h3>
 
-
-
     <?php if (App\Session::isRoot() || App\Session::isAdmin()) { ?>
         <div class="sectionUsers">
             <div class="listUsers1">

@@ -109,4 +109,12 @@ class UserController extends AbstractController
         $this->redirectTo("user", "listUsers");
         exit();
     }
+
+    public function editProfile()
+    {
+        return [
+            "view" => VIEW_DIR . "user/editProfile.php",
+            "meta_description" => "Edition du profil d'un membre"
+        ];
+    }
 }
