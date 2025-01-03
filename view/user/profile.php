@@ -12,6 +12,9 @@ $profile = $result['data']['profile'];
         <div class="containProfile">
             <p>Inscrit depuis le : <?= $profile->getDateInscription() ?></p>
             <p>Rôle : <span><?= $profile->getRole() ?></span></p>
+            <?php if (($profile->getRole() === 'Banni temporairement') || ($profile->getRole() === 'Banni temporairement')) { ?>
+                <p>Jusqu'au : <span><?= $profile->getDateEndBan() ?></span></p>
+            <?php } ?>
         </div>
 
         <div class="containInfos">

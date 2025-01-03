@@ -18,6 +18,7 @@ $profile = $result['data']['profile'];
 
                 <?php
                 foreach ($listUsers as $user) {
+
                     // != apparition Root
                     if ($user->getRole() === 'root') {
                         continue;
@@ -53,6 +54,11 @@ $profile = $result['data']['profile'];
                 <p class="thUsers">Rôle</p>
 
                 <?php foreach ($listUsers as $user) {
+                    // Si l'utilisateur est banni, on passe à l'itération suivante
+                    if (($user->getRole() === 'Banni temporairement') || ($user->getRole() === 'Banni Définitivement')) {
+                        continue;
+                    }
+
                     // != appartition Root
                     if ($user->getRole() === 'root') {
                         continue;
