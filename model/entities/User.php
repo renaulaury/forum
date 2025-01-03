@@ -19,6 +19,7 @@ final class User extends Entity
     private $role;
     private $dateInscription;
     private $dateEndBan;
+    private $getDateEndBanVo;
     // private $nbTopics;
     // private $nbPosts;
 
@@ -158,6 +159,10 @@ final class User extends Entity
         return $this;
     }
 
+    public function getDateEndBanVo()
+    {
+        return $this->dateEndBan;
+    }
 
     public function getDateEndBan()
     {

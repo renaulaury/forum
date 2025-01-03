@@ -88,6 +88,10 @@ class SecurityController extends AbstractController
                 if ($user) {
                     $hash = $user->getPassword();
                     if (password_verify($password, $hash)) {
+                        // Vérification du statut de bannissement
+                        $this->checkBanStatus($user->getId());
+
+                        //Si user validé, ouverture session
                         $session->setUser($user);
 
                         $this->redirectTo("home", "home");
@@ -123,5 +127,29 @@ class SecurityController extends AbstractController
             "view" => VIEW_DIR . "security/login.php",
             "meta_description" => "Login to the forum"
         ];
+    }
+
+    public function checkBanStatus($id)
+    {
+        // Récup user
+        $updateUser = new UserManager();
+        $user = $updateUser->findOneById($id);
+
+        // Si user est banni temporairement
+        if ($user->getRole() === 'Banni Temporairement') {
+            $dateEndBan = new \DateTime($user->getDateEndBanVo());
+            var_dump($dateEndBan->format('Y-m-d H:i:s'));  // Afficher la date brute
+            die;
+            $currentDate = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+            var_dump($dateEndBan);
+            die;
+
+            // Si la date de fin de bannissement est dépassée
+            if ($dateEndBan <= $currentDate) {
+                // Réactiver le rôle en tant qu'utilisateur
+                $updateUser->updateRoleForUser($id, 'Utilisateur');
+                Session::addFlash("success", "Le bannissement temporaire a pris fin, votre rôle a été réactivé.");
+            }
+        }
     }
 }
