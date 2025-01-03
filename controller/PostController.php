@@ -8,6 +8,7 @@ use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
+use Model\Managers\UserManager;
 
 class PostController extends AbstractController implements ControllerInterface
 {
@@ -23,13 +24,18 @@ class PostController extends AbstractController implements ControllerInterface
         $category = $categoryManager->findOneById($topic->getCategoryType());
         $posts = $postManager->findPostsByTopic($id);
 
+        $id = $_SESSION['user']->getId();
+        $userManager = new UserManager();
+        $profile = $userManager->findOneById($id);
+
         return [
             "view" => VIEW_DIR . "post/listPosts.php",
             "meta_description" => "Liste des posts par topic : " . $topic->getTopicTitle(),
             "data" => [
                 "topic" => $topic,
                 "category_id" => $id,
-                "posts" => $posts
+                "posts" => $posts,
+                "profile" => $profile
             ]
         ];
     }

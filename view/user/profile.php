@@ -15,9 +15,7 @@ $profile = $result['data']['profile'];
             <?php if (($profile->getRole() === 'Banni temporairement') || ($profile->getRole() === 'Banni temporairement')) { ?>
                 <p>Jusqu'au : <span><?= $profile->getDateEndBan() ?></span></p>
                 <p>Si la date si dessus est dépassée, pensez à vous reconnecter pour mettre à jour vos droits.</p>
-            <?php } else {
-                continue;
-            } ?>
+            <?php } ?>
         </div>
 
         <div class="containInfos">

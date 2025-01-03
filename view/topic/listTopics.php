@@ -1,6 +1,7 @@
 <?php
 $category = $result["data"]['category'];
 $topics = $result["data"]['topics'];
+$profile = $result['data']['profile'];
 ?>
 
 <p class="containColisee"><img class="colisee" src="./public/images/colisee.jpg" alt="Image du colysee sous un couché de soleil bleu rose"></p>
@@ -76,25 +77,32 @@ $topics = $result["data"]['topics'];
 </section>
 
 <?php if (App\Session::getUser()) { ?>
-    <form action="index.php?ctrl=topic&action=addTopic&id=<?= $category->getId() ?>" method="post">
-        <legend>Création d'un topic</legend>
 
-        <div class="blockForm title">
-            <p class="topicTitle"><label for="topicTitle">Titre</label></p>
-            <input type="text" id="topicTitle" name="topicTitle"></input>
+    <?php if (!(($profile->getRole() === 'Banni temporairement') || ($profile->getRole() === 'Banni temporairement'))) { ?>
+
+        <form action="index.php?ctrl=topic&action=addTopic&id=<?= $category->getId() ?>" method="post">
+            <legend>Création d'un topic</legend>
+
+            <div class="blockForm title">
+                <p class="topicTitle"><label for="topicTitle">Titre</label></p>
+                <input type="text" id="topicTitle" name="topicTitle"></input>
+            </div>
+
+            <div class="blockForm">
+                <p class="textTopic"><label for="textTopic">Message</label></p>
+                <textarea id="textTopic" name="textTopic"></textarea>
+            </div>
+
+            <p class="button">
+                <input class="validInput" type="submit" name="submit" value="Valider">
+            </p>
+        </form>
+    <?php } else { ?>
+        <div class="msgVer">
+            <p>Vous ne pouvez pas poster de message lorque vous êtes banni. </p>
+            <p> Votre bannissement prendra fin le <span><?= $profile->getDateEndBan() ?></span>.</p>
         </div>
-
-        <div class="blockForm">
-            <p class="textTopic"><label for="textTopic">Message</label></p>
-            <textarea id="textTopic" name="textTopic"></textarea>
-        </div>
-
-        <p class="button">
-            <input class="validInput" type="submit" name="submit" value="Valider">
-        </p>
-    </form>
-
-
+    <?php } ?>
 
 <?php } else { ?>
     <p class="msgVer">Vous devez être connecté pour poster un message.</p>

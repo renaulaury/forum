@@ -1,6 +1,7 @@
 <?php
 $topic = $result["data"]['topic'];
 $posts = $result["data"]['posts'];
+$profile = $result['data']['profile'];
 ?>
 
 <p class="containColisee"><img class="colisee" src="./public/images/colisee.jpg" alt="Image du colysee sous un couché de soleil bleu rose"></p>
@@ -41,24 +42,32 @@ $posts = $result["data"]['posts'];
 
 
 <?php if (App\Session::getUser()) { ?>
-    <?php if (!$topic->getLocked()) { // Vérif si topic n'est pas ver 
-    ?>
+    <?php if (!(($profile->getRole() === 'Banni temporairement') || ($profile->getRole() === 'Banni temporairement'))) { ?>
+        <?php if (!$topic->getLocked()) { // Vérif si topic n'est pas ver 
+        ?>
 
-        <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
-            <legend>Création d'un post</legend>
+            <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="post">
+                <legend>Création d'un post</legend>
 
-            <div class="blockForm">
-                <p class="textTopic"><label for="postMsg">Message</label></p>
-                <textarea type="text" id="postMsg" name="postMsg"></textarea>
-            </div>
+                <div class="blockForm">
+                    <p class="textTopic"><label for="postMsg">Message</label></p>
+                    <textarea type="text" id="postMsg" name="postMsg"></textarea>
+                </div>
 
-            <p class="button">
-                <input class="validInput" type="submit" name="submit" value="Valider">
-            </p>
-        </form>
+                <p class="button">
+                    <input class="validInput" type="submit" name="submit" value="Valider">
+                </p>
+            </form>
+
+        <?php } else { ?>
+            <p class="msgVer">Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
+        <?php } ?>
 
     <?php } else { ?>
-        <p class="msgVer">Ce sujet est verrouillé. Vous ne pouvez pas poster de message.</p>
+        <div class="msgVer">
+            <p>Vous ne pouvez pas poster de message lorque vous êtes banni. </p>
+            <p> Votre bannissement prendra fin le <span><?= $profile->getDateEndBan() ?></span>.</p>
+        </div>
     <?php } ?>
 
 <?php } else { ?>

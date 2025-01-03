@@ -20,12 +20,18 @@ class TopicController extends AbstractController implements ControllerInterface
         $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
 
+        $id = $_SESSION['user']->getId();
+        $userManager = new UserManager();
+        $profile = $userManager->findOneById($id);
+
+
         return [
             "view" => VIEW_DIR . "topic/listTopics.php",
             "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),
             "data" => [
                 "category" => $category,
-                "topics" => $topics
+                "topics" => $topics,
+                "profile" => $profile
             ]
         ];
     }
