@@ -98,6 +98,7 @@
     </script>
     <script src="<?= PUBLIC_DIR ?>/js/burger.js"></script>
     <script src="<?= PUBLIC_DIR ?>/js/formBan.js"></script>
+    <script src="<?= PUBLIC_DIR ?>/js/formEditProfile.js"></script>
 </body>
 
 </html>

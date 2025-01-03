@@ -4,9 +4,9 @@ $profile = $result['data']['profile'];
 ?>
 
 <section id="profile">
-    <div class="containInfosProfile">
+    <div id="editProfile" class="containInfosProfile">
         <h2>Profil de <?= $profile->getNickname() ?>
-            <a class="editH2" href="index.php?ctrl=user&action=editProfile&id="><i class="fa-solid fa-pencil"></i></a>
+            <a class=" editH2" href="#" onclick="toggleEditProfile();"><i class=" fa-solid fa-pencil"></i></a>
         </h2>
 
         <div class="containProfile">
@@ -30,7 +30,7 @@ $profile = $result['data']['profile'];
 
 
 
-    <form id="formProfile" method="index.php?ctrl=user&action=editProfile" action="POST">
+    <form id="formProfile" style="display: none;" method="index.php?ctrl=user&action=editProfile" action="POST">
         <div class="containEditProfile">
             <div class="editNicknameMail">
                 <div class="blockForm title">
@@ -61,7 +61,7 @@ $profile = $result['data']['profile'];
             </div>
 
             <p class="button">
-                <input type="submit" name="submit" value="Créer">
+                <input type="submit" name="submit" value="Editer">
             </p>
 
         </div>
