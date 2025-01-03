@@ -166,11 +166,18 @@ final class User extends Entity
     }
 
 
-    public function setDateEndBan()
+    public function setDateEndBan($isTemporary)
     {
-        $date = new \DateTime();
-        $date->modify('+3 jours');
-        $this->dateEndBan = $date->format('Y-m-d H:i:s');
+        $timezone = new \DateTimeZone('Europe/Paris');
+
+        if ($isTemporary) {
+            $date = new \DateTime;
+            $date->setTimezone($timezone);
+            $date->modify('+3 days');
+            $this->dateEndBan = $date->format('Y-m-d H:i:s');
+        } else {
+            $this->dateEndBan = '9999-01-01 00:00:00';
+        }
         return $this->dateEndBan;
     }
 }
