@@ -27,7 +27,8 @@ $listUsers = $result['data']['listUsers'];
 
             <div class="chooseBan">
                 <label for="banTemp">Raison :</label>
-                <select name="banTemp">
+                <select id="banTemp" name="banTemp">
+                    <option value="Champ vide"></option>
                     <option value="Insultes ou propos offosant">Insultes ou propos offensants</option>
                     <option value="Spams ou pub non autorisée">Spam ou publicité non autorisée</option>
                     <option value="Perturbation intentionnelle">Perturbation intentionnelle</option>
@@ -38,8 +39,8 @@ $listUsers = $result['data']['listUsers'];
             </div>
 
             <div class="containBan">
-                <label for="raison">Précision :</label>
-                <input class="raisonBan" type="text" name="raison" />
+                <label for="precisionBanTemp">Précision :</label>
+                <input class="precisionBan" type="text" name="precisionBanTemp" />
             </div>
         </div>
 
@@ -49,8 +50,9 @@ $listUsers = $result['data']['listUsers'];
             </h3>
 
             <div class="chooseBan">
-                <label for="banTemp">Raison :</label>
-                <select name="banDef">
+                <label for="banDef">Raison :</label>
+                <select id="banDef" name="banDef">
+                    <option value="Champ vide"></option>
                     <option value="Harcèlement ou menaces">Harcèlement ou menaces</option>
                     <option value="Contenus illégaux">Contenus illégaux</option>
                     <option value="Usurpation d’identité">Usurpation d’identité</option>
@@ -61,8 +63,8 @@ $listUsers = $result['data']['listUsers'];
             </div>
 
             <div class="containBan">
-                <label for="raison">Précision :</label>
-                <input class="raisonBan" type="text" name="raison" />
+                <label for="precisionBanDef">Précision :</label>
+                <input class="precisionBanDef" type="text" name="precisionBanDef" />
             </div>
         </div>
 

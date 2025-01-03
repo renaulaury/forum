@@ -98,6 +98,7 @@ class UserController extends AbstractController
 
     public function updateRole($id)
     {
+
         $id = $_POST['id'];
         $newRole = $_POST['option'];
 
@@ -106,26 +107,43 @@ class UserController extends AbstractController
 
         if ($newRole === "Banni Temporairement") {
             // Récup raison et précision du ban
-            $reasonBan = $_POST['banTemp'];
-            $precisionBan = $_POST['raison'];
+            $reasonBanTemp = $_POST['banTemp'];
+            $precisionBanTemp = $_POST['precisionBanTemp'];
 
             //Ils doivent être obligatoirement renseigné
-            if (empty($reasonBan) || empty($precisionBan)) {
+            if (empty($reasonBanTemp) || empty($precisionBanTemp)) {
                 Session::addFlash("error", "Pour un bannissement, tous les champs doivent être renseignés.");
                 $this->redirectTo("user", "listUsers");
                 return;
             } else {
                 // Récup user pour maj dateEndBan
                 $user = $updateUser->findOneById($id);
-                $user->setDateEndBan(); // Maj dateEndBan dans bdd
+                $dateEndBan = $user->setDateEndBan(); // Maj dateEndBan dans bdd
 
                 // Now maj infos du ban
-                $updateUser->updateBanInfo($id, $newRole, $reasonBan, $precisionBan); // Maj bdd
+                $updateUser->updateBanInfo($id, $newRole, $reasonBanTemp, $precisionBanTemp, $dateEndBan); // Maj bdd
 
                 Session::addFlash("success", "Le bannissement temporaire a bien été mis en place");
             }
         } else if ($newRole === "Banni Définitivement") {
+// Récup raison et précision du ban
+$reasonBanTemp = $_POST['banTemp'];
+$precisionBanTemp = $_POST['precisionBanTemp'];
 
+//Ils doivent être obligatoirement renseigné
+if (empty($reasonBanTemp) || empty($precisionBanTemp)) {
+    Session::addFlash("error", "Pour un bannissement, tous les champs doivent être renseignés.");
+    $this->redirectTo("user", "listUsers");
+    return;
+} else {
+    // Récup user pour maj dateEndBan
+    $user = $updateUser->findOneById($id);
+    $dateEndBan = $user->setDateEndBan(); // Maj dateEndBan dans bdd
+
+    // Now maj infos du ban
+    $updateUser->updateBanInfo($id, $newRole, $reasonBanTemp, $precisionBanTemp, $dateEndBan); // Maj bdd
+
+    
             "jsuis banni pour toujours à jamais";
             Session::addFlash("success", "Le bannissement définitif a bien été mis en place");
         } else {

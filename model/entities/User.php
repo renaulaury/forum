@@ -18,6 +18,7 @@ final class User extends Entity
     private $password;
     private $role;
     private $dateInscription;
+    private $dateEndBan;
     // private $nbTopics;
     // private $nbPosts;
 
@@ -155,5 +156,21 @@ final class User extends Entity
         $this->dateInscription = $dateInscription;
 
         return $this;
+    }
+
+
+    public function getDateEndBan()
+    {
+        $date = new \DateTime($this->dateEndBan);
+        return $date->format("d-m-y à H:i");
+    }
+
+
+    public function setDateEndBan()
+    {
+        $date = new \DateTime();
+        $date->modify('+3 jours');
+        $this->dateEndBan = $date->format('Y-m-d H:i:s');
+        return $this->dateEndBan;
     }
 }
