@@ -68,4 +68,20 @@ class UserManager extends Manager
                 "id" => $id
             ]);
     }
+
+    public function updateBanInfo($id, $newRole, $reasonBan, $precisionBan)
+    {
+        $sql = "UPDATE user
+                SET role = :newRole,
+                    reasonBan = :reasonBan,
+                    precisionBan = :precisionBan";
+
+        return
+            DAO::update($sql, [
+                "newRole" => $newRole,
+                "reasonBan" => $reasonBan,
+                "precisionBan" => $precisionBan,
+                "id" => $id
+            ]);
+    }
 }
