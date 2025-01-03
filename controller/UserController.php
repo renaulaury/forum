@@ -102,9 +102,21 @@ class UserController extends AbstractController
         $newRole = $_POST['option'];
 
         $updateUser = new UserManager;
-        $role = $updateUser->updateRoleForUser($id, $newRole);
 
-        Session::addFlash("success", "Le role a bien été modifié");
+
+        if ($newRole === "Banni Temporairement") {
+
+            Session::addFlash("success", "Le bannissement temporaire a bien été mis en place");
+        } else if ($newRole === "Banni Définitivement") {
+
+            "jsuis banni pour toujours à jamais";
+            Session::addFlash("success", "Le bannissement définitif a bien été mis en place");
+        } else {
+            $role = $updateUser->updateRoleForUser($id, $newRole);
+
+            Session::addFlash("success", "Le role a bien été modifié");
+        }
+
 
         $this->redirectTo("user", "listUsers");
         exit();
