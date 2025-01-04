@@ -28,6 +28,88 @@ class UserController extends AbstractController
         ];
     }
 
+    public function editProfile()
+    {
+        $userManager = new UserManager();
+        $errorMessage = null;
+
+        // Vérifier si un utilisateur est connecté
+        if (!Session::getUser()) {
+            Session::addFlash("error", "Vous devez être connecté pour modifier votre profil.");
+            $this->redirectTo("security", "login");
+            exit();
+        }
+
+        $user = Session::getUser();
+
+        if (isset($_POST["submit"])) {
+            // Filtrer les données
+            $nickname = filter_input(INPUT_POST, "nickname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newPassword = filter_input(INPUT_POST, "newPassword", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
+            $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // Vérifier si des informations ont été soumises
+            if ($nickname || $email || $password || $newPassword || $confirmPassword) {
+                // Vérification des informations du profil
+                $isEmailAvailable = $email && $userManager->isEmailAvailable($email, $user->getId());
+                $isNicknameAvailable = $nickname && $userManager->isNicknameAvailable($nickname, $user->getId());
+
+                // Si un mot de passe est soumis, vérifier sa validité
+                if ($password && !$newPassword) {
+                    $errorMessage = "Veuillez entrer un nouveau mot de passe.";
+                } else if ($newPassword && $confirmPassword) {
+                    // Vérifier que les mots de passe correspondent
+                    if ($newPassword !== $confirmPassword) {
+                        $errorMessage = "Les mots de passe ne correspondent pas.";
+                    }
+                }
+
+                // Si tout est valide, mettre à jour le profil
+                if (!$errorMessage) {
+                    // Mise à jour des champs modifiés
+                    $updateData = [];
+                    if ($nickname && $isNicknameAvailable) {
+                        $updateData['nickname'] = $nickname;
+                        $user->setNickname($nickname); // Mettre à jour dans la session
+                    }
+                    if ($email && $isEmailAvailable) {
+                        $updateData['email'] = $email;
+                        $user->setEmail($email); // Mettre à jour dans la session
+                    }
+                    if ($newPassword) {
+                        $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT); // Hacher le mot de passe
+                        $user->setPassword($newPassword); // Mettre à jour dans la session
+                    }
+
+                    // Si des données ont été mises à jour, les enregistrer dans la base
+                    if (!empty($updateData)) {
+                        $userManager->updateProfile($user->getId(), $updateData);
+                        Session::setUser($user); // Mettre à jour la session avec les nouvelles informations
+
+                        Session::addFlash("success", "Votre profil a été mis à jour avec succès.");
+                        $this->redirectTo("user", "profile");
+                    } else {
+                        $errorMessage = "Aucune modification n'a été effectuée.";
+                    }
+                }
+            } else {
+                $errorMessage = "Tous les champs doivent être remplis correctement.";
+            }
+        }
+
+        return [
+            "view" => VIEW_DIR . "user/profile.php",
+            "meta_description" => "Profil de l'utilisateur",
+            "data" => [
+                "user" => $user,
+                "errorMessage" => $errorMessage,
+            ]
+        ];
+    }
+
+
     public function listUsers()
     {
         $id = $_SESSION['user']->getId();

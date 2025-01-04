@@ -106,4 +106,44 @@ class UserManager extends Manager
                 "id" => $id
             ]);
     }
+
+    public function isNicknameAvailable($nickname, $id)
+    {
+        $sql = "SELECT id 
+            FROM user 
+            WHERE nickname = :nickname AND id != :id";
+
+        return DAO::select($sql, [
+            "nickname" => $nickname,
+            "id" => $id
+        ]);
+    }
+
+
+    public function isEmailAvailable($email, $id)
+    {
+        $sql = "SELECT id 
+        FROM user 
+        WHERE email = :email AND id != :id"; //Evite de considérer l'id du user co comme un doublon
+
+        $result = DAO::select($sql, [
+            "email" => $email,
+            "id" => $id
+        ]);
+
+        return empty($result);
+    }
+
+    public function updateProfile($id, $data)
+    {
+        $sql = "UPDATE user 
+            SET nickname = :nickname, email = :email 
+            WHERE id = :id";
+
+        return DAO::update($sql, [
+            "nickname" => $data["nickname"],
+            "email" => $data["email"],
+            "id" => $id
+        ]);
+    }
 }

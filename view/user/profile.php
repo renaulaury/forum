@@ -1,5 +1,7 @@
 <?php
 $profile = $result['data']['profile'];
+$user = $result['data']['user'];
+$errorMessage = $result['data']['errorMessage'];
 
 ?>
 
@@ -30,7 +32,7 @@ $profile = $result['data']['profile'];
 
 
 
-    <form id="formProfile" style="display: none;" method="index.php?ctrl=user&action=editProfile" action="POST">
+    <form id="formProfile" style="display: none;" action="index.php?ctrl=user&action=editProfile" method="POST">
         <div class="containEditProfile">
             <div class="editNicknameMail">
                 <div class="blockForm title">
@@ -47,14 +49,19 @@ $profile = $result['data']['profile'];
             <div id="editPassword">
                 <div>
                     <div class="blockForm title">
-                        <p class="mailLogin"><label for="pass1">Mot de passe</label></p>
-                        <input type="password" name="password1" id="pass1"></input>
+                        <p class="mailLogin"><label for="password">Mot de passe actuel</label></p>
+                        <input type="password" name="password" id="pass"></input>
+                    </div>
+
+                    <div class="blockForm title">
+                        <p class="mailLogin"><label for="pass1">Nouveau mot de passe</label></p>
+                        <input type="password" name="newPassword" id="pass1"></input>
                     </div>
 
                     <div>
                         <div class="blockForm title">
-                            <p class="mailLogin"><label for="pass2">Répéter le mot de passe</label></p>
-                            <input type="password" name="password2" id="pass2" placeholder="12 caractères, 1 majuscules, 1 chiffre et 1 caractère spécial"></input>
+                            <p class="mailLogin"><label for="pass2">Confirmer le nouveau mot de passe</label></p>
+                            <input type="password" name="confirmPassword" id="pass2" placeholder="12 caractères, 1 majuscules, 1 chiffre et 1 caractère spécial"></input>
                         </div>
                     </div>
                 </div>
