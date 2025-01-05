@@ -30,15 +30,12 @@ class UserController extends AbstractController
 
     public function editProfile()
     {
+        $id = $_SESSION['user']->getId();
+        $userManager1 = new UserManager();
+        $profile = $userManager1->findOneById($id);
+
         $userManager = new UserManager();
         $errorMessage = null;
-
-        // Vérifier si un utilisateur est connecté
-        if (!Session::getUser()) {
-            Session::addFlash("error", "Vous devez être connecté pour modifier votre profil.");
-            $this->redirectTo("security", "login");
-            exit();
-        }
 
         $user = Session::getUser();
 
@@ -49,6 +46,8 @@ class UserController extends AbstractController
             $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $newPassword = filter_input(INPUT_POST, "newPassword", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
             $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            $updateData = []; //Permet d'enregistrer que les éléments modifiés
 
             // Vérifier si des informations ont été soumises
             if ($nickname || $email || $password || $newPassword || $confirmPassword) {
@@ -68,19 +67,18 @@ class UserController extends AbstractController
 
                 // Si tout est valide, mettre à jour le profil
                 if (!$errorMessage) {
-                    // Mise à jour des champs modifiés
-                    $updateData = [];
+
                     if ($nickname && $isNicknameAvailable) {
-                        $updateData['nickname'] = $nickname;
                         $user->setNickname($nickname); // Mettre à jour dans la session
+                        $updateData['nickname'] = $nickname;
                     }
                     if ($email && $isEmailAvailable) {
-                        $updateData['email'] = $email;
                         $user->setEmail($email); // Mettre à jour dans la session
+                        $updateData['email'] = $email;
                     }
                     if ($newPassword) {
-                        $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT); // Hacher le mot de passe
                         $user->setPassword($newPassword); // Mettre à jour dans la session
+                        $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
                     }
 
                     // Si des données ont été mises à jour, les enregistrer dans la base
@@ -105,6 +103,7 @@ class UserController extends AbstractController
             "data" => [
                 "user" => $user,
                 "errorMessage" => $errorMessage,
+                "profile" => $profile
             ]
         ];
     }

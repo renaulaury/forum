@@ -109,22 +109,24 @@ class UserManager extends Manager
 
     public function isNicknameAvailable($nickname, $id)
     {
-        $sql = "SELECT id 
+        $sql = "SELECT id_user 
             FROM user 
-            WHERE nickname = :nickname AND id != :id";
+            WHERE nickname = :nickname AND id_user != :id";
 
-        return DAO::select($sql, [
+        $result = DAO::select($sql, [
             "nickname" => $nickname,
             "id" => $id
         ]);
+
+        return empty($result);
     }
 
 
     public function isEmailAvailable($email, $id)
     {
-        $sql = "SELECT id 
+        $sql = "SELECT id_user 
         FROM user 
-        WHERE email = :email AND id != :id"; //Evite de considérer l'id du user co comme un doublon
+        WHERE email = :email AND id_user != :id"; //Evite de considérer l'id du user co comme un doublon
 
         $result = DAO::select($sql, [
             "email" => $email,
@@ -137,12 +139,13 @@ class UserManager extends Manager
     public function updateProfile($id, $data)
     {
         $sql = "UPDATE user 
-            SET nickname = :nickname, email = :email 
-            WHERE id = :id";
+            SET nickname = :nickname, email = :email, password = :password 
+            WHERE id_user = :id";
 
         return DAO::update($sql, [
             "nickname" => $data["nickname"],
             "email" => $data["email"],
+            "password" => $data["password"],
             "id" => $id
         ]);
     }
