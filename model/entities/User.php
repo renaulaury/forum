@@ -19,7 +19,7 @@ final class User extends Entity
     private $role;
     private $dateInscription;
     private $dateEndBan;
-    private $getDateEndBanVo;
+    private $dateEndBanVo;
     // private $nbTopics;
     // private $nbPosts;
 
@@ -169,8 +169,6 @@ final class User extends Entity
         }
         return null; // Retourne null si aucune date n'est définie.
     }
-
-
 
     public function setDateEndBan($isTemporary)
     {

@@ -1,6 +1,6 @@
 <?php
 $profile = $result['data']['profile'];
-
+var_dump($profile);
 ?>
 
 <section id="profile">
@@ -12,8 +12,9 @@ $profile = $result['data']['profile'];
         <div class="containProfile">
             <p>Inscrit depuis le : <?= $profile->getDateInscription() ?></p>
             <p>Rôle : <span><?= $profile->getRole() ?></span></p>
+            <?php var_dump($profile->getDateEndBan()); ?>
 
-            <?php if (($profile->getRole() === 'Banni temporairement') || ($profile->getRole() === 'Banni temporairement')) { ?>
+            <?php if ($profile->getRole() === 'Banni temporairement') { ?>
                 <p>Jusqu'au : <span><?= $profile->getDateEndBan() ?></span></p>
                 <p>Si la date si dessus est dépassée, pensez à vous reconnecter pour mettre à jour vos droits.</p>
             <?php } ?>

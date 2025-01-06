@@ -144,11 +144,7 @@ class SecurityController extends AbstractController
         // Si user est banni temporairement
         if ($user->getRole() === 'Banni Temporairement') {
             $dateEndBan = new \DateTime($user->getDateEndBanVo());
-            var_dump($dateEndBan->format('Y-m-d H:i:s'));  // Afficher la date brute
-            die;
             $currentDate = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
-            var_dump($dateEndBan);
-            die;
 
             // Si la date de fin de bannissement est dépassée
             if ($dateEndBan <= $currentDate) {
