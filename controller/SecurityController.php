@@ -23,16 +23,21 @@ class SecurityController extends AbstractController
             $password1 = filter_input(INPUT_POST, "password1", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
             // ^: debut de chaine, $ : fin de chaine, (?=.*[A-Z]) : lettres, (?=.*\d) : digit, (?=.*[\W_]) : caracteres speciaux, {12,} : 12 caracteres
             $password2 = filter_input(INPUT_POST, "password2", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
+            $terms = isset($_POST['terms']) ? true : false;  // Vérifie si la case est cochée
+
+            if (!$terms) {
+                $errorMessage = "Vous devez accepter les termes et conditions pour vous inscrire.";
+            }
 
             //on les vérifie
-            if ($nickname && $email && $password1 && $password2) {
+            if (!$errorMessage && $nickname && $email && $password1 && $password2) {
 
                 $verifyNickname = $user->findOneByNickname($nickname);
                 $verifyEmail = $user->findOneByEmail($email);
 
                 if (!$verifyNickname && !$verifyEmail) { //Vérification si l'un ou l'autre n'existe pas en bdd
                     // add in bdd
-                    if ($password1 == $password2 && strlen($password1) >= 4) {
+                    if ($password1 == $password2 && strlen($password1) >= 12) {
                         $user->add([
                             "nickname" => $nickname,
                             "email" => $email,
@@ -51,7 +56,8 @@ class SecurityController extends AbstractController
                         : "Cette adresse email est déjà enregistrée.";
                 }
             } else {
-                $errorMessage = "Tous les champs doivent être remplis correctement.";
+                $errorMessage = "Tous les champs doivent être remplis correctement et 
+                vous devez accepter les termes et conditions pour vous inscrire.";
             }
         }
 

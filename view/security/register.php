@@ -32,6 +32,14 @@ $errorMessage = $result["data"]['errorMessage'] ?? null; // Récupérer le messa
         <input type="password" name="password2" id="pass2" placeholder="12 caractères, 1 majuscules, 1 chiffre et 1 caractère spécial"></input>
     </div>
 
+    <div class="checkbox-container">
+        <label>
+            <input type="checkbox" name="terms" id="terms" checked>
+            Accepter le <a href="reglement.php" target="_blank">Réglement du forum</a>
+        </label>
+    </div>
+
+
     <p class="button">
         <input type="submit" name="submit" value="Créer">
     </p>
