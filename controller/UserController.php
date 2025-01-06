@@ -28,6 +28,24 @@ class UserController extends AbstractController
         ];
     }
 
+    public function listUsers()
+    {
+        $id = $_SESSION['user']->getId();
+        $userManager = new UserManager();
+        $profile = $userManager->findOneById($id);
+        $listUsers = $userManager->findAll(); // Récupère tous les utilisateurs
+
+        return [
+            "view" => VIEW_DIR . "user/listUsers.php",
+            "meta_description" => "Liste des utilisateurs",
+            "data" => [
+                "listUsers" => $listUsers,
+                "profile" => $profile
+            ]
+        ];
+    }
+
+
     public function editProfile()
     {
         $id = $_SESSION['user']->getId();

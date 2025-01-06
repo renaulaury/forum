@@ -1,6 +1,8 @@
 <?php
+
 $listUsers = $result["data"]["listUsers"];
 $profile = $result['data']['profile'];
+
 ?>
 
 

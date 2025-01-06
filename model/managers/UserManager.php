@@ -107,6 +107,27 @@ class UserManager extends Manager
             ]);
     }
 
+    public function checkBanStatus($userId)
+    {
+        $user = $this->findOneById($userId);
+
+        // User est ban temp
+        if ($user->getRole() === 'Banni temporairement') {
+            $dateEndBan = new \DateTime($user->getDateEndBan());
+            $now = new \DateTime();
+
+            // Si la date de fin de ban est dépassée, on réévalue le rôle de l'utilisateur
+            if ($dateEndBan < $now) {
+                // New role user
+                $user->setRole('Utilisateur');
+
+                // Maj role dans bdd
+                $this->updateRoleForUser($userId, 'Utilisateur');
+            }
+        }
+    }
+
+
     public function isNicknameAvailable($nickname, $id)
     {
         $sql = "SELECT id_user 

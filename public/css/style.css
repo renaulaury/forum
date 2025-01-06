@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-color: whitesmoke; */
 }
 
 body {
@@ -19,7 +18,7 @@ h1 {
 }
 
 a {
-    color: whitesmoke;
+    color: #1e1e1e;
 }
 
 /*navbar*/
