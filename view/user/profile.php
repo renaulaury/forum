@@ -1,7 +1,5 @@
 <?php
 $profile = $result['data']['profile'];
-// $user = $result['data']['user'];
-// $errorMessage = $result['data']['errorMessage'];
 
 ?>
 

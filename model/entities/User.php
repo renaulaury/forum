@@ -14,7 +14,7 @@ final class User extends Entity
 
     private $id;
     private $nickname;
-    private $mail;
+    private $email;
     private $password;
     private $role;
     private $dateInscription;
@@ -67,10 +67,7 @@ final class User extends Entity
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->nickname;
-    }
+
 
     /**
      * Get the value of email
@@ -184,5 +181,10 @@ final class User extends Entity
             $this->dateEndBan = '9999-01-01 00:00:00';
         }
         return $this->dateEndBan;
+    }
+
+    public function __toString()
+    {
+        return $this->nickname;
     }
 }

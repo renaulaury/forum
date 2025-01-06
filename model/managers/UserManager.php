@@ -136,6 +136,41 @@ class UserManager extends Manager
         return empty($result);
     }
 
+
+    public function updateNickname($id, $nickname)
+    {
+        $sql = "UPDATE user SET nickname = :nickname WHERE id_user = :id";
+
+        return DAO::update($sql, [
+            "nickname" => $nickname,
+            "id" => $id
+        ]);
+    }
+
+    public function updateEmail($id, $email)
+    {
+        $sql = "UPDATE user 
+                SET email = :email 
+                WHERE id_user = :id";
+
+        return DAO::update($sql, [
+            "email" => $email,
+            "id" => $id
+        ]);
+    }
+
+    public function updatePassword($id, $password)
+    {
+        $sql = "UPDATE user 
+                SET password = :password 
+                WHERE id_user = :id";
+
+        return DAO::update($sql, [
+            "password" => $password,
+            "id" => $id
+        ]);
+    }
+
     public function updateProfile($id, $data)
     {
         $sql = "UPDATE user 

@@ -47,8 +47,6 @@ class UserController extends AbstractController
             $newPassword = filter_input(INPUT_POST, "newPassword", FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/")));
             $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            $updateData = []; //Permet d'enregistrer que les éléments modifiés
-
             // Vérifier si des informations ont été soumises
             if ($nickname || $email || $password || $newPassword || $confirmPassword) {
                 // Vérification des informations du profil
@@ -65,35 +63,44 @@ class UserController extends AbstractController
                     }
                 }
 
+                // Si le pseudo est déjà pris
+                if ($nickname && !$isNicknameAvailable) {
+                    $errorMessage = "Ce pseudo est déjà pris.";
+                }
+
+                // Si l'email est déjà utilisé
+                if ($email && !$isEmailAvailable) {
+                    $errorMessage = "Cet email est déjà utilisé.";
+                }
+
                 // Si tout est valide, mettre à jour le profil
                 if (!$errorMessage) {
-
+                    // Si le pseudo est valide et disponible, mettre à jour
                     if ($nickname && $isNicknameAvailable) {
                         $user->setNickname($nickname); // Mettre à jour dans la session
-                        $updateData['nickname'] = $nickname;
+                        $userManager->updateNickname($id, $nickname);
                     }
+
+                    // Si l'email est valide et disponible, mettre à jour
                     if ($email && $isEmailAvailable) {
                         $user->setEmail($email); // Mettre à jour dans la session
-                        $updateData['email'] = $email;
+                        $userManager->updateEmail($id, $email);
                     }
+
+                    // Si un nouveau mot de passe est fourni, le mettre à jour
                     if ($newPassword) {
+                        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                         $user->setPassword($newPassword); // Mettre à jour dans la session
-                        $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+                        $userManager->updatePassword($id, $hashedPassword);
                     }
 
-                    // Si des données ont été mises à jour, les enregistrer dans la base
-                    if (!empty($updateData)) {
-                        $userManager->updateProfile($user->getId(), $updateData);
-                        Session::setUser($user); // Mettre à jour la session avec les nouvelles informations
-
-                        Session::addFlash("success", "Votre profil a été mis à jour avec succès.");
-                        $this->redirectTo("user", "profile");
-                    } else {
-                        $errorMessage = "Aucune modification n'a été effectuée.";
-                    }
+                    // Mettre à jour la session avec les nouvelles informations
+                    Session::setUser($user);
+                    Session::addFlash("success", "Votre profil a été mis à jour avec succès.");
+                    $this->redirectTo("user", "profile");
                 }
             } else {
-                $errorMessage = "Tous les champs doivent être remplis correctement.";
+                $errorMessage = "Un seul champ peut être modifié à la fois.";
             }
         }
 
@@ -108,24 +115,6 @@ class UserController extends AbstractController
         ];
     }
 
-
-    public function listUsers()
-    {
-        $id = $_SESSION['user']->getId();
-
-        $userManager = new UserManager();
-        $profile = $userManager->findOneById($id);
-        $listUsers = $userManager->findAll(['nickname', 'ASC']);
-
-        return [
-            "view" => VIEW_DIR . "user/listUsers.php",
-            "meta_description" => "Liste des utilisateurs",
-            "data" => [
-                'listUsers' => $listUsers,
-                "profile" => $profile
-            ]
-        ];
-    }
 
     public function verifDeleteProfile()
     {
