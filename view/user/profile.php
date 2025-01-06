@@ -21,7 +21,6 @@ $profile = $result['data']['profile'];
 
         <div class="containInfos">
             <p>Mail : <span><?= $profile->getEmail() ?></span></p>
-            <p>Mot de passe</p>
         </div>
 
         <div class="containDelProfile">

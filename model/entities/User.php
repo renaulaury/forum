@@ -163,9 +163,13 @@ final class User extends Entity
 
     public function getDateEndBan()
     {
-        $date = new \DateTime($this->dateEndBan);
-        return $date->format("d-m-y à H:i");
+        if ($this->dateEndBan) {
+            $date = new \DateTime($this->dateEndBan);
+            return $date->format("d-m-y à H:i");
+        }
+        return null; // Retourne null si aucune date n'est définie.
     }
+
 
 
     public function setDateEndBan($isTemporary)

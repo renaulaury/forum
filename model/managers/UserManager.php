@@ -118,6 +118,9 @@ class UserManager extends Manager
 
             // Si la date de fin de ban est dépassée, on réévalue le rôle de l'utilisateur
             if ($dateEndBan < $now) {
+                // Réinitialiser les champs de bannissement
+                $this->clearBan($userId);
+
                 // New role user
                 $user->setRole('Utilisateur');
 
@@ -125,6 +128,17 @@ class UserManager extends Manager
                 $this->updateRoleForUser($userId, 'Utilisateur');
             }
         }
+    }
+
+    public function clearBan($id)
+    {
+        $sql = "UPDATE user
+            SET reasonBan = NULL,
+                precisionBan = NULL,
+                dateEndBan = NULL
+            WHERE id_user = :id";
+
+        return DAO::update($sql, ["id" => $id]);
     }
 
 

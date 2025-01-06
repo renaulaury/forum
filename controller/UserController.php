@@ -235,6 +235,8 @@ class UserController extends AbstractController
             }
         } else {
 
+            $updateUser->clearBan($id);
+
             $role = $updateUser->updateRoleForUser($id, $newRole);
 
             Session::addFlash("success", "Le role a bien été modifié");
