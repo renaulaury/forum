@@ -30,7 +30,7 @@
         <h2>Infractions justifiant un bannissement définitif</h2>
 
         <p>
-            En cas de bannissement définitif, vos données seront supprimées à <strong>l'exception de votre emailqui sera conservé de manière anonyme </strong>(hashé), dans le respect du RGPD.
+            En cas de bannissement définitif, vos données seront supprimées à <strong>l'exception de votre email qui sera conservé de manière anonyme </strong>(hashé), dans le respect du RGPD.
         </p>
 
         <ul>

@@ -35,7 +35,7 @@ $errorMessage = $result["data"]['errorMessage'] ?? null; // Récupérer le messa
     <div class="checkbox-container">
         <label>
             <input type="checkbox" name="terms" id="terms" checked>
-            Accepter le <a href="reglement.php" target="_blank">Réglement du forum</a>
+            Accepter le <a href="index.php?ctrl=forum&action=reglement" target="_blank">Réglement du forum</a>
         </label>
     </div>
 
