@@ -32,10 +32,10 @@
                         <p id="accessibilite"><i class="fa-solid fa-person"></i></p>
 
                         <div class="accessColors">
-                            <p><i class="fa-regular fa-circle blue"></i></p>
-                            <p><i class="fa-regular fa-circle yellow"></i></p>
-                            <p><i class="fa-regular fa-circle red"></i></p>
-                            <p><i class="fa-regular fa-circle green"></i></p>
+                            <p><i class="fa-solid fa-circle peach" data-color="peach"></i></p>
+                            <p><i class="fa-solid fa-circle blue" data-color="blue"></i></p>
+                            <p><i class="fa-solid fa-circle purple" data-color="purple"></i></p>
+                            <p><i class="fa-solid fa-circle green" data-color="green"></i></p>
                         </div>
 
 
