@@ -31,9 +31,15 @@
                     <div class="blockHeader">
                         <p id="accessibilite"><i class="fa-solid fa-person"></i></p>
 
-                        <
+                        <div class="accessColors">
+                            <p><i class="fa-regular fa-circle blue"></i></p>
+                            <p><i class="fa-regular fa-circle yellow"></i></p>
+                            <p><i class="fa-regular fa-circle red"></i></p>
+                            <p><i class="fa-regular fa-circle green"></i></p>
+                        </div>
 
-                            <ol id="navbar">
+
+                        <ol id="navbar">
                             <li><a href="index.php?ctrl=home&action=home">Accueil</a></li>
 
                             <?php
@@ -51,7 +57,7 @@
                             <?php
                             }
                             ?>
-                            </ol>
+                        </ol>
                     </div>
 
                     <div class="bande"></div>

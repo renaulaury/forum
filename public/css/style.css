@@ -33,6 +33,44 @@ a {
     padding-left: 5%;
 }
 
+.accessColors {
+    display:none;
+}
+
+.accessColors.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 8%;
+    top: 6%;
+    border: 1px solid salmon;
+    border-radius: 10px;
+    background-color: white;
+    width: auto;
+    
+    z-index: 10;
+    text-align: left;
+}
+
+.blue {
+    color: blue;
+}
+.yellow {
+    color: yellow;
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+
+.accessColors p {
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
 /*navbar*/
 #navbar {
     width: 100%;
