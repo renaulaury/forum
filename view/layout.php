@@ -36,6 +36,8 @@
                             <p><i class="fa-solid fa-circle blue" data-color="blue"></i></p>
                             <p><i class="fa-solid fa-circle purple" data-color="purple"></i></p>
                             <p><i class="fa-solid fa-circle green" data-color="green"></i></p>
+                            <p><i class="fa-solid fa-circle dark" data-color="dark"></i></p>
+                            <p><i class="fa-solid fa-circle light" data-color="light"></i></p>
                         </div>
 
 

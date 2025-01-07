@@ -13,7 +13,8 @@
     --color-blue: rgb(33, 108, 230);
     --color-purple: rgb(138, 41, 186);
     --color-green: rgb(25, 129, 25);
-    
+    --color-dark: #1e1e1e;
+    --color-light: whitesmoke;    
 }
 
 /******************Général******************/
@@ -85,6 +86,16 @@ a {
 
 .peach {
     color: var(--color-peach);
+}
+
+.dark {
+    color: var(--color-dark);
+}
+
+.light {
+    color: var(--color-light);
+    border: 1px solid var(--color-dark);
+    border-radius: 50px;
 }
 
 .accessColors p {

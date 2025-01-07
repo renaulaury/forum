@@ -20,7 +20,7 @@ colorCircles.forEach(circle => {
         
         switch(color) {
             case 'peach':
-                    // Changer toutes les couleurs en pêche
+
                     document.documentElement.style.setProperty('--color-primary', '#944C43');  // Couleur principale
                     document.documentElement.style.setProperty('--color-secondary', 'rgb(34, 34, 34)');  // Texte gris foncé
                     document.documentElement.style.setProperty('--color-highlight', '#FFA07A');  // Couleur pêche claire
@@ -30,8 +30,9 @@ colorCircles.forEach(circle => {
                     document.documentElement.style.setProperty('--color-gradient-end', '#FA8072');  // Dégradé pêche foncé
                     document.documentElement.style.setProperty('--color-grey-dark', 'rgb(58, 57, 57)');  // Gris foncé inchangé
                     break;
+
             case 'blue':
-                // Changer toutes les couleurs en bleu (avec des variations de bleus)
+
                 document.documentElement.style.setProperty('--color-primary', '#3366cc');  // Bleu principal
                 document.documentElement.style.setProperty('--color-secondary', 'rgb(34, 34, 34)');  // Blanc pour le texte
                 document.documentElement.style.setProperty('--color-highlight', '#66aaff');  // Bleu clair pour les accents
@@ -41,8 +42,9 @@ colorCircles.forEach(circle => {
                 document.documentElement.style.setProperty('--color-gradient-end', '#1a66ff');  // Dégradé bleu foncé
                 document.documentElement.style.setProperty('--color-grey-dark', 'rgb(58, 57, 57)');  // Gris foncé inchangé
                 break;
+
             case 'purple':
-                // Changer toutes les couleurs en violet
+
                 document.documentElement.style.setProperty('--color-primary', 'rgb(138, 41, 186)');
                 document.documentElement.style.setProperty('--color-secondary', 'rgb(34, 34, 34)');
                 document.documentElement.style.setProperty('--color-highlight', '#D8A2FF'); 
@@ -52,8 +54,9 @@ colorCircles.forEach(circle => {
                 document.documentElement.style.setProperty('--color-gradient-end', '#8A29BA');
                 document.documentElement.style.setProperty('--color-grey-dark', 'rgb(58, 57, 57)');
                 break;
+
             case 'green':
-                // Changer toutes les couleurs en vert
+
                 document.documentElement.style.setProperty('--color-primary', 'rgb(25, 129, 25)');
                 document.documentElement.style.setProperty('--color-secondary', 'rgb(34, 34, 34)');
                 document.documentElement.style.setProperty('--color-highlight', '#98FB98');
@@ -63,9 +66,20 @@ colorCircles.forEach(circle => {
                 document.documentElement.style.setProperty('--color-gradient-end', '#29A329');
                 document.documentElement.style.setProperty('--color-grey-dark', 'rgb(58, 57, 57)');
                 break;
+
+            case 'dark':
+
+                document.body.style.backgroundColor = '#1e1e1e';  
+                document.documentElement.style.setProperty('--color-secondary', 'whitesmoke'); 
+                break;
+                
+            case 'light':
+
+                document.documentElement.style.setProperty('--color-background', '#whitesmoke'); 
+                break;
                 
                 default:
-                    break;
+                break;
         }
     });
 });
