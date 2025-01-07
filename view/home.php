@@ -27,11 +27,6 @@ $allTopics = $result['data']['allTopics'];
   <?php } ?>
 
 
-
-
-
-
-
 </section>
 
 <section>

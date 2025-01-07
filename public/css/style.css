@@ -1,3 +1,21 @@
+/* Variables */
+:root {
+    --color-primary: #944C43;
+    --color-secondary: rgb(34, 34, 34);
+    --color-highlight: #FFA07A;
+    --color-background: rgba(255, 160, 122, 0.17);
+    --color-overlay: rgba(255, 255, 255, 0.4);
+    --color-gradient-start: #FFBFA6;
+    --color-gradient-end: #FA8072;
+    --color-grey-dark: rgb(58, 57, 57);
+
+    --color-blue: rgb(33, 108, 230);
+    --color-purple: rgb(138, 41, 186);
+    --color-green: rgb(25, 129, 25);
+    
+}
+
+/* Général */
 * {
     margin: 0;
     padding: 0;
@@ -11,14 +29,15 @@ body {
 
 h1 {
     text-align: center;
-    padding: 3% 0;    
-    color: #944C43;
-    font-size: 2em; 
-    font-weight: bold;    
+    padding: 3% 0;
+    color: var(--color-primary);
+    font-size: 2em;
+    font-weight: bold;
 }
 
 a {
-    color: #1e1e1e;
+    color: var(--color-secondary);
+    text-decoration: none;
 }
 
 .blockHeader {
@@ -34,7 +53,7 @@ a {
 }
 
 .accessColors {
-    display:none;
+    display: none;
 }
 
 .accessColors.open {
@@ -43,25 +62,24 @@ a {
     position: absolute;
     left: 8%;
     top: 6%;
-    border: 1px solid salmon;
+    border: 1px solid var(--color-highlight);
     border-radius: 10px;
     background-color: white;
-    width: auto;    
+    width: auto;
     z-index: 10;
     text-align: left;
 }
 
 .blue {
-    color: blue;
+    color: var(--color-blue);
 }
-.yellow {
-    color: yellow;
+
+.purple {
+    color: var(--color-purple);
 }
-.red {
-    color: red;
-}
+
 .green {
-    color: green;
+    color: var(--color-green);
 }
 
 .accessColors p {
@@ -70,59 +88,56 @@ a {
     cursor: pointer;
 }
 
-/*navbar*/
+/* Navbar */
 #navbar {
     width: 100%;
     height: 3em;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;    
-    color: rgb(34, 34, 34);
+    justify-content: space-evenly;
+    color: var(--color-secondary);
 }
 
 #navbar li {
-    text-decoration: none;
     list-style: none;
 }
-
 
 .burger_button {
     display: none;
 }
 
-/*Espace principal*/
+/* Espace principal */
 .titleForum {
     position: absolute;
     top: 50%;
-    left: 50%;    
-    color: rgb(58, 57, 57);
-    font-size: 3em; 
-    font-weight: bold; 
+    left: 50%;
+    color: var(--color-grey-dark);
+    font-size: 3em;
+    font-weight: bold;
     background-color: transparent;
     transform: translate(-50%, -50%);
 }
 
 .containColisee {
-    width: 100%;     
+    width: 100%;
     height: 300px;
-    overflow: hidden;         
-    position: relative; /* Nécessaire pour centrer l'image */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    overflow: hidden;
+    position: relative;
 }
 
-
 .bande {
-    height: 1em; 
-    background-color: rgb(255, 160, 122);
+    height: 1em;
+    background-color: var(--color-highlight);
 }
 
 .colisee {
     width: 100%;
-    height: auto; 
-    position: absolute; 
+    height: auto;
+    position: absolute;
     top: 50%;
-    left: 50%;     
-    transform: translate(-50%, -50%) scale(1); 
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
     transform-origin: center center;
 }
 
@@ -133,31 +148,23 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.4); 
+    background-color: var(--color-overlay);
 }
 
-/*Main*/
+/* Main */
 section {
-     padding: 0 3% 3% 3%;
+    padding: 0 3% 3% 3%;
 }
 
 h2 {
-    padding: 3% 0 3% 0;
-    color: #944C43;
+    padding: 3% 0;
+    color: var(--color-primary);
 }
 
-a {
-    text-decoration: none;
-}
-
-/*Main - categories*/
 .titre {
     font-size: 1.2em;
-    color: #944C43;
+    color: var(--color-primary);
 }
-
-
-  
 
 h3 {
     padding-bottom: 2%;
@@ -169,7 +176,7 @@ h4 {
 
 .up {
     padding: 0 0 0 3%;
-    padding-bottom: 1%;    
+    padding-bottom: 1%;
 }
 
 .down {
@@ -181,8 +188,8 @@ h4 {
 }
 
 .cat a {
-    background-color: rgba(255, 160, 122, 0);
-    color: #944C43;
+    background-color: transparent;
+    color: var(--color-primary);
     text-decoration: underline;
     font-weight: bold;
     padding-bottom: 1%;
@@ -194,24 +201,23 @@ h4 {
     justify-content: space-evenly;
 }
 
-.lastTopic {    
+.lastTopic {
     padding: 3%;
-    border: 1px solid #944C43;
+    border: 1px solid var(--color-primary);
     border-radius: 30px;
-    
 }
 
 .lastTopic a {
-    text-decoration: none;
-    color: rgb(34, 34, 34);
+    color: var(--color-secondary);
 }
 
-.titleTopic{
-    font-weight: bold;}
+.titleTopic {
+    font-weight: bold;
+}
 
 .linePost {
-    height:0.1em;
-    background-color: salmon;
+    height: 0.1em;
+    background-color: var(--color-highlight);
     margin: 10% 0;
 }
 
@@ -227,32 +233,32 @@ h4 {
     padding: 2% 0 0 4%;
 }
 
-/*Topics*/
+/* Topics */
 .blockTopic {
     width: 90%;
 }
 
 .topic, .listCat {
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(255, 160, 122, 0.17);
+    background-color: var(--color-background);
     padding: 1%;
     border-radius: 10px;
     margin-bottom: 1%;
 }
 
 .fleche {
-    padding-right: 5%;    
-    background-color: rgba(255, 160, 122, 0);
+    padding-right: 5%;
+    background-color: transparent;
     width: 5%;
-    height:auto;
+    height: auto;
 }
 
-.fa-solid {    
-    color: #944C43;
-    background-color: rgba(255, 160, 122, 0);
+.fa-solid {
+    color: var(--color-primary);
+    background-color: transparent;
 }
 
 .cadenas {
@@ -260,15 +266,12 @@ h4 {
 }
 
 .topic a {
-    background-color: rgba(255, 160, 122, 0);
-   width: 100%; 
-    color: rgb(34, 34, 34);
+    color: var(--color-secondary);
     font-weight: bold;
 }
 
 .nameTime {
-    background-color: rgba(255, 160, 122, 0);
-    font-size: 0.8em; 
+    font-size: 0.8em;
     font-style: italic;
 }
 
@@ -276,10 +279,10 @@ h4 {
     padding-bottom: 5%;
 }
 
-/*Topic form*/
+/* Formulaires */
 legend {
-    padding: 3% 0 ;
-    color: #944C43;
+    padding: 3% 0;
+    color: var(--color-primary);
     text-decoration: underline;
 }
 
@@ -291,33 +294,31 @@ form {
 }
 
 input, textarea {
-    border: 1px solid #FFA07A;
+    border: 1px solid var(--color-highlight);
     padding: 1%;
     border-radius: 10px;
 }
 
 .blockForm {
-    width: 100%;  
-    max-width: 600px; 
+    width: 100%;
+    max-width: 600px;
     padding: 2% 0;
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.topicTitle,
-.textTopic {
-    width: 100%;  
+.topicTitle, .textTopic {
+    width: 100%;
     padding: 10px;
 }
 
-.title input,
-.blockForm textarea {
+.title input, .blockForm textarea {
     width: 100%;
 }
 
 .title input {
-    width: calc(100% - 20px); /* Ajuste pour ne pas dépasser du parent */
+    width: calc(100% - 20px);
 }
 
 .blockForm textarea {
@@ -332,154 +333,24 @@ input, textarea {
     justify-content: center;
 }
 
-.button input{
+.button input {
     margin-top: 5%;
     padding: 10px 20px;
     border-radius: 50px;
     background-color: rgb(187, 182, 182);
-    border: none;   
-    margin-bottom: 5%;  
+    border: none;
+    margin-bottom: 5%;
 }
 
 .button input:hover {
-    background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
+    background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
 }
 
-/*Liste users*/
-
-.titleUsers {
-    text-align: center;
-    padding: 3% 0%;
-}
-
-.sectionUsers {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-}
-
-.listUsers1 {
-    width: 50%; 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto; 
-    box-sizing: border-box;
-}
-
-.listUsers2 {
-    width: 50%; 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto; 
-    box-sizing: border-box;
-}
-
-.thUsers {
-    text-align: center;
-    background-color: #FFBFA6;    
-    padding: 3% 0;
-}
-
-.infosUsers {
-    text-align: center;
-    padding-top: 3%; 
-    padding-bottom: 3%;
-}
-
-.editUsers {
-    text-align: center;
-}
-
-.chooseRole {
-    padding-bottom: 5%;
-}
-
-.containBan {
-width: 100%;
-}
-
-.chooseBan {
-    padding-bottom: 5%;
-}
-
-.fa-triangle-exclamation {
-    padding-right: 2%;
-}
-
-.raisonBan {
-    width : 100%;
-    padding-left: 3%;
-}
-
-/*Profile*/
-#profile {
-    display: flex;
-
-}
-.editH2 {
-    font-size: 0.7em;
-    padding-left: 1%;
-}
-
-.containInfos {
-    padding: 3% 0;
-}
-
-.containDelProfile {
-    padding-top: 3%;
-    text-decoration: underline; 
-}
-
-.delProfile:hover {
-    color: salmon;
-}
-
-.containInfosProfile {
-    width: 30%;
-}
-
-.containEditProfile {
-    width: 70%;
-}
-
-/* Formulaire Profile */
-#formProfile {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 20px;
-}
-
-.containEditProfile {
-    display: flex;
-    flex-wrap: wrap; 
-    width: 100%;
-}
-
-.editNicknameMail {
-    width: 48%; 
-}
-
-#editPassword {
-    width: 48%; 
-}
-
-.blockForm {
-    width: 100%;
-    margin-bottom: 15px; 
-}
-
-
-
-/*Footer*/
-
-footer  {
+/* Footer */
+footer {
     width: 100%;
     padding: 0.5% 0;
-    background-color: salmon;
+    background-color: var(--color-highlight);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -487,170 +358,5 @@ footer  {
 }
 
 footer a {
-    background-color: salmon;
+    background-color: var(--color-highlight);
 }
-
-/*Réglement*/
-.concl {
-    padding: 5% 0;
-    text-align: center;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .titleForum {
-        top: 15%;
-    }
-
-    .topicTitle,
-    .textTopic, .mailLogin {
-        width: 100%; 
-    }
-
-    .blockForm {
-        width: 100%; 
-        display: block;
-        align-items: center;
-        justify-content: center;
-   }
-
-    .lastTopics {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 3%;
-    }
-
-    .lastTopic {        
-        margin-top: 3%;
-    }
-
-    .listUsers1, .listUsers2 {
-        width:70%;
-    }
-
-    .containEditProfile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-  
-}
-
-
-@media (max-width: 600px) {
-    
-
-    form {
-        font-size: 1em;  
-    }
-
-    .blockForm {
-        width: 90%; 
-    }
-
-    #profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-       
-    }
-
-    #editProfile {
-        width: 100%;
-        padding-bottom: 10%;
-    }
-
-    .topicTitle,
-    .textTopic, .mailLogin {
-        width: 100%; 
-    }
-
-    .button input {
-        padding: 10px 40px; 
-        background: linear-gradient(to right, #FFBFA6 0%, #FA8072 100%);
-    }
-
-    #navbar {
-        display: none;
-    }
-
-    /*Burger*/
-    .burger_button {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-        cursor: pointer;
-        width: 90%;
-        padding-bottom: 3%;
-    }
-
-    .burger_button .line {
-        width: 30px;
-        height: 4px;
-        margin: 2px 0;
-        background-color: rgb(63, 63, 63);
-        transition: all 0.3s ease;
-    }
-
-    .burger_button.open .line:nth-child(1) {
-        transform: rotate(-40deg) translate(-0px, 10px);
-    }
-    .burger_button.open .line:nth-child(2) {
-        opacity: 0;
-    }
-    .burger_button.open .line:nth-child(3) {
-        transform: rotate(40deg) translate(-0px, -10px);
-    }
-
-    /* Menu déroulant */
-    #navbar.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        left: 65%;
-        top: 6%;
-        border: 1px solid salmon;
-        border-radius: 10px;
-        background-color: white;
-        width: 30%;
-        height: 100px;
-        color: rgb(63, 63, 63);
-        z-index: 10;
-        text-align: left;
-        padding-left: 2%;
-    }
-
-        
-    ol li {
-        width: 100%;
-        padding-bottom: 5%;
-    } 
-
-    .listUsers1, .listUsers2 {
-        width: 100%;
-    }
-
-    footer {
-        display: flex;
-        flex-direction: column;
-        padding-top: 3%;
-    }
-
-    footer a {
-        padding: 3% 0;
-    }
-}
-
-
-
-
-
-
-
-

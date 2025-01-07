@@ -19,10 +19,10 @@ class CategoryManager extends Manager
 
     public function allTopics()
     {
-        $sql = "SELECT typeCategory, COUNT(textTopic) AS nbTopic
+        $sql = "SELECT category.id_category, typeCategory, COUNT(textTopic) AS nbTopic
                 FROM topic
                 INNER JOIN category ON topic.category_id = category.id_category
-                GROUP BY typeCategory
+                GROUP BY typeCategory, category.id_category
                 ORDER BY typeCategory DESC";
 
 
