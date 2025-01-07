@@ -170,20 +170,38 @@ final class User extends Entity
         return null; // Retourne null si aucune date n'est définie.
     }
 
-    public function setDateEndBan($isTemporary)
-    {
-        $timezone = new \DateTimeZone('Europe/Paris');
 
-        if ($isTemporary) {
-            $date = new \DateTime;
-            $date->setTimezone($timezone);
-            $date->modify('+3 days');
-            $this->dateEndBan = $date->format('Y-m-d H:i:s');
-        } else {
-            $this->dateEndBan = '9999-01-01 00:00:00';
-        }
-        return $this->dateEndBan;
-    }
+    // public function setDateEndBan($isTemporary = true)
+    // {
+    //     $timezone = new \DateTimeZone('Europe/Paris');
+    //     $date = new \DateTime('now', $timezone);
+
+    //     if ($isTemporary) {
+    //         $date->add(new \DateInterval('P3D')); //Period 3 days
+    //     } else {
+    //         $date = new \DateTime('9999-01-01 00:00:00', $timezone);
+    //     }
+
+    //     $this->dateEndBan = $date->format('Y-m-d H:i:s');
+
+    //     return $this->dateEndBan;
+    // }
+
+
+    // public function setDateEndBan($isTemporary)
+    // {
+    //     $timezone = new \DateTimeZone('Europe/Paris');
+
+    //     if ($isTemporary) {
+    //         $date = new \DateTime;
+    //         $date->setTimezone($timezone);
+    //         $date->modify('+3 days');
+    //         $this->dateEndBan = $date->format('Y-m-d H:i:s');
+    //     } else {
+    //         $this->dateEndBan = '9999-01-01 00:00:00';
+    //     }
+    //     return $this->dateEndBan;
+    // }
 
     public function __toString()
     {

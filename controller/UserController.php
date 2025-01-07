@@ -206,7 +206,7 @@ class UserController extends AbstractController
             } else {
                 // Récup user pour maj dateEndBan
                 $user = $updateUser->findOneById($id);
-                $dateEndBan = date('Y-m-d H:i:s', strtotime("+3 days"));
+                $dateEndBan = $user->setDateEndBan(true);
 
                 // $dateEndBan = $user->setDateEndBan(true); // Maj dateEndBan dans bdd
 
@@ -229,7 +229,7 @@ class UserController extends AbstractController
             } else {
                 // Récup user pour maj dateEndBan
                 $user = $updateUser->findOneById($id);
-                $dateEndBan = '9999-12-31 23:59:59';
+                $dateEndBan = $user->setDateEndBan(false);
 
                 // $dateEndBan = $user->setDateEndBan(false); // Maj dateEndBan dans bdd
 
