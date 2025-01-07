@@ -30,7 +30,7 @@
 
                     <div>
                         <ol id="navbar">
-                            <a href="index.php?ctrl=home&action=home">Accueil</a>
+                            <li><a href="index.php?ctrl=home&action=home">Accueil</a></li>
 
                             <?php
                             // si l'utilisateur est connecté 
