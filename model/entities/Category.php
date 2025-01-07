@@ -91,6 +91,7 @@ final class Category extends Entity
      */
     public function getNbTopic()
     {
+
         return $this->nbTopic;
     }
 

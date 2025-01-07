@@ -7,18 +7,32 @@ accessibilite.addEventListener('click', () => {
     accessColors.classList.toggle('open');
 });
 
-/*Action pour transformer le site*/
-
 // Sélectionner tous les cercles
 const circles = document.querySelectorAll('.accessColors i');
 
-// Ajouter un événement au clic sur chaque cercle
+// Ajouter un événement au clic pour chaque cercle
 circles.forEach(circle => {
     circle.addEventListener('click', () => {
-        // Récupérer la couleur de l'élément cliqué
-        const color = circle.classList[1]; // La deuxième classe (ex : blue, yellow, etc.)
-        
-        // Appliquer la couleur comme arrière-plan du body
-        document.body.style.backgroundColor = color;
+        // Récupérer la couleur depuis la classe du cercle (ex : 'blue', 'yellow', etc.)
+        const color = circle.classList[1];
+
+        // Récupérer toutes les feuilles de style
+        const stylesheets = document.styleSheets;
+
+        // Parcourir chaque feuille de style
+        Array.from(stylesheets).forEach(sheet => {
+            try {
+                // Parcourir les règles de chaque feuille de style
+                Array.from(sheet.cssRules || sheet.rules).forEach(rule => {
+                    // Si la règle contient la propriété 'color', la modifier
+                    if (rule.style && rule.style.color) {
+                        rule.style.color = color;
+                    }
+                });
+            } catch (e) {
+                // Ignorer les erreurs liées aux restrictions de sécurité (comme les fichiers externes)
+                console.error('Erreur d\'accès à la feuille de style:', e);
+            }
+        });
     });
 });

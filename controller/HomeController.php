@@ -14,19 +14,23 @@ class HomeController extends AbstractController implements ControllerInterface
 
     public function index()
     {
-        $topicManager = new TopicManager;
-        $topics = $topicManager->lastTopics();
+
+        $categoryManager = new CategoryManager();
+        $categories = $categoryManager->findAll(['typeCategory', 'DESC']);
 
         $categoryManager2 = new CategoryManager();
-
         $allTopics = $categoryManager2->allTopics();
+
+        $topicManager = new TopicManager;
+        $topics = $topicManager->lastTopics();
 
         return [
             "view" => VIEW_DIR . "home.php",
             "meta_description" => "Page d'accueil du forum",
             "data" => [
                 "topics" => $topics,
-                "allTopics" => $allTopics
+                "allTopics" => $allTopics,
+                "categories" =>  $categories
             ]
         ];
     }
