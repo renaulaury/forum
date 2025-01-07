@@ -1,6 +1,7 @@
 <?php
-$categories = $result["data"]['categories'];
 $topics = $result['data']['topics'];
+$allTopics = $result['data']['allTopics'];
+
 
 ?>
 
@@ -10,13 +11,15 @@ $topics = $result['data']['topics'];
 <section>
   <h2>Catégories</h2>
 
-
-  <?php
-  foreach ($categories as $category) { ?>
+  <?php foreach ($allTopics as $allTopic) { ?>
     <div class="listCat">
       <div class="cat">
-        <p class="up"><a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>"><?= $category->getTypeCategory() ?></a> </p>
+        <p class="up"><a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $allTopic->getId() ?>"><?= $allTopic->getTypeCategory() ?></a> </p>
         <p class="down">Venez discuter avec nous !</p>
+
+        <p class="nbLastPost"><?= $allTopic->getNbTopic() ?>
+          <i class="fa-solid fa-message"></i>
+        </p>
       </div>
     </div>
 
