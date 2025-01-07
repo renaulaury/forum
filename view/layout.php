@@ -28,8 +28,12 @@
                         <div class="line"></div>
                     </div>
 
-                    <div>
-                        <ol id="navbar">
+                    <div class="blockHeader">
+                        <p id="accessibilite"><i class="fa-solid fa-person"></i></p>
+
+                        <
+
+                            <ol id="navbar">
                             <li><a href="index.php?ctrl=home&action=home">Accueil</a></li>
 
                             <?php
@@ -47,7 +51,7 @@
                             <?php
                             }
                             ?>
-                        </ol>
+                            </ol>
                     </div>
 
                     <div class="bande"></div>
@@ -99,6 +103,7 @@
     <script src="<?= PUBLIC_DIR ?>/js/burger.js"></script>
     <script src="<?= PUBLIC_DIR ?>/js/formBan.js"></script>
     <script src="<?= PUBLIC_DIR ?>/js/formEditProfile.js"></script>
+    <script src="<?= PUBLIC_DIR ?>/js/accessibilite.js"></script>
 </body>
 
 </html>
