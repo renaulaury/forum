@@ -13,10 +13,7 @@ const colorCircles = document.querySelectorAll('.accessColors i');
 
 
 // Fonction pour changer les couleurs du site
-colorCircles.forEach(circle => {
-    circle.addEventListener('click', (e) => {
-        const color = e.target.getAttribute('data-color');
-        
+ function colorTheme(color) {
         switch(color) {
             case 'peach':
 
@@ -74,5 +71,22 @@ colorCircles.forEach(circle => {
                 default:
                 break;
         }
+    }
+
+// Applique la couleur choisie au chargement si elle existe
+const savedColor = localStorage.getItem('themeColor');
+if (savedColor) {
+    colorTheme(savedColor);
+}
+
+// Fonction pour changer les couleurs du site
+colorCircles.forEach(circle => {
+    circle.addEventListener('click', (e) => {
+        const color = e.target.getAttribute('data-color');
+        localStorage.setItem('themeColor', color); // Sauvegarde la couleur dans le localStorage
+        colorTheme(savedColor);
     });
 });
+
+
+

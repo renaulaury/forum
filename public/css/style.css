@@ -1,13 +1,21 @@
 /******************Variables ******************/
 :root {
-    --color-primary: #944C43;
-    --color-secondary: rgb(34, 34, 34);
-    --color-highlight: #FFA07A;
+    --color-title-icon: #944C43;
+    --color-bande: #FFA07A; /*bande, lines, bordures*/
+    --color-h1: rgb(34, 34, 34);
+    --color-texte: rgb(34, 34, 34);
+    --color-texte-footer: rgb(34, 34, 34);    
+    --color-back-footer: #FA8072;
     --color-background: rgba(255, 160, 122, 0.17);
-    --color-overlay: rgba(255, 255, 255, 0.4);
+    --color-button: rgb(187, 182, 182);
+    --color-overlay: rgba(255, 255, 255, 0.4); /*Superposition img*/    
     --color-gradient-start: #FFBFA6;
     --color-gradient-end: #FA8072;
-    --color-grey-dark: rgb(58, 57, 57);
+    --color-alert: red;
+    --color-line-burger: rgb(34, 34, 34);
+    --color-back_burger: rgba(255, 255, 255, 0.9);
+
+    
 
     --color-peach: #FFA07A;
     --color-blue: rgb(33, 108, 230);
@@ -27,14 +35,56 @@
 body {
     width: 100%;
     height: auto;
+    color: var(--color-texte);
 }
 
 h1 {
     text-align: center;
     padding: 3% 0;
-    color: var(--color-primary);
+    color: var(--color-h1);
     font-size: 2em;
     font-weight: bold;
+}
+
+h2 {
+    padding: 3% 0;
+    color: var(--color-title-icon);
+}
+
+h3 {
+    padding-bottom: 2%;
+}
+
+h4 {
+    font-size: 1.17em;
+}
+
+main {
+    padding: 0 5% 3% 5%;    
+}
+
+section {
+    padding-top: 3%;
+}
+
+.bande {
+    height: 1em;
+    background-color: var(--color-bande);
+}
+
+.fa-person, .fa-user, .fa-message, .fa-lock, .fa-unlock, .fa-arrow-right, 
+.fa-pencil, .fa-triangle-exclamation {
+    color: var(--color-title-icon);
+    background-color: transparent;
+}
+
+/******************************* Header **************************************/
+.blockHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5% 1% 5%;
 }
 
 a {
@@ -42,16 +92,9 @@ a {
     text-decoration: none;
 }
 
-.blockHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
 #accessibilite {
     font-size: 1.5em;
-    padding-left: 5%;
+    width: 10%;
 }
 
 .accessColors {
@@ -62,14 +105,21 @@ a {
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 8%;
-    top: 6%;
-    border: 1px solid var(--color-highlight);
+    left: 10%;
+    top: 2%;
+    border: 1px solid var(--color-bande);
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--color-light);
     width: auto;
     z-index: 10;
     text-align: left;
+}
+
+.listColor {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
 
 .blue {
@@ -104,9 +154,9 @@ a {
     cursor: pointer;
 }
 
-/****************** Navbar ******************/
+/* Navbar */
 #navbar {
-    width: 100%;
+    width: 85%;
     height: 3em;
     display: flex;
     flex-direction: row;
@@ -123,12 +173,18 @@ a {
     display: none;
 }
 
-/******************Espace principal ******************/
+/********************************** Accueil *******************************/
+
+/*Encart titre - image */
+body {
+    position: relative;
+}
+
 .titleForum {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
-    color: var(--color-grey-dark);
+    color: var( --color-secondary);
     font-size: 3em;
     font-weight: bold;
     background-color: transparent;
@@ -140,11 +196,6 @@ a {
     height: 300px;
     overflow: hidden;
     position: relative;
-}
-
-.bande {
-    height: 1em;
-    background-color: var(--color-highlight);
 }
 
 .colisee {
@@ -167,29 +218,7 @@ a {
     background-color: var(--color-overlay);
 }
 
-/****************** Main ******************/
-section {
-    padding: 0 3% 3% 3%;
-}
-
-h2 {
-    padding: 3% 0;
-    color: var(--color-primary);
-}
-
-.titre {
-    font-size: 1.2em;
-    color: var(--color-primary);
-}
-
-h3 {
-    padding-bottom: 2%;
-}
-
-h4 {
-    font-size: 1.17em;
-}
-
+/* Catégories */
 .up {
     padding: 0 0 0 3%;
     padding-bottom: 1%;
@@ -205,12 +234,13 @@ h4 {
 
 .cat a {
     background-color: transparent;
-    color: var(--color-primary);
+    color: var(--color-title-icon);
     text-decoration: underline;
     font-weight: bold;
     padding-bottom: 1%;
 }
 
+/*Derniers topics*/
 .lastTopics {
     display: flex;
     align-items: center;
@@ -219,7 +249,7 @@ h4 {
 
 .lastTopic {
     padding: 3%;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-title-icon);
     border-radius: 30px;
 }
 
@@ -233,7 +263,7 @@ h4 {
 
 .linePost {
     height: 0.1em;
-    background-color: var(--color-highlight);
+    background-color: var(--color-bande);
     margin: 10% 0;
 }
 
@@ -249,7 +279,24 @@ h4 {
     padding: 2% 0 0 4%;
 }
 
-/****************** Topics ******************/
+/***************** Edition du rôle *************/
+.titreBan {
+    color: var(--color-title-icon);
+    padding-top: 15%;
+    padding-bottom: 5%;
+}
+
+.containBan {
+    padding-top: 5%;
+}
+
+.fa-triangle-exclamation {
+    padding-right: 3%;
+}
+
+
+
+/****************** Liste Topics ******************/
 .blockTopic {
     width: 90%;
 }
@@ -272,11 +319,6 @@ h4 {
     height: auto;
 }
 
-.fa-person, .fa-user, .fa-message, .fa-lock, .fa-unlock, .fa-arrow-right, .fa-pencil {
-    color: var(--color-primary);
-    background-color: transparent;
-}
-
 .cadenas {
     margin-left: 1%;
 }
@@ -294,64 +336,10 @@ h4 {
 .space {
     padding-bottom: 5%;
 }
-
-/******************Liste des users******************/
-/****************** Section des utilisateurs ******************/
-.titleUsers {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 2%;
-    color: var(--color-primary);
-    text-align: center;
-}
-
-.sectionUsers {
-    margin-top: 2%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.listUsers1, .listUsers2 {
-    width: 100%;
-    max-width: 800px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    text-align: center;
-}
-
-.listUsers2 {
-    grid-template-columns: repeat(2, 1fr); 
-}
-
-.thUsers {
-    font-weight: bold;
-    color: var(--color-secondary);
-    background-color: var(--color-background);
-    padding: 10px;
-}
-
-.infosUsers {
-    color: var(--color-secondary);
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.editUsers a {
-    color: var(--color-primary);
-    font-size: 1.2em;
-    text-decoration: none;
-    display: inline-block;
-    padding: 5px;
-}
-
-
-
-/****************** Formulaires ******************/
+/****************** Formulaires topic - post ******************/
 legend {
     padding: 3% 0;
-    color: var(--color-primary);
+    color: var(--color-title-icon);
     text-decoration: underline;
 }
 
@@ -363,7 +351,7 @@ form {
 }
 
 input, textarea {
-    border: 1px solid var(--color-highlight);
+    border: 1px solid var(--color-bande);
     padding: 1%;
     border-radius: 10px;
 }
@@ -406,7 +394,7 @@ input, textarea {
     margin-top: 5%;
     padding: 10px 20px;
     border-radius: 50px;
-    background-color: rgb(187, 182, 182);
+    background-color: var(--color-button);
     border: none;
     margin-bottom: 5%;
 }
@@ -415,11 +403,159 @@ input, textarea {
     background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
 }
 
+/****************** Liste des membres ******************/
+
+.titleUsers {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 3% 0;
+    color: var(--color-title-icon);
+    text-align: center;
+}
+
+.sectionUsers {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.listUsers1, .listUsers2 {
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    text-align: center;
+}
+
+.listUsers2 {
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+.thUsers {
+    font-weight: bold;
+    color: var(--color-secondary);
+    background-color: var(--color-background);
+    padding: 10px;
+}
+
+.infosUsers {
+    color: var(--color-secondary);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.editUsers a {
+    color: var(--color-title-icon);
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px;
+}
+
+/*********** Profile ***********/
+#profile {    
+    display:flex;
+}
+
+.editH2 {
+    font-size: 0.7em;
+    padding-left: 1%;
+}
+
+.containInfos {
+    padding: 3% 0;
+}
+
+.containInfosProfile {
+    
+    padding-bottom: 3%;
+    width: 30%;
+}
+
+.containEditProfile {
+    width: 70%;
+}
+
+.containDelProfile {
+    padding-top: 3%;
+    text-decoration: underline; 
+}
+
+.delProfile:hover {
+    color: var(--color-back-footer);
+}
+
+/* Formulaire Profile */
+#formProfile {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+.containEditProfile {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 100%;
+    gap: 20px;
+}
+
+.editNicknameMail {
+    width: 48%; 
+}
+
+#editPassword {
+    width: 48%; 
+}
+
+.blockForm {
+    width: 100%;
+    margin-bottom: 15px; 
+}
+
+/***************** Delete profil *************/
+.alertDelete {
+    padding: 3% 0;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: var(--color-alert);
+}
+
+ 
+.buttonDelete input {
+    border: 1px solid var(--color-bande);    
+    background-color: var(--color-button);
+    padding: 8%;
+    border-radius: 10px;
+}
+
+.buttonDelete {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.buttonDelete input:hover {
+    background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+}
+
+
+
+
 /******************Footer******************/
 footer {
     width: 100%;
     padding: 0.5% 0;
-    background-color: var(--color-highlight);
+    color: var(--color-texte-footer);
+    background-color: var(--color-back-footer);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -428,165 +564,11 @@ footer {
 
 footer a {
     color: var(--color-secondary);
+    color: var(--color-texte-footer);
 }
 
-
-/******************Réglement******************/
+/* Réglement */
 .concl {
     padding: 5% 0;
     text-align: center;
-}
-
-/******************Responsive******************/
-/* Responsive */
-@media (max-width: 1024px) {
-    .titleForum {
-        top: 15%;
-    }
-
-    .topicTitle,
-    .textTopic, .mailLogin {
-        width: 100%;
-        color: var(--color-primary);
-    }
-
-    .blockForm {
-        width: 100%;
-        display: block;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .lastTopics {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 3%;
-    }
-
-    .lastTopic {
-        margin-top: 3%;
-    }
-
-    .listUsers1, .listUsers2 {
-        width:70%;
-    }
-
-    .containEditProfile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .button input {
-        padding: 10px 40px;
-        background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
-    }
-}
-
-@media (max-width: 600px) {
-
-    form {
-        font-size: 1em;
-    }
-
-    .blockForm {
-        width: 90%;
-    }
-
-    #profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #editProfile {
-        width: 100%;
-        padding-bottom: 10%;
-    }
-
-    .topicTitle,
-    .textTopic, .mailLogin {
-        width: 100%;
-        color: var(--color-primary);
-    }
-
-    .button input {
-        padding: 10px 40px;
-        background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
-    }
-
-    #navbar {
-        display: none;
-    }
-
-    /* Burger */
-    .burger_button {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-        cursor: pointer;
-        width: 90%;
-        padding-bottom: 3%;
-    }
-
-    .burger_button .line {
-        width: 30px;
-        height: 4px;
-        margin: 2px 0;
-        background-color: var(--color-grey-dark);
-        transition: all 0.3s ease;
-    }
-
-    .burger_button.open .line:nth-child(1) {
-        transform: rotate(-40deg) translate(-0px, 10px);
-    }
-    .burger_button.open .line:nth-child(2) {
-        opacity: 0;
-    }
-    .burger_button.open .line:nth-child(3) {
-        transform: rotate(40deg) translate(-0px, -10px);
-    }
-
-    /* Menu déroulant */
-    #navbar.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        left: 65%;
-        top: 6%;
-        border: 1px solid var(--color-highlight);
-        border-radius: 10px;
-        background-color: var(--color-overlay);
-        width: 30%;
-        height: 100px;
-        color: var(--color-grey-dark);
-        z-index: 10;
-        text-align: left;
-        padding-left: 2%;
-    }
-
-    ol li {
-        width: 100%;
-        padding-bottom: 5%;
-    }
-
-    .listUsers1, .listUsers2 {
-        width: 100%;
-    }
-
-    footer {
-        display: flex;
-        flex-direction: column;
-        padding-top: 3%;
-    }
-
-    footer a {
-        padding: 3% 0;
-    }
 }

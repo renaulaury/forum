@@ -10,6 +10,7 @@
     <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+    <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/media_quieries.css">
     <title>FORUM</title>
 </head>
 
@@ -22,22 +23,23 @@
 
             <header>
                 <nav>
-                    <div class="burger_button">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                    </div>
+
 
                     <div class="blockHeader">
                         <p id="accessibilite"><i class="fa-solid fa-person"></i></p>
 
                         <div class="accessColors">
-                            <p><i class="fa-solid fa-circle peach" data-color="peach"></i></p>
-                            <p><i class="fa-solid fa-circle blue" data-color="blue"></i></p>
-                            <p><i class="fa-solid fa-circle purple" data-color="purple"></i></p>
-                            <p><i class="fa-solid fa-circle green" data-color="green"></i></p>
-                            <p><i class="fa-solid fa-circle dark" data-color="dark"></i></p>
-                            <p><i class="fa-solid fa-circle light" data-color="light"></i></p>
+                            <div>
+                                <p><i class="fa-solid fa-circle dark" data-color="dark"></i></p>
+                                <p><i class="fa-solid fa-circle light" data-color="light"></i></p>
+                            </div>
+                            <p class="linePost"></p>
+                            <div class="listColor">
+                                <p><i class="fa-solid fa-circle peach" data-color="peach"></i></p>
+                                <p><i class="fa-solid fa-circle blue" data-color="blue"></i></p>
+                                <p><i class="fa-solid fa-circle purple" data-color="purple"></i></p>
+                                <p><i class="fa-solid fa-circle green" data-color="green"></i></p>
+                            </div>
                         </div>
 
 
@@ -60,6 +62,12 @@
                             }
                             ?>
                         </ol>
+
+                        <div class="burger_button">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
                     </div>
 
                     <div class="bande"></div>

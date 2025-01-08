@@ -27,8 +27,6 @@ $profile = $result['data']['profile'];
         </div>
     </div>
 
-
-
     <form id="formProfile" style="display: none;" action="index.php?ctrl=user&action=editProfile" method="POST">
         <div class="containEditProfile">
             <div class="editNicknameMail">

@@ -134,7 +134,7 @@ class UserController extends AbstractController
     }
 
 
-    public function verifDeleteProfile()
+    public function verifDeleteProfile($id)
     {
         $userManager = new UserManager;
         $profile = $userManager->findOneById($id);

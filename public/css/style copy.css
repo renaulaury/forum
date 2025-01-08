@@ -1,0 +1,35 @@
+
+
+/* Responsive */
+@media (max-width: 600px) {
+    
+
+
+    /* Menu déroulant */
+    #navbar.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 65%;
+        top: 6%;
+        border: 1px solid salmon;
+        border-radius: 10px;
+        background-color: white;
+        padding: 3% 1%;
+        width: 30%;
+        height: 100px;
+        color: rgb(63, 63, 63);
+    }
+
+
+
+@media (max-width: 1024px) {
+    
+
+    .blockForm {
+        width: 50%; 
+    }
+}
+
+
+

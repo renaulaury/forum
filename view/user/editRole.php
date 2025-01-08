@@ -21,7 +21,7 @@ $listUsers = $result['data']['listUsers'];
         </div>
 
         <div id="banTempDiv" style="display: none;">
-            <h3 class="titre">
+            <h3 class="titreBan">
                 <i class="fa-solid fa-triangle-exclamation"></i>Bannissement temporaire
             </h3>
 
@@ -45,7 +45,7 @@ $listUsers = $result['data']['listUsers'];
         </div>
 
         <div id="banDefDiv" style="display: none;">
-            <h3 class="titre">
+            <h3 class="titreBan">
                 <i class="fa-solid fa-triangle-exclamation"></i>Bannissement définitif
             </h3>
 
