@@ -17,23 +17,35 @@ class TopicController extends AbstractController implements ControllerInterface
     {
         $topicManager = new TopicManager();
         $categoryManager = new CategoryManager();
+
         $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
+        $profile = null;
 
-        $id = $_SESSION['user']->getId();
-        $userManager = new UserManager();
-        $profile = $userManager->findOneById($id);
+        if (isset($_SESSION['user'])) {
+            $id_SESSION = $_SESSION['user']->getId();
+            $userManager = new UserManager();
+            $profile = $userManager->findOneById($id_SESSION);
 
-
-        return [
-            "view" => VIEW_DIR . "topic/listTopics.php",
-            "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),
-            "data" => [
-                "category" => $category,
-                "topics" => $topics,
-                "profile" => $profile
-            ]
-        ];
+            return [
+                "view" => VIEW_DIR . "topic/listTopics.php",
+                "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),
+                "data" => [
+                    "category" => $category,
+                    "topics" => $topics,
+                    "profile" => $profile
+                ]
+            ];
+        } else {
+            return [
+                "view" => VIEW_DIR . "topic/listTopicsVisitor.php",
+                "meta_description" => "Liste des topics par catégorie : " . $category->getTypeCategory(),
+                "data" => [
+                    "category" => $category,
+                    "topics" => $topics
+                ]
+            ];
+        }
     }
 
 

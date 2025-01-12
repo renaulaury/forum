@@ -18,26 +18,35 @@ class PostController extends AbstractController implements ControllerInterface
 
         $postManager = new PostManager();
         $topicManager = new TopicManager();
-        $categoryManager = new CategoryManager();
 
         $topic = $topicManager->findOneById($id);
-        $category = $categoryManager->findOneById($topic->getCategoryType());
         $posts = $postManager->findPostsByTopic($id);
+        $profile = null;
 
-        $id = $_SESSION['user']->getId();
-        $userManager = new UserManager();
-        $profile = $userManager->findOneById($id);
+        if (isset($_SESSION['user'])) {
+            $id_SESSION = $_SESSION['user']->getId();
+            $userManager = new UserManager();
+            $profile = $userManager->findOneById($id_SESSION);
 
-        return [
-            "view" => VIEW_DIR . "post/listPosts.php",
-            "meta_description" => "Liste des posts par topic : " . $topic->getTopicTitle(),
-            "data" => [
-                "topic" => $topic,
-                "category_id" => $id,
-                "posts" => $posts,
-                "profile" => $profile
-            ]
-        ];
+            return [
+                "view" => VIEW_DIR . "post/listPosts.php",
+                "meta_description" => "Liste des posts par topic : " . $topic->getTopicTitle(),
+                "data" => [
+                    "topic" => $topic,
+                    "posts" => $posts,
+                    "profile" => $profile
+                ]
+            ];
+        } else {
+            return [
+                "view" => VIEW_DIR . "post/listPostsVisitor.php",
+                "meta_description" => "Liste des posts par topic : " . $topic->getTopicTitle(),
+                "data" => [
+                    "topic" => $topic,
+                    "posts" => $posts
+                ]
+            ];
+        }
     }
 
     public function addPost($id)
