@@ -87,18 +87,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `nickname` varchar(50) NOT NULL,
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL,
+  `role` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `nickname` (`nickname`),
   UNIQUE KEY `mail` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forumlily.user : ~4 rows (environ)
+-- Listage des données de la table forumlily.user : ~5 rows (environ)
 REPLACE INTO `user` (`id_user`, `nickname`, `email`, `password`, `role`) VALUES
 	(1, 'lily', 'lily@elan.fr', '1234', 'admin'),
 	(2, 'mickael', 'micka@elan.fr', '1234', 'admin'),
 	(3, 'bilou', 'biloup@gmail.com', '1234', 'user'),
-	(4, 'blondeDu98', 'blondy@wanadoo.fr', '1234', 'user');
+	(4, 'blondeDu98', 'blondy@wanadoo.fr', '1234', 'user'),
+	(5, 'bil', 'micka@exemple.com', '$2y$10$0iPWMPxHVP.IUJDMHi7Iq.idN6xUkuCdjcKTpmTlRJMIdggLS0eNu', 'user');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
