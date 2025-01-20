@@ -1,9 +1,574 @@
+/******************Variables ******************/
+:root {
+    --color-title-icon: #944C43;
+    --color-bande: #FFA07A; /*bande, lines, bordures*/
+    --color-h1: rgb(34, 34, 34);
+    --color-texte: rgb(34, 34, 34);
+    --color-texte-footer: rgb(34, 34, 34);    
+    --color-back-footer: #FA8072;
+    --color-background: rgba(255, 160, 122, 0.17);
+    --color-button: rgb(187, 182, 182);
+    --color-overlay: rgba(255, 255, 255, 0.4); /*Superposition img*/    
+    --color-gradient-start: #FFBFA6;
+    --color-gradient-end: #FA8072;
+    --color-alert: red;
+    --color-line-burger: rgb(34, 34, 34);
+    --color-back_burger: rgba(255, 255, 255, 0.9);
+
+    
+
+    --color-peach: #FFA07A;
+    --color-blue: rgb(33, 108, 230);
+    --color-purple: rgb(138, 41, 186);
+    --color-green: rgb(25, 129, 25);
+    --color-dark: #1e1e1e;
+    --color-light: whitesmoke;    
+}
+
+/******************Général******************/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    width: 100%;
+    height: auto;
+    color: var(--color-texte);
+}
+
 h1 {
-    color: rgb(0, 122, 156);
+    text-align: center;
+    padding: 3% 0;
+    color: var(--color-h1);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h2 {
+    padding: 3% 0;
+    color: var(--color-title-icon);
+}
+
+h3 {
+    padding-bottom: 2%;
+}
+
+h4 {
+    font-size: 1.17em;
+}
+
+main {
+    padding: 0 5% 3% 5%;    
+}
+
+section {
+    padding-top: 3%;
+}
+
+.bande {
+    height: 1em;
+    background-color: var(--color-bande);
+}
+
+.fa-person, .fa-user, .fa-message, .fa-lock, .fa-unlock, .fa-arrow-right, 
+.fa-pencil, .fa-triangle-exclamation {
+    color: var(--color-title-icon);
+    background-color: transparent;
+}
+
+/******************************* Header **************************************/
+.blockHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5% 1% 5%;
+}
+
+a {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+#accessibilite {
+    font-size: 1.5em;
+    width: 10%;
+}
+
+.accessColors {
+    display: none;
+}
+
+.accessColors.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 10%;
+    top: 2%;
+    border: 1px solid var(--color-bande);
+    border-radius: 10px;
+    background-color: var(--color-light);
+    width: auto;
+    z-index: 10;
+    text-align: left;
+}
+
+.listColor {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.blue {
+    color: var(--color-blue);
+}
+
+.purple {
+    color: var(--color-purple);
+}
+
+.green {
+    color: var(--color-green);
+}
+
+.peach {
+    color: var(--color-peach);
+}
+
+.dark {
+    color: var(--color-dark);
+}
+
+.light {
+    color: var(--color-light);
+    border: 1px solid var(--color-dark);
+    border-radius: 50px;
+}
+
+.accessColors p {
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+/* Navbar */
+#navbar {
+    width: 85%;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: var(--color-secondary);
+}
+
+#navbar li {
+    list-style: none;
+}
+
+.burger_button {
+    display: none;
+}
+
+/********************************** Accueil *******************************/
+
+/*Encart titre - image */
+body {
+    position: relative;
+}
+
+.titleForum {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    color: var( --color-secondary);
+    font-size: 3em;
+    font-weight: bold;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+}
+
+.containColisee {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.colisee {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
+}
+
+.containColisee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-overlay);
+}
+
+/* Catégories */
+.up {
+    padding: 0 0 0 3%;
+    padding-bottom: 1%;
+}
+
+.down {
+    padding: 0 0 0 3%;
+}
+
+.cat {
+    width: 100%;
+}
+
+.cat a {
+    background-color: transparent;
+    color: var(--color-title-icon);
+    text-decoration: underline;
+    font-weight: bold;
+    padding-bottom: 1%;
+}
+
+/*Derniers topics*/
+.lastTopics {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.lastTopic {
+    padding: 3%;
+    border: 1px solid var(--color-title-icon);
+    border-radius: 30px;
+}
+
+.lastTopic a {
+    color: var(--color-secondary);
+}
+
+.titleTopic {
+    font-weight: bold;
+}
+
+.linePost {
+    height: 0.1em;
+    background-color: var(--color-bande);
+    margin: 10% 0;
+}
+
+.nbLastPost {
+    text-align: end;
+}
+
+.noPost {
+    padding: 2% 0 0 4%;
+}
+
+.msgVer {
+    padding: 2% 0 0 4%;
+}
+
+/***************** Edition du rôle *************/
+.titreBan {
+    color: var(--color-title-icon);
+    padding-top: 15%;
+    padding-bottom: 5%;
+}
+
+.containBan {
+    padding-top: 5%;
+}
+
+.fa-triangle-exclamation {
+    padding-right: 3%;
+}
+
+
+
+/****************** Liste Topics ******************/
+.blockTopic {
+    width: 90%;
+}
+
+.topic, .listCat {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 1%;
+    border-radius: 10px;
+    margin-bottom: 1%;
+}
+
+.fleche {
+    padding-right: 5%;
+    background-color: transparent;
+    width: 5%;
+    height: auto;
+}
+
+.cadenas {
+    margin-left: 1%;
+}
+
+.topic a {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.nameTime {
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.space {
+    padding-bottom: 5%;
+}
+/****************** Formulaires topic - post ******************/
+legend {
+    padding: 3% 0;
+    color: var(--color-title-icon);
+    text-decoration: underline;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input, textarea {
+    border: 1px solid var(--color-bande);
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.blockForm {
+    width: 100%;
+    max-width: 600px;
+    padding: 2% 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.topicTitle, .textTopic {
+    width: 100%;
+    padding: 10px;
+}
+
+.title input, .blockForm textarea {
+    width: 100%;
+}
+
+.title input {
+    width: calc(100% - 20px);
+}
+
+.blockForm textarea {
+    height: 200px;
+    overflow: auto;
+    resize: none;
+}
+
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button input {
+    margin-top: 5%;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: var(--color-button);
+    border: none;
+    margin-bottom: 5%;
+}
+
+.button input:hover {
+    background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+}
+
+/****************** Liste des membres ******************/
+
+.titleUsers {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 3% 0;
+    color: var(--color-title-icon);
+    text-align: center;
+}
+
+.sectionUsers {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.listUsers1, .listUsers2 {
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    text-align: center;
+}
+
+.listUsers2 {
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+.thUsers {
+    font-weight: bold;
+    color: var(--color-secondary);
+    background-color: var(--color-background);
+    padding: 10px;
+}
+
+.infosUsers {
+    color: var(--color-secondary);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.editUsers a {
+    color: var(--color-title-icon);
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px;
+}
+
+/*********** Profile ***********/
+#profile {    
+    display:flex;
+}
+
+.editH2 {
+    font-size: 0.7em;
+    padding-left: 1%;
+}
+
+.containInfos {
+    padding: 3% 0;
+}
+
+.containInfosProfile {
+    
+    padding-bottom: 3%;
+    width: 30%;
+}
+
+.containEditProfile {
+    width: 70%;
+}
+
+.containDelProfile {
+    padding-top: 3%;
+    text-decoration: underline; 
+}
+
+.delProfile:hover {
+    color: var(--color-back-footer);
+}
+
+/* Formulaire Profile */
+#formProfile {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+.containEditProfile {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 100%;
+    gap: 20px;
+}
+
+.editNicknameMail {
+    width: 48%; 
+}
+
+#editPassword {
+    width: 48%; 
+}
+
+.blockForm {
+    width: 100%;
+    margin-bottom: 15px; 
+}
+
+/***************** Delete profil *************/
+.alertDelete {
+    padding: 3% 0;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: var(--color-alert);
+}
+
+ 
+.buttonDelete input {
+    border: 1px solid var(--color-bande);    
+    background-color: var(--color-button);
+    padding: 8%;
+    border-radius: 10px;
+}
+
+.buttonDelete {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.buttonDelete input:hover {
+    background: linear-gradient(to right, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+}
+
+
+
+
+/******************Footer******************/
+footer {
+    width: 100%;
+    padding: 0.5% 0;
+    color: var(--color-texte-footer);
+    background-color: var(--color-back-footer);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+footer a {
+    color: var(--color-secondary);
+    color: var(--color-texte-footer);
+}
+
+/* Réglement */
+.concl {
+    padding: 5% 0;
+    text-align: center;
 }

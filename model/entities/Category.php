@@ -14,6 +14,7 @@ final class Category extends Entity
     private $id;
     private $typeCategory;
     private $sortCategory;
+    private $nbTopic;
 
     // chaque entité aura le même constructeur grâce à la méthode hydrate (issue de App\Entity)
     public function __construct($data)
@@ -62,7 +63,7 @@ final class Category extends Entity
 
     /**
      * Get the value of sortCategory
-     */ 
+     */
     public function getSortCategory()
     {
         return $this->sortCategory;
@@ -72,7 +73,7 @@ final class Category extends Entity
      * Set the value of sortCategory
      *
      * @return  self
-     */ 
+     */
     public function setSortCategory($sortCategory)
     {
         $this->sortCategory = $sortCategory;
@@ -83,5 +84,26 @@ final class Category extends Entity
     public function __toString()
     {
         return $this->typeCategory;
+    }
+
+    /**
+     * Get the value of nbTopic
+     */
+    public function getNbTopic()
+    {
+
+        return $this->nbTopic;
+    }
+
+    /**
+     * Set the value of nbTopic
+     *
+     * @return  self
+     */
+    public function setNbTopic($nbTopic)
+    {
+        $this->nbTopic = $nbTopic;
+
+        return $this;
     }
 }

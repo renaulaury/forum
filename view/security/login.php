@@ -1,12 +1,28 @@
-
+<?php
+$errorMessage = $result["data"]['errorMessage'] ?? null;
+?>
 
 <form action="index.php?ctrl=security&action=login&id=" method="POST">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email"><br>
+    <legend>Se connecter</legend>
 
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password"><br>
+    <?php if (isset($errorMessage)) { ?>
+        <div class="error-message">
+            <p><?php echo htmlspecialchars($errorMessage); ?></p>
+        </div>
+    <?php } ?>
 
-        <input type="submit" name="submit" value="Se connecter">        
+    <div class="blockForm title ">
+        <p class="mailLogin"><label for="email">Email</label></p>
+        <input type="email" name="email" id="email"></input>
+    </div>
 
-    </form>
+    <div class="blockForm title">
+        <p class="mdpLogin"><label for="password">Mot de passe</label></p>
+        <input type="password" name="password" id="password"></input>
+    </div>
+
+    <p class="button">
+        <input class="validInput" type="submit" name="submit" value="Valider">
+    </p>
+
+</form>

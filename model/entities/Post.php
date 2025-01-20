@@ -16,6 +16,7 @@ final class Post extends Entity
     private $postCreation;
     private $user;
     private $topic;
+    private $topicId;
 
 
     public function __construct($data)
@@ -25,7 +26,7 @@ final class Post extends Entity
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -35,7 +36,7 @@ final class Post extends Entity
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -45,7 +46,7 @@ final class Post extends Entity
 
     /**
      * Get the value of postMsg
-     */ 
+     */
     public function getPostMsg()
     {
         return $this->postMsg;
@@ -55,7 +56,7 @@ final class Post extends Entity
      * Set the value of postMsg
      *
      * @return  self
-     */ 
+     */
     public function setPostMsg($postMsg)
     {
         $this->postMsg = $postMsg;
@@ -65,7 +66,7 @@ final class Post extends Entity
 
     /**
      * Get the value of postCreation
-     */ 
+     */
     public function getPostCreation()
     {
         return $this->postCreation;
@@ -75,7 +76,7 @@ final class Post extends Entity
      * Set the value of postCreation
      *
      * @return  self
-     */ 
+     */
     public function setPostCreation($postCreation)
     {
         $this->postCreation = $postCreation;
@@ -91,7 +92,7 @@ final class Post extends Entity
 
     /**
      * Get the value of user
-     */ 
+     */
     public function getUser()
     {
         return $this->user;
@@ -101,7 +102,7 @@ final class Post extends Entity
      * Set the value of user
      *
      * @return  self
-     */ 
+     */
     public function setUser($user)
     {
         $this->user = $user;
@@ -111,7 +112,7 @@ final class Post extends Entity
 
     /**
      * Get the value of topic
-     */ 
+     */
     public function getTopic()
     {
         return $this->topic;
@@ -121,7 +122,7 @@ final class Post extends Entity
      * Set the value of topic
      *
      * @return  self
-     */ 
+     */
     public function setTopic($topic)
     {
         $this->topic = $topic;
@@ -133,6 +134,24 @@ final class Post extends Entity
     {
         return $this->postMsg;
     }
-}
 
-?>
+    /**
+     * Get the value of topicId
+     */
+    public function getTopicId()
+    {
+        return $this->topicId;
+    }
+
+    /**
+     * Set the value of topicId
+     *
+     * @return  self
+     */
+    public function setTopicId($topicId)
+    {
+        $this->topicId = $topicId;
+
+        return $this;
+    }
+}
