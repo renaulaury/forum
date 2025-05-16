@@ -16,7 +16,8 @@ class SecurityController extends AbstractController
         $user = new UserManager();
         $errorMessage = null;
 
-        if (isset($_POST["submit"])) {
+        if (isset($_POST["submit"])) {           
+
             //on filtre
             $nickname = filter_input(INPUT_POST, "nickname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
@@ -59,7 +60,7 @@ class SecurityController extends AbstractController
                 $errorMessage = "Tous les champs doivent être remplis correctement et 
                 vous devez accepter les termes et conditions pour vous inscrire.";
             }
-        }
+        }               
 
         return [
             "view" => VIEW_DIR . "security/register.php",
@@ -67,6 +68,7 @@ class SecurityController extends AbstractController
             "data" => [
                 "errorMessage" => $errorMessage,  // Transmission de l'erreur à la vue
             ]
+            
         ];
     }
 
@@ -82,43 +84,61 @@ class SecurityController extends AbstractController
 
         //on filtre
         if (isset($_POST['submit'])) {
+             // Vérification du token CSRF
+            if (
+                !isset($_POST['csrf_token']) ||
+                !isset($_SESSION['csrf_token']) ||
+                $_POST['csrf_token'] !== $_SESSION['csrf_token']
+            ) {
+                $errorMessage = "Échec de sécurité : jeton CSRF invalide.";
+            } else {
+                unset($_SESSION['csrf_token']); // Invalide le token après vérif
+            }
 
-            $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            //on les verifie
-            if ($email && $password) {
-                $user = $userManager->findOneByEmail($email);
+            // Si pas d'erreur CSRF, on continue
+            if (!$errorMessage) {
+                $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-                //on vérifie empreinte numérique et on ouvre la session
-                if ($user) {
-                    $hash = $user->getPassword();
-                    if (password_verify($password, $hash)) {
-                        // Vérification du statut de bannissement
-                        $this->checkBanStatus($user->getId());
+                //on les verifie
+                if ($email && $password) {
+                    $user = $userManager->findOneByEmail($email);
 
-                        //Si user validé, ouverture session
-                        $session->setUser($user);
+                    //on vérifie empreinte numérique et on ouvre la session
+                    if ($user) {
+                        $hash = $user->getPassword();
+                        if (password_verify($password, $hash)) {
+                            // Vérification du statut de bannissement
+                            $this->checkBanStatus($user->getId());
 
-                        $this->redirectTo("home", "home");
-                        exit();
+                            //Si user validé, ouverture session
+                            $session->setUser($user);
+
+                            $this->redirectTo("home", "home");
+                            exit();
+                        } else {
+                            $errorMessage = "Mot de passe incorrect.";
+                        }
                     } else {
-                        $errorMessage = "Mot de passe incorrect.";
+                        $errorMessage = "Utilisateur non trouvé.";
                     }
                 } else {
-                    $errorMessage = "Utilisateur non trouvé.";
+                    $errorMessage = "Veuillez remplir correctement les champs.";
                 }
-            } else {
-                $errorMessage = "Veuillez remplir correctement les champs.";
             }
         }
 
+        // Génération du token CSRF
+            $csrfToken = bin2hex(random_bytes(32)); //32o aléatoires convertit en chaine hexadéc
+            $_SESSION['csrf_token'] = $csrfToken; //Stocké en session
 
         return [
             "view" => VIEW_DIR . "security/login.php",
             "meta_description" => "Login to the forum",
             "data" => [
-                "errorMessage" => $errorMessage
+                "errorMessage" => $errorMessage,                
+                "csrfToken" => $csrfToken
             ]
         ];
     }

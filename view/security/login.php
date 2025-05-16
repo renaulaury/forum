@@ -13,13 +13,15 @@ $errorMessage = $result["data"]['errorMessage'] ?? null;
 
     <div class="blockForm title ">
         <p class="mailLogin"><label for="email">Email</label></p>
-        <input type="email" name="email" id="email"></input>
+        <input type="email" name="email" id="email">
     </div>
 
     <div class="blockForm title">
         <p class="mdpLogin"><label for="password">Mot de passe</label></p>
-        <input type="password" name="password" id="password"></input>
+        <input type="password" name="password" id="password">
     </div>
+
+     <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
 
     <p class="button">
         <input class="validInput" type="submit" name="submit" value="Valider">
